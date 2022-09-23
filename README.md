@@ -1,92 +1,54 @@
-# group12-cs373
+# group12-cs373 : HomePlanet
+
+**Canvas/Discord Group Number:** 11 AM - Group 12
+
+**Names of the team members:**
+| Name | GitLabID |
+| ------ | ------ |
+| Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) |
+| Summer Ely | [spe358](https://gitlab.com/spe358) |
+| Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) |
+| Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) |
+| Megan Zhao | [zdd](https://gitlab.com/zdd) |
+
+**Website URL:** homeplanet.me
+
+**GitLab URL:**  https://gitlab.com/NathanSuss/group12-cs373
+
+## Project Proposal: HomePlanet
+**Description:** HomePlanet is an astronomy database with information on Planets, Galaxies, Stars, and Moons, as well as information on whether or not these celestial bodies could potentially sustain human life or other types of life.
+
+**RESTful APIs / Disparate Data Sources**
+1. https://api-ninjas.com/api/planets to get information on planets
+2. https://api.le-systeme-solaire.net/en/ to get information on moons
+3. https://api-ninjas.com/api/stars to get information on stars
+4. https://api.nasa.gov/ to get NASA images 
+5. https://en.wikipedia.org/api/rest_v1/#/ to scrape Wikipedia pages such as https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets
 
 
+**Models**
+1. Planets/Exoplanets (1000+ instances)
+    - Filterable Attributes: Mass, radius, orbital period, temperature, distance from Earth, gravity, number of moons
+    - Searchable Attributes: Name, whether it is potentially habitable or not, names of moons that orbit it, name of the star it orbits, planet type (Gas giant, Terrestrial, etc)
+    - Connection to others: Each planet orbits a star and some planets have moons
+3. Stars (1000+ instances)
+    - Filterable Attributes: Mass, radius, apparent magnitude (brightness), absolute magnitude, distance from Earth in lightyears
+    - Searchable Attributes: Name, constellation that the star belongs to, names of planets that orbit it, names of moons that orbit it
+    - Connection to others: Each star will have moons and planets that orbit it 
+3. Moons (100+ instances)
+    - Filterable Attributes: Mass, radius, gravity, temperature, axial tilt
+    - Searchable Attributes: Name, planet it orbits, whether it is potentially habitable or not
+    - Connection to others: Each moon orbits a planet which orbits a star
+    - Media: Each galaxy has planets and stars that are in it
 
-## Getting started
+**Media on Instance Pages**
+- Each Model will have multiple images taken by NASA
+- Each planet will have graphs comparing its features like temperature, gravity, atmosphere, etc to Earth's
+- If available, a diagram of the model's orbit will be included
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**Questions our website will answer**
+- What factors go into determining if a planet is habitable? 
+- How many potential habitable planets are there in the universe?
+- What planets and/or moons have features most similar to Earth?
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/NathanSuss/group12-cs373.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/NathanSuss/group12-cs373/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
