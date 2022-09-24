@@ -16,7 +16,7 @@
 **GitLab URL:**  https://gitlab.com/NathanSuss/group12-cs373
 
 ## Project Proposal: HomePlanet
-**Description:** HomePlanet is an astronomy database with information on Planets, Galaxies, Stars, and Moons, as well as information on whether or not these celestial bodies could potentially sustain human life or other types of life.
+**Description:** HomePlanet is an astronomy database with information on Planets, Stars, and Moons, as well as information on whether or not these celestial bodies could potentially sustain human life or other types of life.
 
 **RESTful APIs / Disparate Data Sources**
 1. https://api-ninjas.com/api/planets to get information on planets
