@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import requests
+from io import StringIO
 
 
 def get_response_dict(request_url, headers = None):
@@ -80,6 +81,23 @@ def get_star_data():
     return star_data
 
 
+def write_exostar_data():
+    url = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=missionstars&select=star_name,st_teff,st_vmagearth,st_rad,st_mass,st_logg'
+
+    response = requests.get(url)
+
+    if response.status_code == requests.codes.ok:
+        responseSTR = StringIO(response.text)
+        data = pd.read_csv(responseSTR)
+    else:
+        print("Error:", response.status_code, response.text)
+        return
+    
+    data.to_csv('exostar_data.csv')
+
+
+
+
 def get_all_data():
     star_data = get_star_data()
 
@@ -98,6 +116,8 @@ def get_all_data():
 
     with open('../data/star_data.json', 'w') as f:
         json.dump(star_data, f)
+    
+    write_exostar_data()
 
     
 
