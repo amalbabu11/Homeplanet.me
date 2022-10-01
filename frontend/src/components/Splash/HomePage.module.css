@@ -1,0 +1,33 @@
+.homePage {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("../../assets/galaxy_background.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: calc(80vh);
+  display: flex;
+  flex-direction: column;
+}
+
+.homeTitle {
+  position: absolute;
+  font-size: 100px;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  font-family: 'Arial', sans-serif;
+  white-space: nowrap;
+  text-shadow: 0 0 20px black, 0 0 20px black;
+}
+
+.homeSubTitle {
+  color: white;
+  font-size: 40px;
+  margin: 10px auto;
+}
+
+.spacer {
+  min-height: 90px;
+}
