@@ -82,7 +82,7 @@ def get_star_data():
 
 
 def write_exostar_data():
-    url = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=missionstars&select=star_name,st_teff,st_vmagearth,st_rad,st_mass,st_logg'
+    url = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=missionstars&select=star_name,st_teff,st_lumclass,st_age,st_rad,st_mass,st_logg'
 
     response = requests.get(url)
 
