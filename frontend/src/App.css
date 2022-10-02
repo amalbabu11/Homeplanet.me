@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.Navbar-custom {
+  background-color: #27214f;
+  color:#ecf2f4;
+}
+.Title-text {
+  font-weight: bold;
+  font-family: "Helvetica", sans-serif;
+  color:white;
+}
