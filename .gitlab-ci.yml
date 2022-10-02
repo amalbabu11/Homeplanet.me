@@ -1,0 +1,25 @@
+stages:
+    - build
+    - test
+    - deploy
+
+build_frontend:
+    stage: build
+    script:
+        - echo "trying frontend build in gitlab-ci.yml"
+        - cd frontend
+        - npm install
+        - npm run-script build
+
+test_frontend:
+    stage: test
+    script:
+        - echo "executing frontend tests from gitlab-ci.yml"
+        - cd frontend
+        - npm install
+        - npm test
+
+deploy_frontend:
+    stage: deploy
+    script:
+        - echo "nothing implemented for deploy_frontend yet in gitlab-ci.yml"
