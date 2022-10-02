@@ -11,7 +11,7 @@ build_frontend:
         - echo "trying frontend build in gitlab-ci.yml"
         - cd frontend
         - npm install
-        - npm run-script build
+        - CI=false npm run-script build
 
 test_frontend:
     stage: test
