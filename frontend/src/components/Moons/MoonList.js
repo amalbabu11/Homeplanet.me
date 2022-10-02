@@ -15,30 +15,30 @@ const moon_list = [
     name: "Moon",
     img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg",
     mass: 7.346e22,
-    vol: 2.1968e10,
     density: 3.344,
     gravity: 1.62,
     radius: 1737.0,
+    planet: "earth",
     key: 0,
   },
   {
-    name: "Moon2",
-    img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg",
-    mass: 7.346e22,
-    vol: 2.1968e10,
-    density: 3.344,
-    gravity: 1.62,
-    radius: 1737.0,
+    name: "Phobos",
+    img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Phobos_colour_2008.jpg",
+    mass: 1.06e10,
+    density: 1.9,
+    gravity: 0.78,
+    radius: 1353.4,
+    planet: "mars",
     key: 1,
   },
   {
-    name: "Moon3",
-    img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg",
-    mass: 7.346e22,
-    vol: 2.1968e10,
-    density: 3.344,
-    gravity: 1.62,
+    name: "Triton",
+    img: "https://cdn.sci.news/images/enlarge6/image_7216e-Triton.jpg",
+    mass: 1.4762e15,
+    density: 1.75,
+    gravity: 0.003,
     radius: 1737.0,
+    planet: "neptune",
     key: 2,
   },
 ];
@@ -70,9 +70,6 @@ function MoonList() {
                         </ListGroupItem>
                         <ListGroupItem>
                           <strong>Gravity: </strong> ~{c.gravity} UNITS
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Volume: </strong> ~{c.vol} UNITS
                         </ListGroupItem>
                       </ListGroup>
                     </MDBCardText>

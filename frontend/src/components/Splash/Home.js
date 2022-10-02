@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-// import Button from "@mui/material/Button";
 
 const Home = () => {
   return (
