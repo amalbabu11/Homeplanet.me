@@ -21,6 +21,8 @@ const star_list = [
     st_rad: 0.98,
     st_mass: 0.94,
     st_logg: 4.45,
+    st_age: 8.96,
+    st_lumclass: "MAINSEQ",
     moons: [{key: 0, moonName: "Moon", moonKey: 0},
     {key: 0, moonName: "Phobos", moonKey: 1},
     {key: 0, moonName: "Triton", moonKey: 2}],
@@ -37,6 +39,7 @@ const star_list = [
     st_rad: 1.25,
     st_mass: 1.06,
     st_logg: 4.3,
+    st_age: 7.84,
     moons: [{key: 0, moonName: "Moon", moonKey: 0},
     {key: 0, moonName: "Phobos", moonKey: 1},
     {key: 0, moonName: "Triton", moonKey: 2}],
@@ -46,13 +49,15 @@ const star_list = [
     key: 1,
   },
   {
-    name: "Fomalhaut",
-    img: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Heic0821f.jpg",
-    st_teff: 8399.0,
+    name: "HIP 17378",
+    img: "https://in-the-sky.org/image.php?style=icon&obj=21994",
+    st_teff: 5095.0,
     st_vmagearth: 29.11,
-    st_rad: 1.92,
-    st_mass: 2.05,
-    st_logg: 4.14,
+    st_rad: 2.27,
+    st_mass: 1.19,
+    st_logg: 4.01,
+    st_age: 6.28,
+    st_lumclass: "GIANT",
     moons: [{key: 0, moonName: "Moon", moonKey: 0},
     {key: 0, moonName: "Phobos", moonKey: 1},
     {key: 0, moonName: "Triton", moonKey: 2}],
@@ -84,16 +89,16 @@ function StarList() {
                     <MDBCardText>
                       <ListGroup>
                         <ListGroupItem>
-                          <strong>st_teff:</strong> {c.st_teff} UNITS
+                          <strong>Luminosity Class:</strong> {c.st_lumclass}
                         </ListGroupItem>
                         <ListGroupItem>
-                          <strong>st_vmagearth: </strong> ~{c.st_vmagearth} UNITS
+                          <strong>Age: </strong> ~{c.st_age} UNITS
                         </ListGroupItem>
                         <ListGroupItem>
-                          <strong>Radius: </strong> ~{c.st_rad} UNITS
+                          <strong>Radius: </strong> ~{c.st_rad} Suns
                         </ListGroupItem>
                         <ListGroupItem>
-                          <strong>Mass: </strong> ~{c.st_mass} UNITS
+                          <strong>Mass: </strong> ~{c.st_mass} Suns
                         </ListGroupItem>
                       </ListGroup>
                     </MDBCardText>

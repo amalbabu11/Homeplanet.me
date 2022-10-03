@@ -73,13 +73,13 @@ function MoonList() {
                     <MDBCardText>
                       <ListGroup>
                         <ListGroupItem>
-                          <strong>Mass:</strong> {c.mass} UNITS
+                          <strong>Mass:</strong> {c.mass} 10^n kg
                         </ListGroupItem>
                         <ListGroupItem>
-                          <strong>Radius: </strong> ~{c.radius} UNITS
+                          <strong>Radius: </strong> ~{c.radius} km
                         </ListGroupItem>
                         <ListGroupItem>
-                          <strong>Gravity: </strong> ~{c.gravity} UNITS
+                          <strong>Gravity: </strong> ~{c.gravity} m.s^-2
                         </ListGroupItem>
                       </ListGroup>
                     </MDBCardText>

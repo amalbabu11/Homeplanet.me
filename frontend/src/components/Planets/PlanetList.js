@@ -83,10 +83,10 @@ function PlanetList() {
                     <h3 class="cardSub">{c.state}</h3>
                     <MDBCardText>
                       <ListGroup>
-                        <ListGroupItem><strong>Radius:</strong> {c.radius} UNITS</ListGroupItem>
+                        <ListGroupItem><strong>Radius:</strong> {c.radius} Jupiters</ListGroupItem>
                         <ListGroupItem><strong>Distance From Earth: </strong> ~{c.distance_light_year} Light Years</ListGroupItem>
-                        <ListGroupItem><strong>Mass: </strong> ~{c.mass} UNITS</ListGroupItem>
-                        <ListGroupItem><strong>Temperature: </strong> ~{c.temperature} UNITS</ListGroupItem>
+                        <ListGroupItem><strong>Mass: </strong> ~{c.mass} Jupiters</ListGroupItem>
+                        <ListGroupItem><strong>Temperature: </strong> ~{c.temperature} degrees Kelvin</ListGroupItem>
                       </ListGroup>
                     </MDBCardText>
                   </MDBCardBody>

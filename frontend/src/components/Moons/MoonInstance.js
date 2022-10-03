@@ -25,16 +25,16 @@ function MoonInstance(props) {
               <Col>
                 <div class="bodyText">
                   <p>
-                    {" "}<strong>Mass:</strong> {props.data.mass} UNITS{" "}
+                    {" "}<strong>Mass:</strong> {props.data.mass} 10^n kg{" "}
                   </p>
                   <p>
-                  {" "}<strong>Density:</strong> {props.data.density} UNITS{" "}
+                  {" "}<strong>Density:</strong> {props.data.density} 10^n km^3{" "}
                   </p>
                   <p>
-                  {" "}<strong>Gravity:</strong> {props.data.gravity} UNITS{" "}
+                  {" "}<strong>Gravity:</strong> {props.data.gravity} m.s^-2{" "}
                   </p>
                   <p>
-                  {" "}<strong>Radius:</strong> {props.data.radius} UNITS{" "}
+                  {" "}<strong>Radius:</strong> {props.data.radius} km{" "}
                   </p>
                 </div>
               </Col>

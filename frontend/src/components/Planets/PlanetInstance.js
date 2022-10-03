@@ -24,27 +24,13 @@ function PlanetInstance(props) {
             <Row>
               <Col>
                 <div class="bodyText">
-                  <p>
-                    {" "}<strong>Mass:</strong> {props.data.mass} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Radius:</strong> {props.data.radius} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Period:</strong> {props.data.period} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Temperature:</strong> {props.data.temperature} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Distance in Light Years From Earth:</strong> {props.data.distance_light_year} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Host Star Mass:</strong> {props.data.host_star_mass} UNITS{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Host Star Temperature:</strong> {props.data.host_star_temperature} UNITS{" "}
-                  </p>
+                  <p>{" "}<strong>Mass:</strong> {props.data.mass} Jupiters{" "}</p>
+                  <p>{" "}<strong>Radius:</strong> {props.data.radius} Jupiters{" "}</p>
+                  <p>{" "}<strong>Period:</strong> {props.data.period} Earth days{" "}</p>
+                  <p>{" "}<strong>Temperature:</strong> {props.data.temperature} degrees Kelvin{" "}</p>
+                  <p>{" "}<strong>Distance From Earth:</strong> {props.data.distance_light_year} Light Years{" "}</p>
+                  <p>{" "}<strong>Host Star Mass:</strong> {props.data.host_star_mass} Suns{" "}</p>
+                  <p>{" "}<strong>Host Star Temperature:</strong> {props.data.host_star_temperature} Kelvins{" "}</p>
                 </div>
               </Col>
               <Row>
