@@ -33,6 +33,7 @@ branch_main:
 	git pull origin main
 
 branch_dev:
+	# note, main won't have this makefile until dev is merged with it.
 	@echo "switch to dev branch"
 	git checkout dev
 	git pull origin dev
