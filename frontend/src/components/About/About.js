@@ -1,17 +1,44 @@
 import React, { useEffect, useState } from 'react'
-import {Row, Col, Card, ListGroup, ListGroupItem} from 'react-bootstrap'
+import { Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import teamInfo from "./TeamInfo.js"
 import toolInfo from "./ToolInfo.js"
 import APIInfo from "./APIInfo.js"
-import parseInfo from "./query.js"
 
 const getGitLabInfo = async () => {
-    let gitlabJson = parseInfo(), totalTestCount = 0, totalCommitCount = gitlabJson["commits_num"], totalIssueCount = gitlabJson["issues_num"];    
+    let totalCommitCount = 0, totalIssueCount = 0, totalTestCount = 0;
     teamInfo.forEach((member) => {
-        member.issues = gitlabJson["issues"][member.username];
-        member.commits = gitlabJson["commits"][member.username];
+        member.issues = 0;
+        member.commits = 0;
         member.tests = 0;
     });
+
+    let commits = await fetch("https://gitlab.com/api/v4/projects/39622546/repository/commits")
+    commits = await commits.json()
+    totalCommitCount = commits.length
+
+    commits.forEach((commit) => {
+        const{ author_name, author_email } = commit
+        teamInfo.forEach((member) => {
+            if(member.name === author_name || author_name === member.username || member.username === author_name || member.email === author_email){
+                member.commits += 1
+            }
+        })
+    })
+
+    let issues = await fetch("https://gitlab.com/api/v4/projects/39622546/issues")
+    issues = await issues.json()
+    totalIssueCount = issues.length
+
+    issues.forEach((issue) => {
+        console.log(issue)
+        const{ author } = issue
+        const{ name, username } = author
+        teamInfo.forEach((member) => {
+            if(member.name === name || name === member.username || member.username === username || member.name === username){
+                member.issues += 1
+            }
+        })
+    })
 
     return {
 		totalCommits: totalCommitCount,
@@ -22,7 +49,7 @@ const getGitLabInfo = async () => {
 }
 
 const About = () => {
-  const [teamList, setTeamList] = useState([])
+    const [teamList] = useState([])
 	const [totalCommits, setTotalCommits] = useState(0)
 	const [totalIssues, setTotalIssues] = useState(0)
 	const [totalTests, setTotalTests] = useState(0)
@@ -39,6 +66,7 @@ const About = () => {
 		fetchData()
 	}, [teamList])
 
+    
     return (
         <div className="About"> 
             <header className = "About-header">
@@ -51,7 +79,7 @@ const About = () => {
                     Description
                 </h3>
                 <p>
-                    HomePlanet is a website that ... 
+                    HomePlanet is a website that ...
                 </p>
             </header>
             <h4><br></br></h4>
@@ -183,7 +211,7 @@ const About = () => {
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Title>Postman Documentation</Card.Title>
-                        <Card.Link href="https://documenter.getpostman.com/view/20771905/2s83tFHWkc">View Our Postman Doc</Card.Link>
+                        <Card.Link href="https://documenter.getpostman.com/view/20771905/2s83tFHWkc">View Our API Documentation on Postman</Card.Link>
                     </Card.Body>
                 </Card>
                 </Col>

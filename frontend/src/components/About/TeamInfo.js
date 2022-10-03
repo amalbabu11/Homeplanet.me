@@ -8,6 +8,7 @@ const teamInfo = [
     {
         name: "Amal Badu",
 		username: "amalbabu12",
+		member_key: "Amal Badu",
 		email: "amalbabu12@utexas.edu",
 		picture_path: amal,
 		role: "Backend",
@@ -21,6 +22,7 @@ const teamInfo = [
     {
         name: "Summer Ely",
 		username: "spe358",
+		member_key: "Summer Ely",
 		email: "spe358@utexas.edu",
 		picture_path: summer,
 		role: "Frontend",
@@ -35,6 +37,7 @@ const teamInfo = [
         name: "Jinjie Liu",
 		username: "JinjieLiu",
 		email: "jinjieliu@utexas.edu",
+		member_key: "Jinjie Liu",
 		picture_path: jinjie,
 		role: "Backend",
 		bio: "Welcome to our website! My name is Jinjie Liu and I'm a senior in UT CS. I'm an exchange student from China. My home university is Shanghai Jiaotong University. I'm a soccer fan. My favorite club is Barca.",
@@ -46,6 +49,7 @@ const teamInfo = [
     {
         name: "Nathan Sussman",
 		username: "NathanSuss",
+		member_key: "NathanSuss",
 		email: "n8sussman@gmail.com",
 		picture_path: nathan,
 		role: "Frontend (Phase 1 Leader)",
@@ -58,6 +62,7 @@ const teamInfo = [
     {
         name: "Megan Zhao",
 		username: "banye0913",
+		member_key: "Megan Zhao",
 		email: "swapnil.shaurya@utexas.edu",
 		picture_path: megan,
 		role: "Frontend",
