@@ -6,13 +6,13 @@ import megan from "./Megan.jpg"
 
 const teamInfo = [
     {
-        name: "Amal Badu",
+        name: "Amal Babu",
 		username: "amalbabu12",
-		email: "amalbabu12@utexas.edu",
+		email: "amalbabu@utexas.edu",
 		picture_path: amal,
 		role: "Backend",
 		bio:
-			"Amal bio",
+			"Hello! I am Amal Babu, a junior at UT Austin. I was born in India and have moved around a bunch since then, but finally settled down in Texas. I love playing and watching soccer!",
 		linkedin: "",
 		commits: 0,
 		issues: 0,

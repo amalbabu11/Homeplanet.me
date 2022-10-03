@@ -1,18 +1,18 @@
 const APIInfo = [
     {
-        name: "API 1",
-		description: "Description 1",
-        link: "Link 1",
+        name: "API Ninjas: Planets API",
+		description: "Provides facts for planets inside and outside the solar system.",
+        link: "https://api-ninjas.com/api/planets",
     },
     {
-        name: "API 2",
-		description: "Description 2",
-        link: "Link 2",
+        name: "Le Systeme Solaire",
+		description: "Provides facts on bodies inside of our Solar System, used primarily to get information on moons.",
+        link: "https://api.le-systeme-solaire.net/en/ ",
     },
     {
-        name: "API 3",
-		description: "Description 3",
-        link: "Link 3",
+        name: "NASA Missionstars",
+		description: "Provides information on stars outside our Solar System",
+        link: "https://exoplanetarchive.ipac.caltech.edu/docs/API_mission_stars.html",
     },
 ]
 
