@@ -9,7 +9,7 @@
 | Summer Ely | [spe358](https://gitlab.com/spe358) |
 | Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) |
 | Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) |
-| Megan Zhao | [zdd](https://gitlab.com/zdd) |
+| Megan Zhao | [banye0913](https://gitlab.com/banye0913) |
 
 **Website URL:** homeplanet.me
 
