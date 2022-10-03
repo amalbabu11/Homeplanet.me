@@ -2,6 +2,7 @@ import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link as RouterLink } from "react-router-dom";
 import "../../styles/Planets.css";
 import { CardActionArea } from "@mui/material";
+import MoonImg from "../../assets/moons/moon.jpg";
 import {
   MDBCard,
   MDBCardBody,
@@ -13,12 +14,15 @@ import {
 const moon_list = [
   {
     name: "Moon",
-    img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg",
+    img: MoonImg,
     mass: 7.346e22,
     density: 3.344,
     gravity: 1.62,
     radius: 1737.0,
-    planet: "earth",
+    planets: [{key: 0, planetName: "Earth", planetKey: 1}],
+    stars: [{key: 0, starName: "61 Vir", starKey:0}, 
+    {key: 1, starName: "alf Cen A", starKey: 1},
+    {key: 2, starName: "Fomalhaut", starKey: 2}],
     key: 0,
   },
   {
@@ -28,7 +32,10 @@ const moon_list = [
     density: 1.9,
     gravity: 0.78,
     radius: 1353.4,
-    planet: "mars",
+    planets: [{key: 0, planetName: "Mercury", planetKey: 0}],
+    stars: [{key: 0, starName: "61 Vir", starKey:0}, 
+    {key: 1, starName: "alf Cen A", starKey: 1},
+    {key: 2, starName: "Fomalhaut", starKey: 2}],
     key: 1,
   },
   {
@@ -38,7 +45,10 @@ const moon_list = [
     density: 1.75,
     gravity: 0.003,
     radius: 1737.0,
-    planet: "neptune",
+    planets: [{key: 0, planetName: "Neptune", planetKey: 2}],
+    stars: [{key: 0, starName: "61 Vir", starKey:0}, 
+    {key: 1, starName: "alf Cen A", starKey: 1},
+    {key: 2, starName: "Fomalhaut", starKey: 2}],
     key: 2,
   },
 ];

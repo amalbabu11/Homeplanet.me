@@ -1,11 +1,6 @@
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link as RouterLink } from "react-router-dom";
 // import Crawford from "../../assets/counties/crawford.png";
-// import FortBend from "../../assets/counties/fortbend.png";
-// import LA from "../../assets/counties/los_angeles.png";
-// import CrawfordDemographic from "../../assets/counties/crawford_demographic.png";
-// import FortBendDemographic from "../../assets/counties/FortBend_demographic.png";
-// import LADemographic from "../../assets/counties/LA_demographic.png";
 // TODO: add images in assets folder instead 
 import "../../styles/Stars.css";
 import { CardActionArea } from "@mui/material";
@@ -26,6 +21,12 @@ const star_list = [
     st_rad: 0.98,
     st_mass: 0.94,
     st_logg: 4.45,
+    moons: [{key: 0, moonName: "Moon", moonKey: 0},
+    {key: 0, moonName: "Phobos", moonKey: 1},
+    {key: 0, moonName: "Triton", moonKey: 2}],
+    planets: [{key: 0, planetName: "Mercury", planetKey: 0},
+    {key: 0, planetName: "Neptune", planetKey: 2},
+    {key: 0, planetName: "Earth", planetKey: 1}],
     key: 0,
   },
   {
@@ -36,6 +37,12 @@ const star_list = [
     st_rad: 1.25,
     st_mass: 1.06,
     st_logg: 4.3,
+    moons: [{key: 0, moonName: "Moon", moonKey: 0},
+    {key: 0, moonName: "Phobos", moonKey: 1},
+    {key: 0, moonName: "Triton", moonKey: 2}],
+    planets: [{key: 0, planetName: "Mercury", planetKey: 0},
+    {key: 0, planetName: "Neptune", planetKey: 2},
+    {key: 0, planetName: "Earth", planetKey: 1}],
     key: 1,
   },
   {
@@ -46,6 +53,12 @@ const star_list = [
     st_rad: 1.92,
     st_mass: 2.05,
     st_logg: 4.14,
+    moons: [{key: 0, moonName: "Moon", moonKey: 0},
+    {key: 0, moonName: "Phobos", moonKey: 1},
+    {key: 0, moonName: "Triton", moonKey: 2}],
+    planets: [{key: 0, planetName: "Mercury", planetKey: 0},
+    {key: 0, planetName: "Neptune", planetKey: 2},
+    {key: 0, planetName: "Earth", planetKey: 1}],
     key: 2,
   },
 ];

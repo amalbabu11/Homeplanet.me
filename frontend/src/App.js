@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/stars" element={<Stars />} />
-          {GetMoonList().map((c) => (
+          {GetStarList().map((c) => (
             <Route
               path={"/star/" + c.key}
               element={<StarInstance data={c} />}
