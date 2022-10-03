@@ -83,3 +83,5 @@ async function parseInfo() {
     };
     return statistic;
 }
+
+export default parseInfo;

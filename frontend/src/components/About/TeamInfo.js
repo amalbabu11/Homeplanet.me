@@ -46,11 +46,10 @@ const teamInfo = [
     {
         name: "Nathan Sussman",
 		username: "NathanSuss",
-		email: "kushalcd@gmail.com",
+		email: "n8sussman@gmail.com",
 		picture_path: nathan,
 		role: "Frontend (Phase 1 Leader)",
-		bio:
-			"Nathan bio",
+		bio: "Greetings! My name is Nathan Sussman. I'm a Junior at UT Austin, and I'm working towards my BS in computer science. I grew up in a somewhat small town next to Lake Travis, which is near the outskirts of Austin. My most frequent leisure pastime is playing video games with friends. I also like to read, skate, draw, and explore new places!",
 		linkedin: "",
 		commits: 0,
 		issues: 0,
