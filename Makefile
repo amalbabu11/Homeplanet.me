@@ -24,7 +24,7 @@ add_frontend:
 
 push_to_dev:
 	@echo "committing and pushing current git with default message to dev"
-	git commit -ma "default commit"
+	git commit -m "default commit"
 	git push origin dev
 
 branch_main:
