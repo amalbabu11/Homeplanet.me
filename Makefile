@@ -22,7 +22,7 @@ add_frontend:
 	git add ./frontend/*
 	git status
 
-push_to_dev:
+push_dev:
 	@echo "committing and pushing current git with default message to dev"
 	git commit -m "default commit"
 	git push origin dev
