@@ -16,10 +16,7 @@ build_frontend:
 test_frontend:
     stage: test
     script:
-        - echo "executing frontend tests from gitlab-ci.yml"
-        - cd frontend
-        - npm install
-        - npm test
+        - echo "nothing implemented for test_frontend yet in gitlab-ci.yml"
 
 deploy_frontend:
     stage: deploy
