@@ -34,11 +34,10 @@ const teamInfo = [
     {
         name: "Jinjie Liu",
 		username: "JinjieLiu",
-		email: "d_dominguez15@yahoo.com",
+		email: "jinjieliu@utexas.edu",
 		picture_path: jinjie,
 		role: "Backend",
-		bio:
-			"Jinjie bio",
+		bio: "Welcome to our website! My name is Jinjie Liu and I'm a senior in UT CS. I'm an exchange student from China. My home university is Shanghai Jiaotong University. I'm a soccer fan. My favorite club is Barca.",
 		linkedin: "",
 		commits: 0,
 		issues: 0,

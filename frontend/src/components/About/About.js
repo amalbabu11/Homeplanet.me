@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {Row, Col, Card, Container, ListGroup, ListGroupItem} from 'react-bootstrap'
+import {Row, Col, Card, ListGroup, ListGroupItem} from 'react-bootstrap'
 import teamInfo from "./TeamInfo.js"
 import toolInfo from "./ToolInfo.js"
 import APIInfo from "./APIInfo.js"
 import parseInfo from "./query.js"
 
-
 const getGitLabInfo = async () => {
-    let gitlabJson = parseInfo(), totalTestCount = 0, totalCommitCount = gitlabJson["commits_num"], totalIssueCount = gitlabJson["issues_num"];
+    let gitlabJson = parseInfo(), totalTestCount = 0, totalCommitCount = gitlabJson["commits_num"], totalIssueCount = gitlabJson["issues_num"];    
     teamInfo.forEach((member) => {
         member.issues = gitlabJson["issues"][member.username];
         member.commits = gitlabJson["commits"][member.username];
@@ -23,7 +22,7 @@ const getGitLabInfo = async () => {
 }
 
 const About = () => {
-    const [teamList, setTeamList] = useState([])
+  const [teamList, setTeamList] = useState([])
 	const [totalCommits, setTotalCommits] = useState(0)
 	const [totalIssues, setTotalIssues] = useState(0)
 	const [totalTests, setTotalTests] = useState(0)
@@ -40,7 +39,6 @@ const About = () => {
 		fetchData()
 	}, [teamList])
 
-    
     return (
         <div className="About"> 
             <header className = "About-header">
