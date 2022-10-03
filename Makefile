@@ -1,5 +1,16 @@
-all:
-    @echo "nothing implemented for default (all) yet"
+all: check
+    @echo "running all: calls make check"
+
+########## credit to https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile
+# check files, check their existence with make check
+CFILES :=                                 \
+    .gitignore                            \
+    .gitlab-ci.yml 
+
+# check the existence of check files
+check: $(CFILES)
+
+##########
 
 add_frontend:
     @echo "adding all frontend files to git"
