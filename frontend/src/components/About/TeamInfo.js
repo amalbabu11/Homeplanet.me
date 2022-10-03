@@ -8,7 +8,7 @@ const teamInfo = [
     {
         name: "Amal Badu",
 		username: "amalbabu12",
-		email: "aimery.methena@gmail.com",
+		email: "amalbabu12@utexas.edu",
 		picture_path: amal,
 		role: "Backend",
 		bio:
@@ -25,7 +25,7 @@ const teamInfo = [
 		picture_path: summer,
 		role: "Frontend",
 		bio:
-			"Summer bio",
+			"Hi! My name is Summer Ely and I am a Junior in UTCS. I grew up in Austin, TX. In my free time, I like watching movies, listening to music, and playing sports.",
 		linkedin: "",
 		commits: 0,
 		issues: 0,

@@ -14,11 +14,16 @@ function PlanetInstance(props) {
     <div className="Container">
       <React.Fragment>
         <Container className="card-container">
+          <Row><h1 class="cardTitle">{props.data.name}</h1></Row>
           <Row className="Card">
             <Col>
-              <h1 class="cardTitle">{props.data.name}</h1>
               <hr />
               <img src={props.data.img} alt="planet" class="planet-img" width="350"/>
+              <hr />
+            </Col>
+            <Col>
+            <hr />
+              <img src={props.data.orbit_img} alt="orbit" class="planet-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>
@@ -31,6 +36,7 @@ function PlanetInstance(props) {
                   <p>{" "}<strong>Distance From Earth:</strong> {props.data.distance_light_year} Light Years{" "}</p>
                   <p>{" "}<strong>Host Star Mass:</strong> {props.data.host_star_mass} Suns{" "}</p>
                   <p>{" "}<strong>Host Star Temperature:</strong> {props.data.host_star_temperature} Kelvins{" "}</p>
+                  <p>{" "}<strong>Habitable? </strong> {props.data.is_habitable}{" "}</p>
                 </div>
               </Col>
               <Row>

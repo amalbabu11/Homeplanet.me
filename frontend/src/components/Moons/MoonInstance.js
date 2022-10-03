@@ -14,28 +14,26 @@ function MoonInstance(props) {
     <div className="Container">
       <React.Fragment>
         <Container className="card-container">
+        <Row><h1 class="cardTitle">{props.data.name}</h1></Row>
           <Row className="Card">
             <Col>
-              <h1 class="cardTitle">{props.data.name}</h1>
               <hr />
               <img src={props.data.img} alt="moon" class="moon-img" width="350"/>
+              <hr />
+            </Col>
+            <Col>
+            <hr />
+              <img src={props.data.orbit_img} alt="orbit" class="moon-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>
               <Col>
                 <div class="bodyText">
-                  <p>
-                    {" "}<strong>Mass:</strong> {props.data.mass} 10^n kg{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Density:</strong> {props.data.density} 10^n km^3{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Gravity:</strong> {props.data.gravity} m.s^-2{" "}
-                  </p>
-                  <p>
-                  {" "}<strong>Radius:</strong> {props.data.radius} km{" "}
-                  </p>
+                  <p>{" "}<strong>Mass:</strong> {props.data.mass} 10^n kg{" "}</p>
+                  <p>{" "}<strong>Density:</strong> {props.data.density} 10^n km^3{" "}</p>
+                  <p>{" "}<strong>Gravity:</strong> {props.data.gravity} m.s^-2{" "}</p>
+                  <p>{" "}<strong>Radius:</strong> {props.data.radius} km{" "}</p>
+                  <p>{" "}<strong>Habitable? </strong> {props.data.is_habitable}{" "}</p>
                 </div>
               </Col>
               <Row>

@@ -13,13 +13,20 @@ function StarInstance(props) {
   return (
     <div className="Container">
       <React.Fragment>
-        <Container className="card-container">
+      <Container className="card-container">
+        <Row><h1 class="cardTitle">{props.data.name}</h1></Row>
           <Row className="Card">
             <Col>
-              <h1 class="cardTitle">{props.data.name}</h1>
               <hr />
               <img src={props.data.img} alt="star" class="star-img" width="350"/>
               <hr />
+            </Col>
+            <Col>
+            <hr />
+              <img src={props.data.orbit_img} alt="orbit" class="star-orbit-img" width="350"/>
+              <hr />
+            </Col>
+            <Row>
               <Col>
                 <div class="bodyText">
                   <p>
@@ -27,7 +34,7 @@ function StarInstance(props) {
                   </p>
                 </div>
               </Col>
-            </Col>
+              </Row>
           
   <Row>
               <Col>

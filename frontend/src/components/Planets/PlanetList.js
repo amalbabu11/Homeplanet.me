@@ -14,6 +14,7 @@ const planet_list = [
   {
     name: "Mercury",
     img: "https://scx2.b-cdn.net/gfx/news/hires/2015/whatsimporta.jpg",
+    orbit_img: "http://luna1.diviner.ucla.edu/~jpierre/mercury/posters/Poster-03/images/spin-orbit-resonance.jpg",
     mass: 0.000174,
     radius: 0.0341,
     period: 88.0,
@@ -22,6 +23,7 @@ const planet_list = [
     distance_light_year: 1.1e-05,
     host_star_mass: 1.0,
     host_star_temperature: 6000.0,
+    is_habitable: "No",
     moons: [{key: 0, moonName: "Phobos", moonKey: 1}],
     stars: [{key: 0, starName: "61 Vir", starKey:0}, 
     {key: 1, starName: "alf Cen A", starKey: 1},
@@ -31,6 +33,7 @@ const planet_list = [
   {
     name: "Earth",
     img: "https://cdn.mos.cms.futurecdn.net/yCPyoZDQBBcXikqxkeW2jJ-1200-80.jpg",
+    orbit_img: "https://www.nasa.gov/sites/default/files/orbit-3.jpg",
     mass: 0.00315,
     radius: 0.0892,
     period: 365.2,
@@ -39,6 +42,7 @@ const planet_list = [
     distance_light_year: 0.0,
     host_star_mass: 1.0,
     host_star_temperature: 6000.0,
+    is_habitable: "Yes",
     moons: [{key: 0, moonName: "Moon", moonKey: 0}],
     stars: [{key: 0, starName: "61 Vir", starKey:0}, 
     {key: 1, starName: "alf Cen A", starKey: 1},
@@ -48,6 +52,7 @@ const planet_list = [
   {
     name: "Neptune",
     img: "http://cen.acs.org/content/dam/cen/99/11/WEB/09911-feature3-venus.jpg",
+    orbit_img: "https://www.nasa.gov/images/content/569229main_hubble-neptune-with-moons-full.jpg",
     mass: 0.0537,
     radius: 0.346,
     period: 59800.0,
@@ -56,6 +61,7 @@ const planet_list = [
     distance_light_year: 4e-06,
     host_star_mass: 1.0,
     host_star_temperature: 6000.0,
+    is_habitable: "No",
     moons: [{key: 0, moonName: "Triton", moonKey: 2}],
     stars: [{key: 0, starName: "61 Vir", starKey:0}, 
     {key: 1, starName: "alf Cen A", starKey: 1},
