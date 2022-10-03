@@ -19,7 +19,7 @@ test_frontend:
         - echo "executing frontend tests from gitlab-ci.yml"
         - cd frontend
         - npm install
-        - CI=false npm test
+        - npm test
 
 deploy_frontend:
     stage: deploy
