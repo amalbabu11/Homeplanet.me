@@ -44,10 +44,9 @@ const teamInfo = [
     {
         name: "Nathan Sussman",
 		username: "NathanSuss",
-		member_key: "NathanSuss",
 		email: "n8sussman@gmail.com",
 		picture: nathan,
-		role: "Phase 1 Leader (Frontend, Docker)",
+		role: "Phase 1 Leader (Frontend, Hosting, Docker)",
 		bio: "Greetings! My name is Nathan Sussman. I'm a Junior at UT Austin, and I'm working towards my BS in computer science. I grew up in a somewhat small town next to Lake Travis, which is near the outskirts of Austin. My most frequent leisure pastime is playing video games with friends. I also like to read, skate, draw, and explore new places!",
 		commits: 0,
 		issues: 0,
@@ -60,7 +59,7 @@ const teamInfo = [
 		picture: megan,
 		role: "Frontend",
 		bio:
-			"Hi! My Name is Duoduo Zhao. You can call me Megan. I’m a senior at UTCS. I was born and raised in China. I went to Michigan for high school and here I am in Austin for college. I have the best puppy in the world, and her name is Mochi. I love bartending and working out in my free time.",
+			"Hi! My Name is Duoduo Zhao. You can call me Megan. I'm a senior at UTCS. I was born and raised in China. I went to Michigan for high school and here I am in Austin for college. I have the best puppy in the world, and her name is Mochi. I love bartending and working out in my free time.",
 		commits: 0,
 		issues: 0,
 		tests: 0,
