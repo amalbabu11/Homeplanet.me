@@ -8,7 +8,7 @@
 | Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) |
 | Summer Ely | [spe358](https://gitlab.com/spe358) |
 | Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) |
-| Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) |
+| Nathan Sussman (Leader) | [NathanSuss](https://gitlab.com/NathanSuss) |
 | Megan Zhao | [zdd](https://gitlab.com/zdd) |
 
 **Website URL:** homeplanet.me
@@ -25,6 +25,9 @@
 4. https://api.nasa.gov/ to get NASA images 
 5. https://en.wikipedia.org/api/rest_v1/#/ to scrape Wikipedia pages such as https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets
 
+
+**Postman API Documentation**
+https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
 **Models**
 1. Planets/Exoplanets (1000+ instances)
