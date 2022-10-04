@@ -34,16 +34,14 @@ const getGitLabStats = async () => {
     pageNum += 1;
   } while (page.length === 100);
 
-  
   commits.forEach((commit) => {
-    var boolSet = false;
     const { author_name, author_email } = commit;
     TeamInfo.forEach((member) => {
-      if (member.name === author_name || member.username === author_name || member.email === author_email) {
+    if (member.git_key === author_name || member.name === author_name || member.username === author_name || member.email === author_email){
         member.commits += 1;
-        commitCount += 1;
     }
     });
+    commitCount += 1;
     });
 
   pageNum = 0;
@@ -63,9 +61,10 @@ const getGitLabStats = async () => {
     const { name, username, author_email } = author;
     TeamInfo.forEach((member) => {
       if (
+        member.git_key === name || 
         member.name === name ||
         member.username === username ||
-        member.name === username
+        member.email === author_email
       ) {
         member.issues += 1;
         issueCount += 1;
