@@ -47,7 +47,7 @@ const teamInfo = [
 		member_key: "NathanSuss",
 		email: "n8sussman@gmail.com",
 		picture: nathan,
-		role: "Phase 1 Leader (Frontend, Docker)",
+		role: "Phase 1 Leader (Frontend, Hosting, Docker)",
 		bio: "Greetings! My name is Nathan Sussman. I'm a Junior at UT Austin, and I'm working towards my BS in computer science. I grew up in a somewhat small town next to Lake Travis, which is near the outskirts of Austin. My most frequent leisure pastime is playing video games with friends. I also like to read, skate, draw, and explore new places!",
 		commits: 0,
 		issues: 0,

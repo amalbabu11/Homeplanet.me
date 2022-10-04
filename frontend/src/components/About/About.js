@@ -94,7 +94,7 @@ const About = () => {
                     {teamInfo.map((member) => {
                         return (
                             <Col key={member.name} as="div" xs="auto" mx-auto>
-                                <Card style={{ width: '18rem' }}>
+                                <Card style={{ width: '16rem' }}>
                                     <Card.Body>
                                         <Card.Img variant="top" src={member.picture}></Card.Img>
                                         <Card.Title>{member.name}</Card.Title>
