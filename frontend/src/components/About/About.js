@@ -105,9 +105,9 @@ const About = () => {
     <Container>
       <h1>About Us</h1>
       <Container>
-        <p>
-          Description
-        </p>
+        <p>HomePlanet is a website that provides astronomical data in an easily-accessible format.</p>
+        <p>Specifically, we focus on the habitability of Planets/Exoplanets and provide information on their stars and moons.</p>
+        
       </Container>
       <h1>Team Members</h1>
       <Row className="g-3 m-0 justify-content-center" xs="auto" md={5}>
