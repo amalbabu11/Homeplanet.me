@@ -4,7 +4,14 @@ import requests
 from io import StringIO
 
 
-def get_response_dict(request_url, headers = None):
+""" get response in the form of a dict
+
+:param request_url: the url we are sending a request to
+:param: headers: any headers which may be needed for the request
+"""
+
+
+def get_response_dict(request_url, headers=None):
     response = requests.get(request_url, headers=headers)
 
     if response.status_code == requests.codes.ok:
@@ -15,74 +22,74 @@ def get_response_dict(request_url, headers = None):
         return
 
 
+"""requests planet data from api and returns in the form of a dict
+
+:returns: a dictionary of planet data for each planet in out solar system
+"""
+
+
 def get_planet_data():
-    with open('keys.txt', 'r') as f:
+    with open("keys.txt", "r") as f:
         my_key = f.read()
-    planet_url = 'https://api.api-ninjas.com/v1/planets?'
+    planet_url = "https://api.api-ninjas.com/v1/planets?"
 
     # only keep planets in our solar system
-    criteria = 'max_distance_light_year=0.5'
-    # get request data 
-    data = get_response_dict(planet_url + criteria, headers = {'X-Api-Key' : my_key})
+    criteria = "max_distance_light_year=0.5"
+    # get request data
+    data = get_response_dict(planet_url + criteria, headers={"X-Api-Key": my_key})
 
     # create dataframe with values
-    # data = pd.DataFrame(data)
     return data
+
+
+""" obtains moon data of each planet, modifies planet_data in place
+
+:param planet_data: the dictionary returned by get_planet_data
+:returns: a dictionary of moon data for each planet in planet_date
+"""
+
 
 def get_moon_data(planet_data):
     # list of all planets
     # api url
-    url = 'https://api.le-systeme-solaire.net/rest/bodies/'
+    url = "https://api.le-systeme-solaire.net/rest/bodies/"
     moon_data = []
-
-    # send a request for 
-    # for planet in planet_names:
-    #     body = f'{{{planet}}}'
-    #     response = requests.get(url + body)
-    #     if response.status_code == requests.codes.ok:
-    #         with open('planet_data.txt', 'w') as f:
-    #             data = json.loads(response.text)
-    #             # make sure the planet actually has a moon
-    #             if data['moons'] is not None:
-    #                 moon_names = []
-    #                 for moon_names in data['moons']:
-    #                     moon_names.append(moon_names['moon'])
-    #                     response = requests.get(moon_names['rel']).text
-
-                        
-                    
-
-                    
-    #                 # internal storage structure will be a list of lists
-    #                 planet_data.at[planet_data[planet_data.name == planet].index[0], 'moons'] = moons
-    #     else:
-    #         print("Error:", response.status_code, response.text)
-
     moon_data = []
     for planet in planet_data:
 
-        planet_name = planet['name']
-        body = f'{{{planet_name}}}'
+        planet_name = planet["name"]
+        body = f"{{{planet_name}}}"
 
         data = get_response_dict(url + body)
-        if data['moons'] is not None:
-            planet['moons'] = []
-            for moon in data['moons']:
-                    planet['moons'].append(moon['moon'])
-                    moon_data.append(get_response_dict(moon['rel']))
+        if data["moons"] is not None:
+            planet["moons"] = []
+            for moon in data["moons"]:
+                planet["moons"].append(moon["moon"])
+                moon_data.append(get_response_dict(moon["rel"]))
     return moon_data
-        
+
+
+""" Returns a dict with information about stars in our solar system
+
+:return: a dictionary containing data about stars in our solar system
+"""
+
 
 def get_star_data():
-    url = 'https://api.le-systeme-solaire.net/rest/bodies/soleil'
+    url = "https://api.le-systeme-solaire.net/rest/bodies/soleil"
 
     star_data = []
     star_data.append(get_response_dict(url))
     return star_data
 
 
+""" 
+Writes to a json file with information about stars outside our solar system
+"""
+
+
 def write_exostar_data():
-    url = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=missionstars&select=star_name,st_teff,st_lumclass,st_age,st_rad,st_mass,st_logg'
+    url = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=missionstars&select=star_name,st_teff,st_lumclass,st_age,st_rad,st_mass,st_logg"
 
     response = requests.get(url)
 
@@ -92,10 +99,13 @@ def write_exostar_data():
     else:
         print("Error:", response.status_code, response.text)
         return
-    
-    data.to_csv('exostar_data.csv')
+
+    data.to_csv("exostar_data.csv")
 
 
+""" 
+Gets data for all 3 models and writes them to their respective files
+"""
 
 
 def get_all_data():
@@ -106,21 +116,17 @@ def get_all_data():
 
     moon_data = get_moon_data(planet_data)
 
-    
-
-    with open('../data/planet_data.json', 'w') as f:
+    with open("../data/planet_data.json", "w") as f:
         json.dump(planet_data, f)
 
-    with open('../data/moon_data.json', 'w') as f:
+    with open("../data/moon_data.json", "w") as f:
         json.dump(moon_data, f)
 
-    with open('../data/star_data.json', 'w') as f:
+    with open("../data/star_data.json", "w") as f:
         json.dump(star_data, f)
-    
+
     write_exostar_data()
 
-    
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_all_data()
