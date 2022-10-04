@@ -8,7 +8,7 @@
 | Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
 | Summer Ely | [spe358](https://gitlab.com/spe358) | spe358 |
 | Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
-| Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
+| Nathan Sussman (Leader) | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
 | Megan Zhao | [banye0913](https://gitlab.com/banye0913) | dz4782 | 
 
 **Website URL:** homeplanet.me
@@ -18,6 +18,8 @@
 **GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
 
 **Git SHA:** 
+
+**Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
 ## Project Proposal: HomePlanet
 **Description:** HomePlanet is an astronomy database with information on Planets, Stars, and Moons, as well as information on whether or not these celestial bodies could potentially sustain human life or other types of life.
