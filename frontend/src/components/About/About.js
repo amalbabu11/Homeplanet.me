@@ -83,9 +83,9 @@ const About = () => {
                 <h3>
                     Description
                 </h3>
-                <p>
-                    HomePlanet is a website that ...
-                </p>
+                <p>HomePlanet is a website that provides astronomical data in an easily-accessible format. </p>
+                <p>Specifically, we focus on the habitability of Planets/Exoplanets and provide information on their stars and moons.</p>
+                
             </header>
             <h4><br></br></h4>
             <header className="Members">

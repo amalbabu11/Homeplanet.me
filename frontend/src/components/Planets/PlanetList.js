@@ -2,6 +2,12 @@ import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link as RouterLink } from "react-router-dom";
 import "../../styles/Planets.css";
 import { CardActionArea } from "@mui/material";
+import MercuryImg from "../../assets/planets/MercuryImg.jpeg";
+import MercuryOrbit from "../../assets/planets/MercuryOrbit.jpeg";
+import EarthImg from "../../assets/planets/EarthImg.jpeg";
+import EarthOrbit from "../../assets/planets/EarthOrbit.jpeg";
+import NeptuneImg from "../../assets/planets/Neptune.jpeg";
+import NeptuneOrbit from "../../assets/planets/NeptuneOrbit.jpeg";
 import {
   MDBCard,
   MDBCardBody,
@@ -13,8 +19,8 @@ import {
 const planet_list = [
   {
     name: "Mercury",
-    img: "https://scx2.b-cdn.net/gfx/news/hires/2015/whatsimporta.jpg",
-    orbit_img: "http://luna1.diviner.ucla.edu/~jpierre/mercury/posters/Poster-03/images/spin-orbit-resonance.jpg",
+    img: MercuryImg,
+    orbit_img: MercuryOrbit,
     mass: 0.000174,
     radius: 0.0341,
     period: 88.0,
@@ -32,8 +38,8 @@ const planet_list = [
   },
   {
     name: "Earth",
-    img: "https://cdn.mos.cms.futurecdn.net/yCPyoZDQBBcXikqxkeW2jJ-1200-80.jpg",
-    orbit_img: "https://www.nasa.gov/sites/default/files/orbit-3.jpg",
+    img: EarthImg,
+    orbit_img: EarthOrbit,
     mass: 0.00315,
     radius: 0.0892,
     period: 365.2,
@@ -51,8 +57,8 @@ const planet_list = [
   },
   {
     name: "Neptune",
-    img: "http://cen.acs.org/content/dam/cen/99/11/WEB/09911-feature3-venus.jpg",
-    orbit_img: "https://www.nasa.gov/images/content/569229main_hubble-neptune-with-moons-full.jpg",
+    img: NeptuneImg,
+    orbit_img: NeptuneOrbit,
     mass: 0.0537,
     radius: 0.346,
     period: 59800.0,

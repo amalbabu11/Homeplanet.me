@@ -3,6 +3,12 @@ import { Link as RouterLink } from "react-router-dom";
 import "../../styles/Planets.css";
 import { CardActionArea } from "@mui/material";
 import MoonImg from "../../assets/moons/moon.jpg";
+import MoonOrbit from "../../assets/moons/MoonOrbit.jpeg";
+import PhobosImg from "../../assets/moons/Phobos.jpeg";
+import PhobosOrbit from "../../assets/moons/PhobosOrbit.png";
+import TritonImg from "../../assets/moons/Triton.jpeg";
+import TritonOrbit from "../../assets/moons/TritonOrbit.png";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -15,7 +21,7 @@ const moon_list = [
   {
     name: "Moon",
     img: MoonImg,
-    orbit_img: "https://physicsworld.com/wp-content/uploads/2006/08/bulge.jpg",
+    orbit_img: MoonOrbit,
     mass: 7.346e22,
     density: 3.344,
     gravity: 1.62,
@@ -29,8 +35,8 @@ const moon_list = [
   },
   {
     name: "Phobos",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Phobos_colour_2008.jpg",
-    orbit_img: "http://astronomynow.com/wp-content/uploads/2016/03/MAVEN-Phobos_orbit_compare_940x737.png",
+    img: PhobosImg,
+    orbit_img: PhobosOrbit,
     mass: 1.06e10,
     density: 1.9,
     gravity: 0.78,
@@ -44,8 +50,8 @@ const moon_list = [
   },
   {
     name: "Triton",
-    img: "https://cdn.sci.news/images/enlarge6/image_7216e-Triton.jpg",
-    orbit_img: "https://britastro.org/wp-content/uploads/2020/08/Triton_and_Neptune_opposition_2020_300x300_0.png",
+    img: TritonImg,
+    orbit_img: TritonOrbit,
     mass: 1.4762e15,
     density: 1.75,
     gravity: 0.003,

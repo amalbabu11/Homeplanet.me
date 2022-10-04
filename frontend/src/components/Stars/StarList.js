@@ -1,7 +1,11 @@
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link as RouterLink } from "react-router-dom";
-// import Crawford from "../../assets/counties/crawford.png";
-// TODO: add images in assets folder instead 
+import Vir61Img from "../../assets/stars/61Vir.jpg";
+import Vir61Orbit from "../../assets/stars/61VirOrbit.jpeg";
+import alfCenAImg from "../../assets/stars/alfCenA.jpeg";
+import alfCenAOrbit from "../../assets/stars/AlphaCenAOrbit.gif";
+import HIP17378Img from "../../assets/stars/HIP17378.png";
+import HIP17378Orbit from "../../assets/stars/HIP17378Orbit.png";
 import "../../styles/Stars.css";
 import { CardActionArea } from "@mui/material";
 import {
@@ -15,8 +19,8 @@ import {
 const star_list = [
   {
     name: "61 Vir",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/61_Vir_as_seen_with_a_12.5%22_telescope_with_a_field_of_view_of_45.1_arcminutes.jpg/500px-61_Vir_as_seen_with_a_12.5%22_telescope_with_a_field_of_view_of_45.1_arcminutes.jpg",
-    orbit_img: "http://www.solstation.com/stars/61vir2or.jpg",
+    img: Vir61Img,
+    orbit_img: Vir61Orbit,
     st_teff: 5571.0,
     st_vmagearth: 29.44,
     st_rad: 0.98,
@@ -34,8 +38,8 @@ const star_list = [
   },
   {
     name: "alf Cen A",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/The_bright_star_Alpha_Centauri_and_its_surroundings.jpg/220px-The_bright_star_Alpha_Centauri_and_its_surroundings.jpg",
-    orbit_img: "https://www.daviddarling.info/images/AlphaCen.gif",
+    img: alfCenAImg,
+    orbit_img: alfCenAOrbit,
     st_teff: 5801.0,
     st_vmagearth: 25.35,
     st_rad: 1.25,
@@ -52,8 +56,8 @@ const star_list = [
   },
   {
     name: "HIP 17378",
-    img: "https://in-the-sky.org/image.php?style=icon&obj=21994",
-    orbit_img: "https://www.researchgate.net/profile/Suhail-Masda-2/publication/323141856/figure/fig3/AS:631612115001383@1527599471831/The-relative-orbit-of-the-binary-system-HIP-105947-constructed-using-the-relative.png",
+    img: HIP17378Img,
+    orbit_img: HIP17378Orbit,
     st_teff: 5095.0,
     st_vmagearth: 29.11,
     st_rad: 2.27,

@@ -29,9 +29,12 @@ function StarInstance(props) {
             <Row>
               <Col>
                 <div class="bodyText">
-                  <p>
-                    {" "}<strong>Mass:</strong> {props.data.st_mass} UNITS{" "}
-                  </p>
+                  <p>{" "}<strong>Mass: </strong> {props.data.st_mass} Suns{" "}</p>
+                  <p>{" "}<strong>Radius: </strong> {props.data.st_rad} Suns{" "}</p>
+                  <p>{" "}<strong>Temperature: </strong> {props.data.st_teff} Kelvin{" "}</p>
+                  <p>{" "}<strong>Surface Gravity: </strong> {props.data.st_logg} cgs{" "}</p>
+                  <p>{" "}<strong>Age: </strong> {props.data.st_age} gyr (billion years){" "}</p>
+                  <p>{" "}<strong>Vmagearth: </strong> {props.data.st_vmagearth}{" "}</p>
                 </div>
               </Col>
               </Row>
