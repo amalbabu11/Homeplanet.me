@@ -80,6 +80,7 @@ export function GetPlanetList() {
   return planet_list;
 }
 
+// Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function PlanetList() {
   return (
     <Container style={{ width: "100%" }}>

@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+// Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function PlanetInstance(props) {
   return (
     <div className="Container">

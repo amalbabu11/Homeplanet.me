@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+// Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function StarInstance(props) {
   return (
     <div className="Container">
@@ -38,8 +39,7 @@ function StarInstance(props) {
                 </div>
               </Col>
               </Row>
-          
-  <Row>
+              <Row>
               <Col>
                 <div class="model-links">
                   <TableContainer component={Paper}>

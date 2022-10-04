@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./HomePage.module.css";
 
+// Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
+
 const Home = () => {
   return (
     <>
     <div className={styles.homePage}></div>
-    {/* <img alt="timer" src={require('../../assets/galaxy_background.jpeg')} /> */}
       <div className={styles.homeTitle}>
         HomePlanet
         <div className={styles.homeSubTitle}>

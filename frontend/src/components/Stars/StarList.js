@@ -79,6 +79,7 @@ export function GetStarList() {
   return star_list;
 }
 
+// Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function StarList() {
   return (
     <Container style={{ width: "100%" }}>

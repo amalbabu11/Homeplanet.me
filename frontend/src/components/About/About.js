@@ -6,12 +6,12 @@ import APIInfo from "./APIInfo.js"
 
 const api_version = "v4"
 const id = "39622546"
-
 const COMMITS_URL = `https://gitlab.com/api/${api_version}/projects/${id}/repository/commits`
 const ISSUES_URL = `https://gitlab.com/api/${api_version}/projects/${id}/issues`
 const REPO_URL = "https://gitlab.com/NathanSuss/group12-cs373"
 const POSTMAN_URL = "https://documenter.getpostman.com/view/20771905/2s83tFHWkc"
 
+// Adapted from Electrends https://gitlab.com/dandom25/electrends/
 const getGitLabInfo = async () => {
     let totalCommitCount = 0, totalIssueCount = 0, totalTestCount = 0;
     teamInfo.forEach((member) => {
@@ -78,32 +78,25 @@ const About = () => {
     return (
         <div className="About">
             <header className="About-header">
-                <h1>
-                    About
-                </h1>
+                <h1> About </h1>
             </header>
             <header className="About-description">
-                <h3>
-                    Description
-                </h3>
+                <h3> Description </h3>
                 <p>HomePlanet is a website that provides astronomical data in an easily-accessible format. </p>
                 <p>Specifically, we focus on the habitability of Planets/Exoplanets and provide information on their stars and moons.</p>
                 
             </header>
             <h4><br></br></h4>
             <header className="Members">
-                <h3>
-                    Members
-                </h3>
+                <h3> Members </h3>
             </header>
-            <>
-                <Row className="g-3 m-0 justify-content-center" xs="auto" md={5}>
+            <> <Row className="g-3 m-0 justify-content-center" xs="auto" md={5}>
                     {teamInfo.map((member) => {
                         return (
                             <Col key={member.name} as="div" xs="auto" mx-auto>
                                 <Card style={{ width: '18rem' }}>
                                     <Card.Body>
-                                        <Card.Img variant="top" src={member.picture_path}></Card.Img>
+                                        <Card.Img variant="top" src={member.picture}></Card.Img>
                                         <Card.Title>{member.name}</Card.Title>
                                         <Card.Subtitle>{member.role}</Card.Subtitle>
                                         <Card.Text>{member.bio}</Card.Text>
@@ -115,18 +108,13 @@ const About = () => {
                                     </ListGroup>
                                 </Card>
                             </Col>
-                        )
-                    })}
-                </Row>
-            </>
+                        )})}
+                </Row> </>
             <h1><br></br></h1>
             <header className="Gitlab Stats">
-                <h3>
-                    Repository Statistics
-                </h3>
+                <h3> Repository Statistics </h3>
             </header>
-            <>
-                <Row className="g-3 m-0 justify-content-center" xs="auto" >
+            <> <Row className="g-3 m-0 justify-content-center" xs="auto" >
                     <Col key="totalCommits" as="div" xs="auto" mx-auto>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
@@ -155,12 +143,9 @@ const About = () => {
             </>
             <h1><br></br></h1>
             <header className="Tools">
-                <h3>
-                    Tools Utilized
-                </h3>
+                <h3> Tools Utilized </h3>
             </header>
-            <>
-                <Row className="g-3 m-0 justify-content-center" xs="auto" >
+            <> <Row className="g-3 m-0 justify-content-center" xs="auto" >
                     {toolInfo.map((member) => {
                         return (
                             <Col key={member.name} as="div" xs="auto" mx-auto>
@@ -172,18 +157,14 @@ const About = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-                        )
-                    })}
+                        )})}
                 </Row>
             </>
             <h1><br></br></h1>
             <header className="APIs">
-                <h3>
-                    APIs Utilized
-                </h3>
+                <h3> APIs Utilized </h3>
             </header>
-            <>
-                <Row className="g-3 m-0 justify-content-center" xs="auto" >
+            <> <Row className="g-3 m-0 justify-content-center" xs="auto" >
                     {APIInfo.map((member) => {
                         return (
                             <Col key={member.name} as="div" xs="auto" mx-auto>
@@ -195,18 +176,14 @@ const About = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-                        )
-                    })}
+                        )})}
                 </Row>
             </>
             <h1><br></br></h1>
             <header className="APIs">
-                <h3>
-                    Our Work
-                </h3>
+                <h3> Our Work </h3>
             </header>
-            <>
-                <Row className="g-3 m-0 justify-content-center" xs="auto" >
+            <> <Row className="g-3 m-0 justify-content-center" xs="auto" >
                     <Col key={"GitLab"} as="div" xs="auto" mx-auto>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>

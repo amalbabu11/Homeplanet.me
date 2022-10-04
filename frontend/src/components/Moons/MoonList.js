@@ -69,6 +69,7 @@ export function GetMoonList() {
   return moon_list;
 }
 
+// Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function MoonList() {
   return (
     <Container style={{ width: "100%" }}>
