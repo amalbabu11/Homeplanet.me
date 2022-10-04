@@ -1,0 +1,4 @@
+data/keys.txt
+node_modules
+# from installing aws ci 
+aws

@@ -1,0 +1,93 @@
+.body {
+    background-color: #e5e5e5;
+  }
+  .btn-group {
+    font-family: "Raleway";
+    font-size: 24px;
+    font-style: "Regular 400";
+    border-style: none;
+  }
+  .container-group {
+    margin-top: 10px;
+    color: rgb(46, 45, 45);
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    text-align: left;
+    padding: 20px;
+    overflow: auto;
+    margin: 8px;
+    font-weight: 400;
+  }
+  .card-style {
+    background-color: white;
+    max-width: "25rem";
+    border-radius: 25px;
+    border-style: groove;
+    border-width: medium;
+  }
+  #h3 {
+    font-size: 25px;
+    text-align: center;
+  }
+  .cardTitle {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 550;
+  }
+  .cardSub {
+    font-size: 20px;
+    text-align: center;
+  }
+  Col {
+    min-width: 300px;
+    font-size: 15px;
+  }
+  .card-grp hr {
+    color: #282c34;
+    padding: 2px;
+  }
+  .thick-line {
+    border: none;
+    color: #333; /* old IE */
+    background-color: #000000;
+  }
+  #ListGroupItem {
+    font-size: 50px;
+  }
+  .vr {
+    border-left: 4px solid #000000;
+    height: 200px;
+  }
+  .img-grp {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 50%;
+  }
+  .moonDescription {
+    font-size: 20px;
+    text-align: center;
+  }
+  .moonInstancePage {
+    background-size: cover;
+    width: 100%;
+    height: calc(80vh);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homeTitle {
+    position: absolute;
+    font-size: 100px;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    color: black;
+    transform: translate(-50%, -50%);
+    font-family: 'Arial', sans-serif;
+    white-space: nowrap;
+    text-shadow: 0 0 20px black, 0 0 20px black;
+  }
+  
