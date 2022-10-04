@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, version } from 'react'
 import { Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import teamInfo from "./TeamInfo.js"
 import toolInfo from "./ToolInfo.js"
 import APIInfo from "./APIInfo.js"
 
-const COMMITS_URL = "https://gitlab.com/api/v4/projects/39622546/repository/commits"
-const ISSUES_URL = "https://gitlab.com/api/v4/projects/39622546/issues"
+const api_version = "v4"
+const id = "39622546"
+
+const COMMITS_URL = `https://gitlab.com/api/${api_version}/projects/${id}/repository/commits`
+const ISSUES_URL = `https://gitlab.com/api/${api_version}/projects/${id}/issues`
 const REPO_URL = "https://gitlab.com/NathanSuss/group12-cs373"
 const POSTMAN_URL = "https://documenter.getpostman.com/view/20771905/2s83tFHWkc"
 
