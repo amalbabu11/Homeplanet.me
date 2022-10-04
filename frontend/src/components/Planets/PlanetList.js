@@ -8,6 +8,7 @@ import EarthImg from "../../assets/planets/EarthImg.jpeg";
 import EarthOrbit from "../../assets/planets/EarthOrbit.jpeg";
 import NeptuneImg from "../../assets/planets/Neptune.jpeg";
 import NeptuneOrbit from "../../assets/planets/NeptuneOrbit.jpeg";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -19,8 +20,8 @@ import {
 const planet_list = [
   {
     name: "Mercury",
-    img: "https://scx2.b-cdn.net/gfx/news/hires/2015/whatsimporta.jpg",
-    orbit_img: "http://luna1.diviner.ucla.edu/~jpierre/mercury/posters/Poster-03/images/spin-orbit-resonance.jpg",
+    img: require('../../assets/planets/MercuryImg.jpeg'),
+    orbit_img: require('../../assets/planets/MercuryOrbit.jpeg'),
     mass: 0.000174,
     radius: 0.0341,
     period: 88.0,
