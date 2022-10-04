@@ -19,8 +19,8 @@ import {
 const planet_list = [
   {
     name: "Mercury",
-    img: MercuryImg,
-    orbit_img: MercuryOrbit,
+    img: "https://scx2.b-cdn.net/gfx/news/hires/2015/whatsimporta.jpg",
+    orbit_img: "http://luna1.diviner.ucla.edu/~jpierre/mercury/posters/Poster-03/images/spin-orbit-resonance.jpg",
     mass: 0.000174,
     radius: 0.0341,
     period: 88.0,
@@ -38,8 +38,8 @@ const planet_list = [
   },
   {
     name: "Earth",
-    img: EarthImg,
-    orbit_img: EarthOrbit,
+    img: "https://cdn.mos.cms.futurecdn.net/yCPyoZDQBBcXikqxkeW2jJ-1200-80.jpg",
+    orbit_img: "https://www.nasa.gov/sites/default/files/orbit-3.jpg",
     mass: 0.00315,
     radius: 0.0892,
     period: 365.2,
@@ -57,8 +57,8 @@ const planet_list = [
   },
   {
     name: "Neptune",
-    img: NeptuneImg,
-    orbit_img: NeptuneOrbit,
+    img: "http://cen.acs.org/content/dam/cen/99/11/WEB/09911-feature3-venus.jpg",
+    orbit_img: "https://www.nasa.gov/images/content/569229main_hubble-neptune-with-moons-full.jpg",
     mass: 0.0537,
     radius: 0.346,
     period: 59800.0,
