@@ -25,7 +25,10 @@ run: check
 	$(PYTHON) $(SERVER)
 
 check: $(FILES)
-	pylint $(FILES)
+	pylint $^
+
+format: $(FILES)
+	black $^
 
 $(REQ):
 	pipreqs .

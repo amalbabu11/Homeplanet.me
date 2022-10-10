@@ -36,7 +36,8 @@ def get_planet_data():
     # only keep planets in our solar system
     criteria = "max_distance_light_year=0.5"
     # get request data
-    data = get_response_dict(planet_url + criteria, headers={"X-Api-Key": my_key})
+    data = get_response_dict(planet_url + criteria,
+                             headers={"X-Api-Key": my_key})
 
     # create dataframe with values
     return data
