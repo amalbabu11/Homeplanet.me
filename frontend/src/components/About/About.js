@@ -34,6 +34,8 @@ const getGitLabStats = async () => {
     pageNum += 1;
   } while (page.length === 100);
 
+  console.log("COMMITS")
+  console.log(commits)
   commits.forEach((commit) => {
     const { author_name, author_email } = commit;
     TeamInfo.forEach((member) => {
@@ -67,7 +69,7 @@ const getGitLabStats = async () => {
         member.email === author_email
       ) {
         member.issues += 1;
-        issueCount += 1;
+        issueCount += 1; 
     }
     });
     
