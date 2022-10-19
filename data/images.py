@@ -10,6 +10,7 @@ as "&alpha;". So remember to make this transformantion manually when
 programming the server.
 """
 
+import json
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -56,11 +57,11 @@ def catch_catalog_link() -> list[str]:
 
     resp: requests.Response = requests.get(url, timeout=10)
     assert resp.status_code == 200
-    match_sel_res: list[str] = re.findall(sel_pattern, resp.text)
+    match_sel_res: list[str] = sel_pattern.findall(resp.text)
     assert match_sel_res is not None
     assert len(match_sel_res) == 1
     match_sel_res: str = match_sel_res[0]
-    catalogs: list[str] = re.findall(value_pattern, match_sel_res)
+    catalogs: list[str] = value_pattern.findall(match_sel_res)
     return catalogs
 
 
@@ -72,8 +73,8 @@ def catch_subpage_link(catalog: str) -> tuple[list[tuple[str, str]], list[str]]:
     resp: requests.Response = requests.get(
         url=url, params={"cat": catalog}, timeout=10)
     assert resp.status_code == 200
-    imgs_list: list[tuple[str, str]] = re.findall(img_pattern, resp.text)
-    match_pages_res: list[str] = re.findall(pager_pattern, resp.text)
+    imgs_list: list[tuple[str, str]] = img_pattern.findall(resp.text)
+    match_pages_res: list[str] = pager_pattern.findall(resp.text)
     assert len(match_pages_res) == 0 or len(match_pages_res) == 2
     if len(match_pages_res) == 2:
         assert match_pages_res[0] == match_pages_res[1]
@@ -95,27 +96,10 @@ def catch_image_link(subpage_url: str) -> list[tuple[str, str]]:
     return imgs_list
 
 
-def download_images(name_link_tuple: tuple[str, str]):
-    """
-    Download the image of stars from urls.
-    """
-    assert len(name_link_tuple) == 2
-    name = name_link_tuple[0]
-    link = name_link_tuple[1]
-    name = name.strip()
-    link = link.strip()
-    if name.startswith("<span style='text-transform:none;'>") and name.endswith(
-        "</span>"
-    ):
-        name = name.replace("<span style='text-transform:none;'>", "")
-        name = name.replace("</span>", "")
-    resp = requests.get(link, timeout=10)
-    assert resp.status_code == 200
-    with open(f"imgs/{name}.png", "wb") as file:
-        file.write(resp.content)
-
-
-if __name__ == "__main__":
+def download_image_links() -> str:
+    greek_chars_pattern: re.Pattern[str] = re.compile(r"&[a-zA-Z]+?;")
+    useless_pattern: re.Pattern[str] = re.compile(r"&#x[0-9a-zA-Z]+?;")
+    imgs_collection: dict = dict()
     if not os.path.isdir("imgs"):
         os.makedirs("imgs")
     executor = ThreadPoolExecutor()
@@ -123,5 +107,27 @@ if __name__ == "__main__":
     for imgs_list, subpage_urls in executor.map(catch_subpage_link, catalogs):
         for new_imgs_list in executor.map(catch_image_link, subpage_urls):
             imgs_list += new_imgs_list
-        for _ in executor.map(download_images, imgs_list):
-            pass
+        for key, value in imgs_list:
+
+            def name_clean(name: str) -> str:
+                name = name.replace("<span style='text-transform:none;'>", "")
+                name = name.replace("</span>", "")
+                greek_chars = greek_chars_pattern.findall(name)
+                assert len(greek_chars) == 0 or len(greek_chars) == 1
+                if len(greek_chars) == 1:
+                    name = name.replace(
+                        greek_chars[0], greek_chars[0][1:-1][0:3])
+                useless_chars = useless_pattern.findall(name)
+                assert len(useless_chars) == 0 or len(useless_chars) == 1
+                if len(useless_chars) == 1:
+                    name = name.replace(useless_chars[0], "")
+                return name
+
+            key = name_clean(key)
+            key = key.strip()
+            value = value.strip()
+            imgs_collection[key] = value
+    return json.dumps(imgs_collection)
+
+if __name__ == "__main__":
+    print(download_image_links())
