@@ -36,7 +36,8 @@ def get_planet_data():
     # only keep planets in our solar system
     criteria = "max_distance_light_year=0.5"
     # get request data
-    data = get_response_dict(planet_url + criteria, headers={"X-Api-Key": my_key})
+    data = get_response_dict(planet_url + criteria,
+                             headers={"X-Api-Key": my_key})
 
     # create dataframe with values
     return data
@@ -112,6 +113,7 @@ def get_all_data():
     star_data = get_star_data()
 
     planet_data = get_planet_data()
+    # print(planet_data[0]['name'])
 
     moon_data = get_moon_data(planet_data)
 
@@ -127,5 +129,22 @@ def get_all_data():
     write_exostar_data()
 
 
+def get_exoplanet_data():
+    url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,pl_masse,pl_rade,pl_dens,pl_eqt+from+ps+where+disc_facility+=+'Transiting Exoplanet Survey Satellite (TESS)'&format=csv&"
+
+    response = requests.get(url)
+
+    if response.status_code == requests.codes.ok:
+        # print(response.text)
+        responseSTR = StringIO(response.text)
+        data = pd.read_csv(responseSTR)
+    else:
+        print("Error:", response.status_code, response.text)
+        return
+
+    data.to_csv("exoplanet_data.csv")
+
+
 if __name__ == "__main__":
-    get_all_data()
+    # get_all_data()
+    get_exoplanet_data()
