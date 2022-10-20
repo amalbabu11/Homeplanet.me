@@ -1,5 +1,4 @@
-from pickle import TRUE
-from sqlalchemy import Float, create_engine, Column, Integer, String, Sequence
+from sqlalchemy import Float, create_engine, Column, String, Sequence
 from sqlalchemy.orm import declarative_base, sessionmaker
 import argparse
 import pandas as pd
@@ -8,7 +7,6 @@ import pyexcel as p
 
 import json
 
-from tables import Col
 db_url = "mysql://root:@localhost:3306/cs373"
 
 
@@ -91,6 +89,11 @@ def fillStarTable():
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 
+    with open('images.json', 'r') as f:
+        starImages = json.load(f)
+    
+    data['img'] = data.star_name.apply(lambda x: starImages[x] if x in starImages.keys() else None)
+
     print(data.head())
 
 
@@ -159,7 +162,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.fill  == 'stars' or args.fill == 'all':
         fillStarTable()
-    elif args.fill == 'moons' or args.fill == 'all':
+    if args.fill == 'moons' or args.fill == 'all':
         fillMoonTable()
-    elif args.fill == 'planets' or args.fill == 'all':
+    if args.fill == 'planets' or args.fill == 'all':
         fillPlanetTable()
