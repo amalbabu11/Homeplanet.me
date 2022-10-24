@@ -14,3 +14,9 @@ This document will help you to startup a docker image with this backend and run 
 ## Check in the Browser
 
 Then you can open your browser and enter `127.0.0.1:8000`. The initial page occurs now.
+
+## Run test
+
+Before running test, make sure your working path is in the `backend` dir and open your backend server at `localhost:8000`.
+
+`make test`
