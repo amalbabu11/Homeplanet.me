@@ -7,7 +7,7 @@ import pyexcel as p
 
 import json
 
-db_url = "mysql://root:1013565559ljj@localhost:3306/cs373"
+db_url = "mysql://root:@localhost:3306/cs373"
 
 
 engine = create_engine(db_url)
@@ -22,22 +22,22 @@ Session.configure(bind=engine)
 #     fullname = Column(String(50))
 #     nickname = Column(String(50))
 
+
 class Planet(Base):
-    __tablename__ = 'planets'
-    pl_name = Column(String(50), primary_key = True)
+    __tablename__ = "planets"
+    pl_name = Column(String(50), primary_key=True)
     hostname = Column(String(50))
     pl_masse = Column(Float())
     pl_rade = Column(Float())
     pl_dens = Column(Float())
     pl_eqt = Column(Float())
-    img = Column(String(80))
 
 
 class Star(Base):
-    __tablename__ = 'stars'
-    star_name  = Column(String(50), primary_key = True)
+    __tablename__ = "stars"
+    star_name = Column(String(50), primary_key=True)
     st_teff = Column(Float())
-    st_lumclass = Column(Float())
+    st_lumclass = Column(String(50))
     st_age = Column(Float())
     st_rad = Column(Float())
     st_mass = Column(Float())
@@ -59,16 +59,16 @@ class Moon(Base):
 
 
 def fillPlanetTable():
-    dataPath = '../data/exoplanet_data.csv'
+    dataPath = "../data/exoplanet_data.csv"
     data = pd.read_csv(dataPath)
-    data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
+    data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
 
     print(data.head())
 
     data.to_sql(
-        'planets',
+        "planets",
         engine,
-        if_exists='replace',
+        if_exists="replace",
         index=False,
         chunksize=1,
         dtype={
@@ -76,10 +76,10 @@ def fillPlanetTable():
             "hostname": String(50),
             "pl_masse": Float,
             "pl_rade": Float,
-            "pl_dens":  Float,
+            "pl_dens": Float,
             "st_eqt": Float,
-            "img": String(80)
-        }
+            "img": String(80),
+        },
     )
 
 
@@ -88,11 +88,12 @@ def fillStarTable():
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
 
-    with open('images.json', 'r') as f:
+    with open("images.json", "r") as f:
         starImages = json.load(f)
 
-    data['img'] = data.star_name.apply(
-        lambda x: starImages[x] if x in starImages.keys() else None)
+    data["img"] = data.star_name.apply(
+        lambda x: starImages[x] if x in starImages.keys() else None
+    )
 
     print(data.head())
 
@@ -110,16 +111,16 @@ def fillStarTable():
             "st_rad": Float,
             "st_mass": Float,
             "st_logg": Float,
-            "img": String(80)
-        }
+            "img": String(80),
+        },
     )
 
 
 def fillMoonTable():
     session = Session()
     Base.metadata.create_all(engine)
-    dataPath = '../data/moon_data.json'
-    with open(dataPath, 'r') as f:
+    dataPath = "../data/moon_data.json"
+    with open(dataPath, "r") as f:
         data = json.load(f)
 
     imgPath = '../data/MoonImages.json'
@@ -175,9 +176,9 @@ if __name__ == "__main__":
     parser.add_argument("--query", help="fill table", action="store_true")
 
     args = parser.parse_args()
-    if args.fill == 'stars' or args.fill == 'all':
+    if args.fill == "stars" or args.fill == "all":
         fillStarTable()
-    if args.fill == 'moons' or args.fill == 'all':
+    if args.fill == "moons" or args.fill == "all":
         fillMoonTable()
-    if args.fill == 'planets' or args.fill == 'all':
+    if args.fill == "planets" or args.fill == "all":
         fillPlanetTable()

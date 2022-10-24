@@ -11,15 +11,19 @@ else
 endif
 
 SRC = src
+TEST = test
 SERVER = $(SRC)/server.py
 # Add new py files into this item.
 FILES = $(SRC)/server.py
+TESTS = $(TEST)/backend_test.py
 REQ = requirements.txt
 
 DOCKER_NAME = backend
 INNER_PORT = 8000
 OUTTER_PORT = 8000
 WORKDIR = /usr/src/backend
+
+.PHONY: run test
 
 run: check
 	$(PYTHON) $(SERVER)
@@ -38,6 +42,10 @@ docker: $(REQ)
 
 docker_run: docker
 	docker run -itd -p $(INNER_PORT):$(OUTTER_PORT) -v $(shell pwd):$(WORKDIR) $(DOCKER_NAME)
+
+test:
+	@curl "http://localhost:8000/"
+	$(PYTHON) $(TESTS)
 
 clean:
 	rm -rf __pycache__
