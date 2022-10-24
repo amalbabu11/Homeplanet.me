@@ -1,8 +1,8 @@
-import amal from "./Amal.jpg"
-import summer from "./Summer.jpg"
-import nathan from "./Nathan.jpg"
-import jinjie from "./Jinjie.jpg"
-import megan from "./Megan.jpg"
+import amal from "./images/Amal.jpg"
+import summer from "./images/Summer.jpg"
+import nathan from "./images/Nathan.jpg"
+import jinjie from "./images/Jinjie.jpg"
+import megan from "./images/Megan.jpg"
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 const teamInfo = [

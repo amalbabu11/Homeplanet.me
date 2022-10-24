@@ -163,6 +163,7 @@ const About = () => {
                         return (
                             <Col key={member.name} as="div" xs="auto" mx-auto>
                                 <Card style={{ width: '18rem' }}>
+                                <Card.Img className="bioPic" variant="top" src={member.picture} />
                                     <Card.Body>
                                         <Card.Title>{member.name}</Card.Title>
                                         <Card.Text>{member.description}</Card.Text>
