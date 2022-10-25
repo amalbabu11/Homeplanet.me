@@ -8,7 +8,7 @@ import sys
 sys.path.append(os.path.abspath("."))
 
 
-def get_moons() -> list[dict]:
+def get_moons():
     """
     ret: `list[dict]`, all data in the table `Moon`
     """
@@ -31,7 +31,7 @@ def get_moons() -> list[dict]:
     return moons
 
 
-def get_moon_by_name(name: str) -> list[dict]:
+def get_moon_by_name(name: str):
     """
     ret: `list[dict]`, data in the table `Moon` with specific name
     """
@@ -54,7 +54,7 @@ def get_moon_by_name(name: str) -> list[dict]:
     return moons
 
 
-def get_planets() -> list[dict]:
+def get_planets():
     """
     ret: `list[dict]`, all data in the table `Planet`
     """
@@ -75,7 +75,7 @@ def get_planets() -> list[dict]:
     return planets
 
 
-def get_planet_by_name(name: str) -> list[dict]:
+def get_planet_by_name(name: str):
     """
     ret: `list[dict]`, data in the table `Planet` with specific name
     """
@@ -96,7 +96,7 @@ def get_planet_by_name(name: str) -> list[dict]:
     return planets
 
 
-def get_stars() -> list[dict]:
+def get_stars():
     """
     ret: `list[dict]`, all data in the table `Star`
     """
@@ -119,14 +119,14 @@ def get_stars() -> list[dict]:
     return stars
 
 
-def get_star_by_name(name: str) -> list[dict]:
+def get_star_by_name(name: str):
     """
     ret: `list[dict]`, data in the table `Star` with specific name
     """
     from data.databasebuilder import Star, Session
 
     session: Session = Session()
-    stars: list[dict] = [
+    stars = [
         {
             "star_name": star.star_name,
             "st_teff": star.st_teff,
