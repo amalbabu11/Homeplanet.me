@@ -8,14 +8,14 @@ class TestBackend(unittest.TestCase):
 
     def test_index(self):
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api"
         )
         self.assertEqual(resp.text, "Hello, welcome to homeplanet.me!")
 
     def test_moon(self):
         moon: str = "Moon"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/moon?name={moon}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/moon?name={moon}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
@@ -27,7 +27,7 @@ class TestBackend(unittest.TestCase):
     def test_recommand_moon(self):
         moon: str = "Moon"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/recommand/moon?moon={moon}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/recommand/moon?moon={moon}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
@@ -39,7 +39,7 @@ class TestBackend(unittest.TestCase):
     def test_planet(self):
         planet: str = "TOI-954 b"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/planet?name={planet}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/planet?name={planet}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
@@ -51,7 +51,7 @@ class TestBackend(unittest.TestCase):
     def test_recommand_planet(self):
         planet: str = "TOI-954 b"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/recommand/planet?planet={planet}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/recommand/planet?planet={planet}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
@@ -63,7 +63,7 @@ class TestBackend(unittest.TestCase):
     def test_star(self):
         star: str = "HIP 3419"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/star?name={star}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/star?name={star}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
@@ -75,7 +75,7 @@ class TestBackend(unittest.TestCase):
     def test_recommand_star(self):
         star: str = "HIP 3419"
         resp: requests.Response = requests.get(
-            f"http://{TestBackend.host}:{TestBackend.port}/recommand/star?star={star}"
+            f"http://{TestBackend.host}:{TestBackend.port}/api/recommand/star?star={star}"
         )
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
