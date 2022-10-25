@@ -26,7 +26,7 @@ rows = moon_table.find_all('tr')
 # print(rows)
 
 
-mappings = []
+mappings = {}
 
 for i in range(1, len(rows)):
     row = rows[i]
@@ -40,7 +40,7 @@ for i in range(1, len(rows)):
         name = name.text
 
 
-    mappings.append({name:image})
+    mappings[name] = image
 
 
 import json
