@@ -33,12 +33,12 @@ function App() {
             />
           ))}
           <Route path="/moons" element={<Moons />} />
-          {GetMoonList().map((c) => (
+          {/* {GetMoonList().map((c) => (
             <Route
               path={"/moon/" + c.key}
               element={<MoonInstance data={c} />}
             />
-          ))}
+          ))} */}
           <Route path="/planets" element={<Planets />} />
           {GetPlanetList().map((c) => (
             <Route
@@ -53,3 +53,42 @@ function App() {
 }
 
 export default App;
+
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+// // import logo from './assets/logo.svg';
+// import About from "./components/About/About.js";
+// import Home from "./components/Splash/Home.js";
+// import Planets from "./components/Planets.js";
+// import Moons from "./components/Moons.js";
+// import Stars from "./components/Stars.js";
+// import { BrowserRouter as Routes, Route } from "react-router-dom";
+// import "./App.css";
+// import React from "react";
+// import OurNavbar from "./components/OurNavbar.js";
+// // import CompanyInfo from "./components/Companies/CompanyInfo.js";
+// // import FacilityInstance from "./components/Facilities/FacilityInstance.js";
+// // import CountyInstance from "./components/Counties/CountyInstance.js";
+// import './index.css'
+
+// function App() {
+//   return (
+//     <>
+//       <OurNavbar></OurNavbar>
+//       <div className="App">
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/about" element={<About />} />
+//           <Route path="/planets" element={<Planets />} />
+//           {/* <Route path="/facilities/:facilityId" element={<FacilityInstance />} /> */}
+//           <Route path="/moons" element={<Moons />} />
+//           {/* <Route path="/companies/:companyId" element={<CompanyInfo />} /> */}
+//           <Route path="/stars" element={<Stars />} />
+//           {/* <Route path="/counties/:countyId" element={<CountyInstance />} /> */}
+//         </Routes>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default App;
