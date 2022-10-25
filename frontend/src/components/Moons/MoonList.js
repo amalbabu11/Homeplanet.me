@@ -19,7 +19,6 @@ function MoonList() {
         `https://homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
-      // https://homeplanet.me/api/all_moons?page=1&per_page=15
       console.log("RESPONSE")
       console.log(response)
       console.log(response.text)

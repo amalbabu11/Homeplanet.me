@@ -15,7 +15,7 @@ import MoonInstance from "./components/Moons/MoonInstance.js";
 import { GetStarList } from "./components/Stars/StarList.js";
 import StarInstance from "./components/Stars/StarInstance.js";
 import PlanetInstance from "./components/Planets/PlanetInstance.js";
-import { GetPlanetList } from "./components/Planets/PlanetList.js";
+// import { GetPlanetList } from "./components/Planets/PlanetList.js";
 
 function App() {
   return (
@@ -40,12 +40,12 @@ function App() {
             />
           ))} */}
           <Route path="/planets" element={<Planets />} />
-          {GetPlanetList().map((c) => (
+          {/* {GetPlanetList().map((c) => (
             <Route
               path={"/planet/" + c.key}
               element={<PlanetInstance data={c} />}
             />
-          ))}
+          ))} */}
         </Routes>
       </div>
     </>
