@@ -8,7 +8,7 @@ import sys
 sys.path.append(os.path.abspath("."))
 
 
-def get_moon() -> list[dict]:
+def get_moons() -> list[dict]:
     """
     ret: `list[dict]`, all data in the table `Moon`
     """
@@ -54,7 +54,7 @@ def get_moon_by_name(name: str) -> list[dict]:
     return moons
 
 
-def get_planet() -> list[dict]:
+def get_planets() -> list[dict]:
     """
     ret: `list[dict]`, all data in the table `Planet`
     """
@@ -96,7 +96,7 @@ def get_planet_by_name(name: str) -> list[dict]:
     return planets
 
 
-def get_star() -> list[dict]:
+def get_stars() -> list[dict]:
     """
     ret: `list[dict]`, all data in the table `Star`
     """

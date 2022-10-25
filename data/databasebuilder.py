@@ -1,4 +1,4 @@
-from sqlalchemy import Float, create_engine, Column, String, Sequence
+from sqlalchemy import Integer, Float, create_engine, Column, String, Sequence
 from sqlalchemy.orm import declarative_base, sessionmaker
 import argparse
 import pandas as pd
@@ -15,6 +15,7 @@ Base = declarative_base(engine)
 Session = sessionmaker()
 Session.configure(bind=engine)
 
+<<<<<<< HEAD
 # class Moon(Base):
 #     __tablename__ = "moons"
 #     id = Column(Integer, Sequence("user_id_seq"), primary_key=True)
@@ -43,6 +44,29 @@ Session.configure(bind=engine)
 #     st_mass = Column(Float())
 #     st_logg = Column(Float())
 #     img = Column(String(80))
+=======
+
+class Planet(Base):
+    __tablename__ = 'planets'
+    pl_name = Column(String(50), primary_key=True)
+    hostname = Column(String(50))
+    pl_masse = Column(Float())
+    pl_rade = Column(Float())
+    pl_dens = Column(Float())
+    pl_eqt = Column(Float())
+
+
+class Star(Base):
+    __tablename__ = 'stars'
+    star_name = Column(String(50), primary_key=True)
+    st_teff = Column(Float())
+    st_lumclass = Column(String(20))
+    st_age = Column(Float())
+    st_rad = Column(Float())
+    st_mass = Column(Float())
+    st_logg = Column(Float())
+    img = Column(String(80))
+>>>>>>> 6591c586 (add all_)
 
 
 class Moon(Base):
@@ -123,8 +147,8 @@ def fillMoonTable():
     with open(dataPath, 'r') as f:
         data = json.load(f)
 
-    imgPath = '../data/MoonImages.json'
-    with open(imgPath, 'r') as f:
+    imgPath = "../data/MoonImages.json"
+    with open(imgPath, "r") as f:
         imgData = json.load(f)
 
     rows = []
@@ -142,14 +166,25 @@ def fillMoonTable():
         
         elem['aroundPlanet'] = elem['aroundPlanet']['planet']
 
+<<<<<<< HEAD
         columnValues = {key : elem[key] if key in elem.keys() else None for key in keys}
         name = columnValues['englishName']
 
         if name in imgData.keys():
             print(name)
             columnValues['img'] = imgData[name]
+=======
+        elem["aroundPlanet"] = elem["aroundPlanet"]["planet"]
 
-        
+        columnValues = {
+            key: elem[key] if key in elem.keys() else None for key in keys}
+        name = columnValues["englishName"]
+        if name in imgData and imgData[name] is not None:
+            columnValues["img"] = imgData[name]
+        else:
+            columnValues["img"] = None
+>>>>>>> 6591c586 (add all_)
+
         rows.append(Moon(**columnValues))
         session.add(Moon(**columnValues))
 
