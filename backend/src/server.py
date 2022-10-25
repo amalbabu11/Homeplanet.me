@@ -42,11 +42,20 @@ def api_all_moons():
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
     if page is None or per_page is None:
-        return 'Cannot find argument "page" or "per_page". Please check your request.', 404
+        return (
+            'Cannot find argument "page" or "per_page". Please check your request.',
+            404,
+        )
     page: int = eval(page)
     per_page: int = eval(per_page)
-    ret: list[dict] = utils.get_moons()
-    return json.dumps(ret[page*per_page:(page+1)*per_page]), 200, return_header
+    moons: list[dict] = utils.get_moons()
+    moons_slice: list[dict] = moons[page * per_page : (page + 1) * per_page]
+    ret: dict = {
+        "size": len(moons_slice),
+        "total_size": len(moons),
+        "bodies": moons_slice,
+    }
+    return json.dumps(ret), 200, return_header
 
 
 @app.route("/api/all_planets", methods=["GET"])
@@ -59,11 +68,20 @@ def api_all_planets():
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
     if page is None or per_page is None:
-        return 'Cannot find argument "page" or "per_page". Please check your request.', 404
+        return (
+            'Cannot find argument "page" or "per_page". Please check your request.',
+            404,
+        )
     page: int = eval(page)
     per_page: int = eval(per_page)
-    ret: list[dict] = utils.get_planets()
-    return json.dumps(ret[page*per_page:(page+1)*per_page]), 200, return_header
+    planets: list[dict] = utils.get_planets()
+    planets_slice: list[dict] = planets[page * per_page : (page + 1) * per_page]
+    ret: dict = {
+        "size": len(planets_slice),
+        "total_size": len(planets),
+        "bodies": planets_slice,
+    }
+    return json.dumps(ret), 200, return_header
 
 
 @app.route("/api/all_stars", methods=["GET"])
@@ -76,11 +94,20 @@ def api_all_stars():
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
     if page is None or per_page is None:
-        return 'Cannot find argument "page" or "per_page". Please check your request.', 404
+        return (
+            'Cannot find argument "page" or "per_page". Please check your request.',
+            404,
+        )
     page: int = eval(page)
     per_page: int = eval(per_page)
-    ret: list[dict] = utils.get_stars()
-    return json.dumps(ret[page*per_page:(page+1)*per_page]), 200, return_header
+    stars: list[dict] = utils.get_stars()
+    stars_slice: list[dict] = stars[page * per_page : (page + 1) * per_page]
+    ret: dict = {
+        "size": len(stars_slice),
+        "total_size": len(stars),
+        "bodies": stars_slice,
+    }
+    return json.dumps(ret), 200, return_header
 
 
 @app.route("/api/moon", methods=["GET"])
