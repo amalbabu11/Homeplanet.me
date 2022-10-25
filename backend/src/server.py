@@ -7,6 +7,7 @@ import random
 import sys
 
 import flask
+import flask_cors
 from flask import request
 
 import utils
@@ -17,6 +18,7 @@ HOST = "0.0.0.0"
 PORT = 8000
 
 app: flask.Flask = flask.Flask(__name__)
+flask_cors.CORS(app, supports_credentials=True)
 
 return_header = {"Content-Type": "application/json"}
 
