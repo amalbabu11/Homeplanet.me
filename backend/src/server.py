@@ -6,8 +6,8 @@ import os
 import random
 import sys
 
-import flask
-import flask_cors
+from flask import Flask
+from flask_cors import CORS
 from flask import request
 
 import utils
@@ -17,8 +17,10 @@ sys.path.append(os.path.abspath(".."))
 HOST = "0.0.0.0"
 PORT = 8000
 
-app: flask.Flask = flask.Flask(__name__)
-flask_cors.CORS(app, supports_credentials=True)
+# app: flask.Flask = flask.Flask(__name__)
+# flask_cors.CORS(app, supports_credentials=True)
+app = Flask(__name__)
+CORS(app)
 
 return_header = {"Content-Type": "application/json"}
 

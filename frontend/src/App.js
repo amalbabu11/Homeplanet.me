@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import OurNavbar from "./components/OurNavbar.js";
 import { GetMoonList } from "./components/Moons/MoonList.js";
 import MoonInstance from "./components/Moons/MoonInstance.js";
-import { GetStarList } from "./components/Stars/StarList.js";
+// import { GetStarList } from "./components/Stars/StarList.js";
 import StarInstance from "./components/Stars/StarInstance.js";
 import PlanetInstance from "./components/Planets/PlanetInstance.js";
 // import { GetPlanetList } from "./components/Planets/PlanetList.js";
@@ -26,12 +26,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/stars" element={<Stars />} />
-          {GetStarList().map((c) => (
+          {/* {GetStarList().map((c) => (
             <Route
               path={"/star/" + c.key}
               element={<StarInstance data={c} />}
             />
-          ))}
+          ))} */}
           <Route path="/moons" element={<Moons />} />
           {/* {GetMoonList().map((c) => (
             <Route
