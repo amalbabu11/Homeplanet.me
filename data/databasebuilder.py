@@ -7,7 +7,11 @@ import pyexcel as p
 
 import json
 
+<<<<<<< HEAD
 db_url = "mysql://root:amalstow5@localhost:3306/cs373"
+=======
+db_url = "mysql://root:@localhost:3306/cs373"
+>>>>>>> 610e7b7e (remove password)
 
 
 engine = create_engine(db_url)
