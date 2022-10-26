@@ -17,6 +17,7 @@ def get_moons():
     session: Session = Session()
     moons: list[dict] = [
         {
+            "index": moon.index,
             "englishName": moon.englishName,
             "density": moon.density,
             "gravity": moon.gravity,
@@ -40,6 +41,7 @@ def get_moon_by_name(name: str):
     session: Session = Session()
     moons: list[dict] = [
         {
+            "index": moon.index,
             "englishName": moon.englishName,
             "density": moon.density,
             "gravity": moon.gravity,
@@ -63,6 +65,7 @@ def get_planets():
     session: Session = Session()
     planets: list[dict] = [
         {
+            "index": planet.index,
             "pl_name": planet.pl_name,
             "hostname": planet.hostname,
             "pl_masse": planet.pl_masse,
@@ -84,6 +87,7 @@ def get_planet_by_name(name: str):
     session: Session = Session()
     planets: list[dict] = [
         {
+            "index": planet.index,
             "pl_name": planet.pl_name,
             "hostname": planet.hostname,
             "pl_masse": planet.pl_masse,
@@ -105,6 +109,7 @@ def get_stars():
     session: Session = Session()
     stars: list[dict] = [
         {
+            "index": star.index,
             "star_name": star.star_name,
             "st_teff": star.st_teff,
             "st_lumclass": star.st_lumclass,
@@ -128,6 +133,7 @@ def get_star_by_name(name: str):
     session: Session = Session()
     stars = [
         {
+            "index": star.index,
             "star_name": star.star_name,
             "st_teff": star.st_teff,
             "st_lumclass": star.st_lumclass,

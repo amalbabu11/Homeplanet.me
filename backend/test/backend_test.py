@@ -44,6 +44,7 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         body: dict = resp.json()
         self.assertNotEqual(body, None)
+        print(body)
         self.assertEqual(len(body), 1)
         self.assertNotEqual(body[0], None)
         self.assertEqual(body[0]["pl_name"], planet)

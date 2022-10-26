@@ -7,7 +7,7 @@ import pyexcel as p
 
 import json
 
-db_url = "mysql://root:amalstow5@localhost:3306/cs373"
+db_url = "mysql://root:@localhost:3306/cs373"
 
 
 engine = create_engine(db_url)
@@ -17,7 +17,8 @@ Session.configure(bind=engine)
 
 
 class Planet(Base):
-    __tablename__ = 'planets'
+    __tablename__ = "planets"
+    index = Column(Integer, primary_key=True, autoincrement=True)
     pl_name = Column(String(50), primary_key=True)
     hostname = Column(String(50))
     pl_masse = Column(Float())
@@ -29,7 +30,8 @@ class Planet(Base):
 
 
 class Star(Base):
-    __tablename__ = 'stars'
+    __tablename__ = "stars"
+    index = Column(Integer, primary_key=True, autoincrement=True)
     star_name = Column(String(50), primary_key=True)
     st_teff = Column(Float())
     st_lumclass = Column(String(20))
@@ -43,7 +45,7 @@ class Star(Base):
 class Moon(Base):
     __tablename__ = "moons"
     index = Column(Integer, primary_key=True, autoincrement=True)
-    englishName = Column(String(50), primary_key = True, index = True)
+    englishName = Column(String(50), primary_key=True, index=True)
     density = Column(Float())
     gravity = Column(Float())
     aroundPlanet = Column(String(50))
@@ -54,19 +56,17 @@ class Moon(Base):
     img = Column(String(200))
 
 
-
 def fillPlanetTable():
-    dataPath = '../data/exoplanet_data.csv'
+    dataPath = "../data/exoplanet_data.csv"
     data = pd.read_csv(dataPath)
-    data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
+    data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
 
     print(data.head())
 
-
     data.to_sql(
-        'planets',
+        "planets",
         engine,
-        if_exists='replace',
+        if_exists="replace",
         index=True,
         chunksize=1,
         dtype={
@@ -74,11 +74,11 @@ def fillPlanetTable():
             "hostname": String(50),
             "pl_masse": Float,
             "pl_rade": Float,
-            "pl_dens":  Float,
+            "pl_dens": Float,
             "st_eqt": Float,
-            "img" : String(120),
-            "orbit_img": String(120)
-        }
+            "img": String(120),
+            "orbit_img": String(120),
+        },
     )
 
 def pickStarColor(temp):
@@ -94,7 +94,12 @@ def fillStarTable():
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 
-    with open('images.json', 'r') as f:
+def fillStarTable():
+    dataPath = "../data/exostar_data.csv"
+    data = pd.read_csv(dataPath)
+    data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
+
+    with open("images.json", "r") as f:
         starImages = json.load(f)
     
     data['img'] = data.star_name.apply(lambda x: starImages[x] if x in starImages.keys() else None)
@@ -102,24 +107,24 @@ def fillStarTable():
 
     print(data.head())
 
-
     data.to_sql(
-        'stars',
+        "stars",
         engine,
-        if_exists='replace',
+        if_exists="replace",
         index=True,
         chunksize=1,
         dtype={
             "star_name": String(50),
             "st_teff": Float,
             "st_lumclass": String(20),
-            "st_age":  Float,
+            "st_age": Float,
             "st_rad": Float,
             "st_mass": Float,
-            "st_logg" : Float,
-            "img" : String(80)
-        }
+            "st_logg": Float,
+            "img": String(80),
+        },
     )
+
 
 def math(num1, num2):
     return num1 * num2 + num1
@@ -128,11 +133,12 @@ def math(num1, num2):
 math(5, 6)
 math(7, 8)
 
+
 def fillMoonTable():
     session = Session()
     Base.metadata.create_all(engine)
-    dataPath = '../data/moon_data.json'
-    with open(dataPath, 'r') as f:
+    dataPath = "../data/moon_data.json"
+    with open(dataPath, "r") as f:
         data = json.load(f)
 
     imgPath = "../data/MoonImages.json"
@@ -140,26 +146,34 @@ def fillMoonTable():
         imgData = json.load(f)
 
     rows = []
-    keys = ['massValue', 'massExponent', 'volValue', 'volExponent', 'englishName', 'density', 'gravity', 'aroundPlanet']
+    keys = [
+        "massValue",
+        "massExponent",
+        "volValue",
+        "volExponent",
+        "englishName",
+        "density",
+        "gravity",
+        "aroundPlanet",
+    ]
     for elem in data:
-        if elem['mass'] is not None:
+        if elem["mass"] is not None:
 
-            elem['massValue'] = elem['mass']['massValue']
-            elem['massExponent'] = elem['mass']['massExponent']
-            
+            elem["massValue"] = elem["mass"]["massValue"]
+            elem["massExponent"] = elem["mass"]["massExponent"]
 
-        if elem['vol'] is not None:
-            elem['volValue'] = elem['vol']['volValue']
-            elem['volExponent'] = elem['vol']['volExponent']
-        
-        elem['aroundPlanet'] = elem['aroundPlanet']['planet']
+        if elem["vol"] is not None:
+            elem["volValue"] = elem["vol"]["volValue"]
+            elem["volExponent"] = elem["vol"]["volExponent"]
 
-        columnValues = {key : elem[key] if key in elem.keys() else None for key in keys}
-        name = columnValues['englishName']
+        elem["aroundPlanet"] = elem["aroundPlanet"]["planet"]
+
+        columnValues = {key: elem[key] if key in elem.keys() else None for key in keys}
+        name = columnValues["englishName"]
 
         if name in imgData.keys():
             print(name)
-            columnValues['img'] = imgData[name]
+            columnValues["img"] = imgData[name]
 
         rows.append(Moon(**columnValues))
         session.add(Moon(**columnValues))
@@ -174,17 +188,16 @@ def queryDatabase():
         print(instance.englishName)
 
 
-    
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--create', help = 'create table', action = 'store_true')
-    parser.add_argument('--fill', help = 'fill table')
-    parser.add_argument('--query', help = 'fill table', action = 'store_true')
+    parser.add_argument("--create", help="create table", action="store_true")
+    parser.add_argument("--fill", help="fill table")
+    parser.add_argument("--query", help="fill table", action="store_true")
 
     args = parser.parse_args()
-    if args.fill  == 'stars' or args.fill == 'all':
+    if args.fill == "stars" or args.fill == "all":
         fillStarTable()
-    if args.fill == 'moons' or args.fill == 'all':
+    if args.fill == "moons" or args.fill == "all":
         fillMoonTable()
-    if args.fill == 'planets' or args.fill == 'all':
+    if args.fill == "planets" or args.fill == "all":
         fillPlanetTable()

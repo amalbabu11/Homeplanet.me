@@ -25,7 +25,8 @@ WORKDIR = /usr/src/backend
 
 .PHONY: run test
 
-run: check
+# run: check
+run:
 	$(PYTHON) $(SERVER)
 
 check: $(FILES)
@@ -35,7 +36,7 @@ format: $(FILES)
 	black $^
 
 $(REQ):
-	pipreqs .
+	pipreqs . --force
 
 docker: $(REQ)
 	docker build . -t $(DOCKER_NAME)
