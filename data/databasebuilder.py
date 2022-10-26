@@ -7,7 +7,7 @@ import pyexcel as p
 
 import json
 
-db_url = "mysql://root:gu@localhost:3306/cs373"
+db_url = "mysql://root:@localhost:3306/cs373"
 
 
 engine = create_engine(db_url)
