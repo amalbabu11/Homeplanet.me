@@ -13,10 +13,16 @@ build_frontend:
         - npm install
         - CI=false npm run-script build
 
-test_frontend:
+# Credit: https://gitlab.com/JohnPowow/animalwatch/-/blob/main/.gitlab-ci.yml
+test_jest:
     stage: test
+    image: node:latest
     script:
-        - echo "nothing implemented for test_frontend yet in gitlab-ci.yml"
+        - echo "trying jest tests"
+        - cd frontend
+        - npm install npm@8.5.5 -g
+        - npm install
+        - npm run test
 
 deploy_frontend:
     stage: deploy
