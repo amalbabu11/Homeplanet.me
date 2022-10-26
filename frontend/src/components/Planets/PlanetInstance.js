@@ -15,7 +15,7 @@ function PlanetInstance(props) {
     <div className="Container">
       <React.Fragment>
         <Container className="card-container">
-          <Row><h1 class="cardTitle">{props.data.name}</h1></Row>
+          <Row><h1 class="cardTitle">{props.data.pl_name}</h1></Row>
           <Row className="Card">
             <Col>
               <hr />
@@ -30,14 +30,12 @@ function PlanetInstance(props) {
             <Row>
               <Col>
                 <div class="bodyText">
-                  <p>{" "}<strong>Mass:</strong> {props.data.mass} Jupiters{" "}</p>
-                  <p>{" "}<strong>Radius:</strong> {props.data.radius} Jupiters{" "}</p>
-                  <p>{" "}<strong>Period:</strong> {props.data.period} Earth days{" "}</p>
-                  <p>{" "}<strong>Temperature:</strong> {props.data.temperature} degrees Kelvin{" "}</p>
-                  <p>{" "}<strong>Distance From Earth:</strong> {props.data.distance_light_year} Light Years{" "}</p>
-                  <p>{" "}<strong>Host Star Mass:</strong> {props.data.host_star_mass} Suns{" "}</p>
-                  <p>{" "}<strong>Host Star Temperature:</strong> {props.data.host_star_temperature} Kelvins{" "}</p>
-                  <p>{" "}<strong>Habitable? </strong> {props.data.is_habitable}{" "}</p>
+                  {/*This is the information provided by get_planets() in utils.py*/}
+                  <p>{" "}<strong>Mass:</strong> {props.data.pl_masse} Earth masses{" "}</p>
+                  <p>{" "}<strong>Radius: </strong> {props.data.pl_rade} Earth radiuses{" "}</p>
+                  <p>{" "}<strong>Density: </strong> {props.data.pl_dens} g/cm^3{" "}</p>
+                  <p>{" "}<strong>Equilibrium Temperature: </strong> {props.data.pl_eqt} Kelvin{" "}</p>
+                  <p>{" "}<strong>Orbits around: </strong> {props.data.hostname}{" "}</p>
                 </div>
               </Col>
               <Row>

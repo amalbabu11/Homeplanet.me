@@ -1,7 +1,7 @@
 import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
   CardContent, CardHeader, CardMedia, Typography, } from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 
@@ -43,7 +43,7 @@ function PlanetList() {
               <Grid item xs={5}>
                 <Card className="planet_card">
                 <CardActionArea component={RouterLink} to={"/planet/" + c.key}>
-                  <MDBCardImage className="img-grp" src={c.img} />
+                  <MDBCardImage className="img-grp" src={'http://www.exoplanetkyoto.org/exohtml/TOI-1260_cOrbit.html'} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.pl_name} </h1>
                     <h3 class="cardSub">{c.state}</h3>

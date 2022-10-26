@@ -1,7 +1,7 @@
 import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
   CardContent, CardHeader, CardMedia, Typography, } from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 
@@ -29,7 +29,7 @@ function StarList() {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setStars(body['bodies'])
+      setStars(body['bodies']) 
     };
     getData();
   }, [page, per_page]);
@@ -38,9 +38,9 @@ function StarList() {
       <>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
-          <Grid container spacing={4} columns={12}>
-          {stars.map((c) => (
-              <Grid item xs={6}>
+          <Grid container spacing={6} columns={20}>
+          {stars.map((c) => ( // same thing as: for c in stars
+              <Grid item xs={5}>
                 <Card className="star_card">
                 <CardActionArea component={RouterLink} to={"/star/" + c.key}>
                   <MDBCardImage className="img-grp" src={c.img} />
@@ -48,9 +48,9 @@ function StarList() {
                     <h1 class="cardTitle"> {c.star_name} </h1>
                     <h3 class="cardSub">{c.state}</h3>
                     <CardContent>
-                    <ListGroup>
+                    {/* <ListGroup>
                         <ListGroupItem>
-                          <strong>Luminosity Class:</strong> {c.st_lumclass} 
+                          <strong>Luminosity Class:</strong> {c.st_lumclass}
                         </ListGroupItem>
                         <ListGroupItem>
                           <strong>Radius:</strong> {c.st_rad} Suns
@@ -66,8 +66,8 @@ function StarList() {
                         </ListGroupItem>
                         <ListGroupItem>
                           <strong>Eqt: </strong> ~{c.pl_eqt}
-                        </ListGroupItem>
-                      </ListGroup>
+                        </ListGroupItem> */}
+                      {/* </ListGroup> */}
                     </CardContent>
                   </CardContent> }
                 </CardActionArea>

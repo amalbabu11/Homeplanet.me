@@ -15,7 +15,7 @@ function StarInstance(props) {
     <div className="Container">
       <React.Fragment>
       <Container className="card-container">
-        <Row><h1 class="cardTitle">{props.data.name}</h1></Row>
+        <Row><h1 class="cardTitle">{props.data.star_name}</h1></Row>
           <Row className="Card">
             <Col>
               <hr />
@@ -32,10 +32,10 @@ function StarInstance(props) {
                 <div class="bodyText">
                   <p>{" "}<strong>Mass: </strong> {props.data.st_mass} Suns{" "}</p>
                   <p>{" "}<strong>Radius: </strong> {props.data.st_rad} Suns{" "}</p>
+                  <p>{" "}<strong>Luminosity Class: </strong> {props.data.st_lumclass} {" "}</p>
                   <p>{" "}<strong>Temperature: </strong> {props.data.st_teff} Kelvin{" "}</p>
                   <p>{" "}<strong>Surface Gravity: </strong> {props.data.st_logg} cgs{" "}</p>
                   <p>{" "}<strong>Age: </strong> {props.data.st_age} gyr (billion years){" "}</p>
-                  <p>{" "}<strong>Vmagearth: </strong> {props.data.st_vmagearth}{" "}</p>
                 </div>
               </Col>
               </Row>
