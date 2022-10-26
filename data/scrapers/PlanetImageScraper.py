@@ -23,7 +23,7 @@ def getImageAddress(name: str):
         soup = BeautifulSoup(response.text, 'html.parser')
         img = soup.find('tr').find_all('td')[1].find('img')['src']
 
-        return url + 'Planets' + img[2 : len(img)]
+        return url + img[2 : len(img)]
     else:
         return
 
