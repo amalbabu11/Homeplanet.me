@@ -72,6 +72,8 @@ def get_planets():
             "pl_rade": planet.pl_rade,
             "pl_dens": planet.pl_dens,
             "pl_eqt": planet.pl_eqt,
+            "img": planet.img,
+            "orbit_img": planet.orbit_img,
         }
         for planet in session.query(Planet).all()
     ]
@@ -94,6 +96,8 @@ def get_planet_by_name(name: str):
             "pl_rade": planet.pl_rade,
             "pl_dens": planet.pl_dens,
             "pl_eqt": planet.pl_eqt,
+            "img": planet.img,
+            "orbit_img": planet.orbit_img,
         }
         for planet in session.query(Planet).filter_by(pl_name=name)
     ]
