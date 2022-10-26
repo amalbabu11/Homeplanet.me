@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import BrowserRouter from "react-router-dom";
 // import OurNavbar from "../components/OurNavbar";
 
 // Credit: https://gitlab.com/JohnPowow/animalwatch/-/blob/main/frontend/src/__tests__/JestTests.test.js
