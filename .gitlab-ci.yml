@@ -26,6 +26,26 @@ test_jest:
         - npm install --save-dev babel-jest @babel/core @babel/preset-env
         - npm run test
 
+selenium_tests:
+  stage: test
+  image: python:3.8
+  script:
+    # I successfully ran all of the below commands on linux to prepare for selenium (except make selenium-tests)
+    - pip install -r ./frontend/tests/requirements.txt
+        
+    - sudo apt-get update -q -y
+    - sudo apt-get install nodejs npm -y
+    - sudo apt-get --yes install libnss3
+    - sudo apt-get --yes install libgconf-2-4
+    - sudo apt-get install libx11-xcb1
+    
+    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    - sudo apt-get update -q -y
+    - sudo apt-get install -y google-chrome-stable
+
+    - make selenium-tests
+
 deploy_frontend:
     stage: deploy
     script:
