@@ -20,8 +20,9 @@ test_jest:
     script:
         - echo "trying jest tests"
         - cd frontend
-        - npm install npm@8.5.5 -g
+#        - npm install npm@8.5.5 -g
         - npm install
+        - npm install --save-dev jest
         - npm run test
 
 deploy_frontend:
