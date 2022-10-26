@@ -143,6 +143,7 @@ def get_exoplanet_data():
         print("Error:", response.status_code, response.text)
         return
 
+    data = data.drop_duplicates(subset=['pl_name'])
     data['img'] = data['pl_name'].apply(getImageAddress)
     data['orbit_img'] = data['pl_name'].apply(getOrbitUrl)
     data.to_csv("../exoplanet_data.csv")

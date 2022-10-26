@@ -7,7 +7,7 @@ import pyexcel as p
 
 import json
 
-db_url = "mysql://root:@localhost:3306/cs373"
+db_url = "mysql://root:amalstow5@localhost:3306/cs373"
 
 
 engine = create_engine(db_url)
@@ -81,6 +81,14 @@ def fillPlanetTable():
         }
     )
 
+def pickStarColor(temp):
+    if temp <= 3500:
+        return 'RED'
+    elif temp < 10000:
+        return 'YELLOW'
+    else:
+        return 'BLUE'
+
 def fillStarTable():
     dataPath = '../data/exostar_data.csv'
     data = pd.read_csv(dataPath)
@@ -90,6 +98,7 @@ def fillStarTable():
         starImages = json.load(f)
     
     data['img'] = data.star_name.apply(lambda x: starImages[x] if x in starImages.keys() else None)
+    data['color'] = data.st_teff.apply(pickStarColor)
 
     print(data.head())
 
