@@ -22,6 +22,7 @@ PORT = 8000
 app = Flask(__name__)
 CORS(app)
 
+error_header = {"Content-Type": "text/plain"}
 return_header = {"Content-Type": "application/json"}
 
 
@@ -35,7 +36,7 @@ def index() -> str:
 
 
 @app.route("/api/all_moons", methods=["GET"])
-def api_all_moons():
+def api_all_moons() -> tuple[str, int, dict]:
     """
     This api returns all information on the moon.
     ret:    `json`, related information on the assigned moon
@@ -47,6 +48,7 @@ def api_all_moons():
         return (
             'Cannot find argument "page" or "per_page". Please check your request.',
             404,
+            error_header,
         )
     page: int = eval(page)
     per_page: int = eval(per_page)
@@ -61,7 +63,7 @@ def api_all_moons():
 
 
 @app.route("/api/all_planets", methods=["GET"])
-def api_all_planets():
+def api_all_planets() -> tuple[str, int, dict]:
     """
     This api returns all information on the planet.
     ret:    `json`, related information on the assigned planet
@@ -73,6 +75,7 @@ def api_all_planets():
         return (
             'Cannot find argument "page" or "per_page". Please check your request.',
             404,
+            error_header,
         )
     page: int = eval(page)
     per_page: int = eval(per_page)
@@ -87,7 +90,7 @@ def api_all_planets():
 
 
 @app.route("/api/all_stars", methods=["GET"])
-def api_all_stars():
+def api_all_stars() -> tuple[str, int, dict]:
     """
     This api returns all information on the star.
     ret:    `json`, related information on the assigned star
@@ -99,6 +102,7 @@ def api_all_stars():
         return (
             'Cannot find argument "page" or "per_page". Please check your request.',
             404,
+            error_header,
         )
     page: int = eval(page)
     per_page: int = eval(per_page)
@@ -113,7 +117,7 @@ def api_all_stars():
 
 
 @app.route("/api/moon", methods=["GET"])
-def api_moon():
+def api_moon() -> tuple[str, int, dict]:
     """
     This api returns all information on the assigned moon.
     ret:    `json`, related information on the assigned moon
@@ -121,13 +125,17 @@ def api_moon():
     """
     name: str = request.args.get("name")
     if not name:
-        return 'Cannot find argument "name". Please check your request.', 404
+        return (
+            'Cannot find argument "name". Please check your request.',
+            404,
+            error_header,
+        )
     ret = utils.get_moon_by_name(name)
     return json.dumps(ret), 200, return_header
 
 
 @app.route("/api/planet", methods=["GET"])
-def api_planet():
+def api_planet() -> tuple[str, int, dict]:
     """
     This api returns all information on the assigned planet.
     ret:    `json`, related information on the assigned planet
@@ -135,13 +143,17 @@ def api_planet():
     """
     name: str = request.args.get("name")
     if not name:
-        return 'Cannot find argument "name". Please check your request.', 404
+        return (
+            'Cannot find argument "name". Please check your request.',
+            404,
+            error_header,
+        )
     planet = utils.get_planet_by_name(name)
     return json.dumps(planet), 200, return_header
 
 
 @app.route("/api/star", methods=["GET"])
-def api_star():
+def api_star() -> tuple[str, int, dict]:
     """
     This api returns all information on the assigned star.
     ret:    `json`, related information on the assigned star
@@ -149,13 +161,17 @@ def api_star():
     """
     name: str = request.args.get("name")
     if not name:
-        return 'Cannot find argument "name". Please check your request.', 404
+        return (
+            'Cannot find argument "name". Please check your request.',
+            404,
+            error_header,
+        )
     star = utils.get_star_by_name(name)
     return json.dumps(star), 200, return_header
 
 
 @app.route("/api/recommand/moon", methods=["GET"])
-def recommand_moon():
+def recommand_moon() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
@@ -164,7 +180,11 @@ def recommand_moon():
     """
     moon: str = request.args.get("moon")
     if not moon:
-        return 'Cannot find argument "moon". Please check your request.', 404
+        return (
+            'Cannot find argument "moon". Please check your request.',
+            404,
+            error_header,
+        )
     star: dict = random.choice(utils.get_stars())
     planet: dict = random.choice(utils.get_planets())
     ret: dict = {"star": star, "planet": planet}
@@ -172,7 +192,7 @@ def recommand_moon():
 
 
 @app.route("/api/recommand/planet", methods=["GET"])
-def recommand_planets():
+def recommand_planets() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the planet. For the planet, it searches for an
      available star and randomly recommends a moon based on the galaxy it is in.
@@ -181,7 +201,11 @@ def recommand_planets():
     """
     planet: str = request.args.get("planet")
     if not planet:
-        return 'Cannot find argument "planet". Please check your request.', 404
+        return (
+            'Cannot find argument "planet". Please check your request.',
+            404,
+            error_header,
+        )
     star: dict = random.choice(utils.get_stars())
     moon: dict = random.choice(utils.get_moons())
     ret: dict = {"star": star, "moon": moon}
@@ -189,7 +213,7 @@ def recommand_planets():
 
 
 @app.route("/api/recommand/star", methods=["GET"])
-def recommand_stars():
+def recommand_stars() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the star. For the star, it searches for planets in
      the same galaxy and randomly recommends moons.
@@ -198,7 +222,11 @@ def recommand_stars():
     """
     star: str = request.args.get("star")
     if not star:
-        return 'Cannot find argument "star". Please check your request.', 404
+        return (
+            'Cannot find argument "star". Please check your request.',
+            404,
+            error_header,
+        )
     planet: dict = random.choice(utils.get_planets())
     moon: dict = random.choice(utils.get_moons())
     ret: dict = {"planet": planet, "moon": moon}
