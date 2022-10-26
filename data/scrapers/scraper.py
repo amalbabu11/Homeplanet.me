@@ -2,6 +2,7 @@ import pandas as pd
 import json
 import requests
 from io import StringIO
+from PlanetImageScraper import getImageAddress, getOrbitUrl
 
 
 """ get response in the form of a dict
@@ -101,7 +102,7 @@ def write_exostar_data():
         print("Error:", response.status_code, response.text)
         return
 
-    data.to_csv("exostar_data.csv")
+    data.to_csv("../exostar_data.csv")
 
 
 """ 
@@ -142,7 +143,9 @@ def get_exoplanet_data():
         print("Error:", response.status_code, response.text)
         return
 
-    data.to_csv("exoplanet_data.csv")
+    data['img'] = data['pl_name'].apply(getImageAddress)
+    data['orbit_img'] = data['pl_name'].apply(getOrbitUrl)
+    data.to_csv("../exoplanet_data.csv")
 
 
 if __name__ == "__main__":

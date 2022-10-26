@@ -24,6 +24,8 @@ class Planet(Base):
     pl_rade = Column(Float())
     pl_dens = Column(Float())
     pl_eqt = Column(Float())
+    img = Column(String(120))
+    orbit_img = Column(String(120))
 
 
 class Star(Base):
@@ -40,7 +42,8 @@ class Star(Base):
 
 class Moon(Base):
     __tablename__ = "moons"
-    englishName = Column(String(50), primary_key = True)
+    index = Column(Integer, primary_key=True, autoincrement=True)
+    englishName = Column(String(50), primary_key = True, index = True)
     density = Column(Float())
     gravity = Column(Float())
     aroundPlanet = Column(String(50))
@@ -64,7 +67,7 @@ def fillPlanetTable():
         'planets',
         engine,
         if_exists='replace',
-        index=False,
+        index=True,
         chunksize=1,
         dtype={
             "pl_name": String(50),
@@ -73,7 +76,8 @@ def fillPlanetTable():
             "pl_rade": Float,
             "pl_dens":  Float,
             "st_eqt": Float,
-            "img" : String(80)
+            "img" : String(120),
+            "orbit_img": String(120)
         }
     )
 
@@ -94,7 +98,7 @@ def fillStarTable():
         'stars',
         engine,
         if_exists='replace',
-        index=False,
+        index=True,
         chunksize=1,
         dtype={
             "star_name": String(50),
@@ -108,6 +112,12 @@ def fillStarTable():
         }
     )
 
+def math(num1, num2):
+    return num1 * num2 + num1
+
+
+math(5, 6)
+math(7, 8)
 
 def fillMoonTable():
     session = Session()
