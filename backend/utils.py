@@ -26,9 +26,11 @@ def get_moons():
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "img" : moon.img
         }
         for moon in session.query(Moon).all()
     ]
+    session.close()
     return moons
 
 
@@ -53,6 +55,7 @@ def get_moon_by_index(index: int):
         }
         for moon in session.query(Moon).filter_by(index=index)
     ]
+    session.close()
     return moons
 
 
@@ -77,6 +80,7 @@ def get_moon_by_name(name: str):
         }
         for moon in session.query(Moon).filter_by(englishName=name)
     ]
+    session.close()
     return moons
 
 
@@ -101,6 +105,7 @@ def get_planets():
         }
         for planet in session.query(Planet).all()
     ]
+    session.close()
     return planets
 
 
@@ -125,6 +130,7 @@ def get_planet_by_index(index: int):
         }
         for planet in session.query(Planet).filter_by(index=index)
     ]
+    session.close()
     return planets
 
 
@@ -149,6 +155,7 @@ def get_planet_by_name(name: str):
         }
         for planet in session.query(Planet).filter_by(pl_name=name)
     ]
+    session.close()
     return planets
 
 
@@ -173,6 +180,7 @@ def get_stars():
         }
         for star in session.query(Star).all()
     ]
+    session.close()
     return stars
 
 
@@ -197,6 +205,7 @@ def get_star_by_index(index: str):
         }
         for star in session.query(Star).filter_by(index=index)
     ]
+    session.close()
     return stars
 
 
@@ -221,4 +230,5 @@ def get_star_by_name(name: str):
         }
         for star in session.query(Star).filter_by(star_name=name)
     ]
+    session.close()
     return stars

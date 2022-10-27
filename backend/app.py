@@ -32,7 +32,7 @@ def index() -> str:
 
 
 @app.route("/api/all_moons", methods=["GET"])
-def api_all_moons() -> tuple[str, int, dict]:
+def api_all_moons():
     """
     This api returns all information on the moon.
     ret:    `json`, related information on the assigned moon
@@ -56,7 +56,7 @@ def api_all_moons() -> tuple[str, int, dict]:
 
 
 @app.route("/api/all_planets", methods=["GET"])
-def api_all_planets() -> tuple[str, int, dict]:
+def api_all_planets():
     """
     This api returns all information on the planet.
     ret:    `json`, related information on the assigned planet
@@ -80,7 +80,7 @@ def api_all_planets() -> tuple[str, int, dict]:
 
 
 @app.route("/api/all_stars", methods=["GET"])
-def api_all_stars() -> tuple[str, int, dict]:
+def api_all_stars():
     """
     This api returns all information on the star.
     ret:    `json`, related information on the assigned star
@@ -104,7 +104,7 @@ def api_all_stars() -> tuple[str, int, dict]:
 
 
 @app.route("/api/moon", methods=["GET"])
-def api_moon() -> tuple[str, int, dict]:
+def api_moon():
     """
     This api returns all information on the assigned moon.
     ret:    `json`, related information on the assigned moon
@@ -133,7 +133,7 @@ def api_moon() -> tuple[str, int, dict]:
 
 
 @app.route("/api/planet", methods=["GET"])
-def api_planet() -> tuple[str, int, dict]:
+def api_planet():
     """
     This api returns all information on the assigned planet.
     ret:    `json`, related information on the assigned planet
@@ -162,7 +162,7 @@ def api_planet() -> tuple[str, int, dict]:
 
 
 @app.route("/api/star", methods=["GET"])
-def api_star() -> tuple[str, int, dict]:
+def api_star():
     """
     This api returns all information on the assigned star.
     ret:    `json`, related information on the assigned star
@@ -191,7 +191,7 @@ def api_star() -> tuple[str, int, dict]:
 
 
 @app.route("/api/recommand/moon", methods=["GET"])
-def recommand_moon() -> tuple[str, int, dict]:
+def recommand_moon():
     """
     This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
@@ -212,7 +212,7 @@ def recommand_moon() -> tuple[str, int, dict]:
 
 
 @app.route("/api/recommand/planet", methods=["GET"])
-def recommand_planets() -> tuple[str, int, dict]:
+def recommand_planets():
     """
     This api returns recommendations based on the planet. For the planet, it searches for an
      available star and randomly recommends a moon based on the galaxy it is in.
@@ -233,7 +233,7 @@ def recommand_planets() -> tuple[str, int, dict]:
 
 
 @app.route("/api/recommand/star", methods=["GET"])
-def recommand_stars() -> tuple[str, int, dict]:
+def recommand_stars():
     """
     This api returns recommendations based on the star. For the star, it searches for planets in
      the same galaxy and randomly recommends moons.
