@@ -18,7 +18,8 @@ function MoonList() {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
-        `http://54.172.67.234:8000/api/all_moons?page=${page}&per_page=${per_page}`,
+        // `http://54.172.67.234:8000/api/all_moons?page=${page}&per_page=${per_page}`,
+        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")

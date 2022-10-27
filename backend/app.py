@@ -192,13 +192,8 @@ def api_star():
     return json.dumps(star), 200, return_header
 
 
-<<<<<<< Updated upstream
-@app.route("/api/recommend/moon", methods=["GET"])
-def recommend_moon() -> tuple[str, int, dict]:
-=======
 @app.route("/api/recommand/moon", methods=["GET"])
 def recommand_moon():
->>>>>>> Stashed changes
     """
     This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
@@ -218,13 +213,8 @@ def recommand_moon():
     return json.dumps(ret), 200, return_header
 
 
-<<<<<<< Updated upstream
-@app.route("/api/recommend/planet", methods=["GET"])
-def recommend_planets() -> tuple[str, int, dict]:
-=======
 @app.route("/api/recommand/planet", methods=["GET"])
 def recommand_planets():
->>>>>>> Stashed changes
     """
     This api returns recommendations based on the planet. For the planet, it searches for an
      available star and randomly recommends a moon based on the galaxy it is in.
@@ -244,13 +234,8 @@ def recommand_planets():
     return json.dumps(ret), 200, return_header
 
 
-<<<<<<< Updated upstream
-@app.route("/api/recommend/star", methods=["GET"])
-def recommend_stars() -> tuple[str, int, dict]:
-=======
 @app.route("/api/recommand/star", methods=["GET"])
 def recommand_stars():
->>>>>>> Stashed changes
     """
     This api returns recommendations based on the star. For the star, it searches for planets in
      the same galaxy and randomly recommends moons.

@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
+import moonOrbit from "../../assets/moons/moonOrbit.jpeg"
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function MoonInstance(props) {
@@ -28,9 +29,10 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
+        `https://api.homeplanet.me/api/moon?index=${id}`,
         // `https://homeplanet.me/api/moon?index=${index}`,
         // `https://homeplanet.me/api/moon?index=${index}`, // TODO: comment this back in
-        `http://54.172.67.234:8000/api/moon?index=${id}`, // TODO: comment this out
+        // `http://54.172.67.234:8000/api/moon?index=${id}`, // TODO: comment this out
         // http://54.172.67.234:800//api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
@@ -53,7 +55,8 @@ function MoonInstance(props) {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/star?index=${index}`,
-        `http://54.172.67.234:8000/api/star?${id}`,
+        // `http://54.172.67.234:8000/api/star?${id}`,
+        `https://api.homeplanet.me/api/star?index=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -74,12 +77,8 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-<<<<<<< Updated upstream
-        `https://api.homeplanet.me/api/recommand/moon?moon=${moon_name}`,
-=======
-        // `https://homeplanet.me/api/planet?index=${index}`,
-        `http://54.172.67.234:8000/api/planet?${id}`,
->>>>>>> Stashed changes
+        // `https://api.homeplanet.me/api/recommand/moon?moon=${moon_name}`,
+        `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -109,7 +108,7 @@ function MoonInstance(props) {
             </Col>
             <Col>
             <hr />
-              <img src={moon.orbit_img} alt="orbit" class="moon-orbit-img" width="350"/>
+              <img src={moon.orbit_img ?? moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>

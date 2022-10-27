@@ -24,8 +24,9 @@ function PlanetInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `http://54.172.67.234:8000/api/planet?index=${id}`,
+        // `http://54.172.67.234:8000/api/planet?index=${id}`,
         // `https://homeplanet.me/api/planet?index=${index}`,
+        `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -47,7 +48,8 @@ function PlanetInstance(props) {
       const getData = async () => {
         let response = await fetch (
           // `https://homeplanet.me/api/planet?index=${index}`,
-          `http://54.172.67.234:8000/api/moon?index=${id}`,
+          // `http://54.172.67.234:8000/api/moon?index=${id}`,
+          `https://api.homeplanet.me/api/moon?index=${id}`,
           { mode: 'cors', }
         );
         console.log("RESPONSE")
@@ -69,7 +71,8 @@ function PlanetInstance(props) {
       const getData = async () => {
         let response = await fetch (
           // `https://homeplanet.me/api/star?index=${id}`,
-          `http://54.172.67.234:8000/api/star?index=${id}`,
+          // `http://54.172.67.234:8000/api/star?index=${id}`,
+          `https://api.homeplanet.me/api/star?index=${id}`,
           { mode: 'cors', }
         );
         console.log("RESPONSE")

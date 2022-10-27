@@ -18,8 +18,9 @@ function PlanetList() {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
-        `http://54.172.67.234:8000/api/all_planets?page=${page}&per_page=${per_page}`,
+        // `http://54.172.67.234:8000/api/all_planets?page=${page}&per_page=${per_page}`,
         // https://homeplanet.me/api/all_planets?page=1&per_page=15
+        `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -44,7 +45,7 @@ function PlanetList() {
           {planets.map((c) => (
               <Grid item xs={5}>
                 <Card className="planet_card">
-                <CardActionArea component={RouterLink} to={"/planet/" + c.index}>
+                <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultPlanetImg} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.pl_name} </h1>

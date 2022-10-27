@@ -9,6 +9,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import redStar from "../../assets/stars/red-star.jpeg"
+import blueStar from "../../assets/stars/blue-star.jpeg"
+import yellowStar from "../../assets/stars/yellow-star.png"
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function StarInstance(props) {
@@ -26,7 +29,7 @@ function StarInstance(props) {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/star?index=${index}`,
-        `http://54.172.67.234:8000/api/star?index=${id}`,
+        `https://api.homeplanet.me/api/star?index=${id}`,
         // https://homeplanet.me/api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
@@ -49,7 +52,7 @@ function StarInstance(props) {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/planet?index=${index}`,
-        `http://54.172.67.234:8000/api/planet?index=${id}`,
+        `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -71,7 +74,7 @@ function StarInstance(props) {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/moon?index=${index}`,
-        `http://54.172.67.234:8000/api/moon?index=${id}`,
+        `https://api.homeplanet.me/api/moon?index=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -88,6 +91,15 @@ function StarInstance(props) {
     getData();
   }, [id]);
 
+  let color_img = "";
+  if (star.color === "YELLOW"){
+    color_img = yellowStar;
+  } else if (star.color === "RED"){
+    color_img = redStar;
+  }  else {
+     color_img = blueStar;
+  }
+
   return (
     <div className="Container">
     <React.Fragment>
@@ -101,38 +113,9 @@ function StarInstance(props) {
              </Col>
              <Col>
              <hr />
-               <img src={star.orbit_img} alt="orbit" class="star-orbit-img" width="350"/>
+               <img src={color_img} alt="color" class="star-color-img" width="350"/>
                <hr />
             </Col>
-<<<<<<< Updated upstream
-            
-            <Col>
-              <hr />
-              <img src={props.data.color} alt="star" class="class-img" width="350"/>
-              <hr />
-            </Col>
-
-            <Col>
-            <hr />
-              <img src={props.data.orbit_img} alt="orbit" class="star-orbit-img" width="350"/>
-              <hr />
-            </Col>
-            <Row>
-              <Col>
-                <div class="bodyText">
-                  <p>{" "}<strong>Mass: </strong> {props.data.st_mass} Suns{" "}</p>
-                  <p>{" "}<strong>Radius: </strong> {props.data.st_rad} Suns{" "}</p>
-                  <p>{" "}<strong>Luminosity Class: </strong> {props.data.st_lumclass} {" "}</p>
-                  <p>{" "}<strong>Temperature: </strong> {props.data.st_teff} Kelvin{" "}</p>
-                  <p>{" "}<strong>Surface Gravity: </strong> {props.data.st_logg} cgs{" "}</p>
-                  <p>{" "}<strong>Age: </strong> {props.data.st_age} gyr (billion years){" "}</p>
-                </div>
-              </Col>
-              </Row>
-              <Row>
-              <Col>
-                <div class="model-links">
-=======
              <Row>
                <Col>
                  <div class="bodyText">
@@ -148,7 +131,6 @@ function StarInstance(props) {
                <Row>
                <Col>
                  <div class="model-links">
->>>>>>> Stashed changes
                   <TableContainer component={Paper}>
                      <Table sx={{ minWidth: 250 }}>
                       <TableHead>
