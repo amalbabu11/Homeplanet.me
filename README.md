@@ -3,17 +3,23 @@
 **Canvas/Discord Group Number:** 11 AM - Group 12
 
 **Names of the team members:**
-| Name | GitLabID |
-| ------ | ------ |
-| Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) |
-| Summer Ely | [spe358](https://gitlab.com/spe358) |
-| Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) |
-| Nathan Sussman (Leader) | [NathanSuss](https://gitlab.com/NathanSuss) |
-| Megan Zhao | [zdd](https://gitlab.com/zdd) |
+| Name | GitLabID | UTEID |
+| ------ | ------ | ------ |
+| Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
+| Summer Ely | [spe358](https://gitlab.com/spe358) | spe358 |
+| Jinjie Liu (Leader) | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
+| Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
+| Megan Zhao | [banye0913](https://gitlab.com/banye0913) | dz4782 | 
 
 **Website URL:** homeplanet.me
 
 **GitLab URL:**  https://gitlab.com/NathanSuss/group12-cs373
+
+**GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
+
+**Git SHA:** ad06aa69dcd91330ada87f6db2d4b14ed7c5d815
+
+**Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
 ## Project Proposal: HomePlanet
 **Description:** HomePlanet is an astronomy database with information on Planets, Stars, and Moons, as well as information on whether or not these celestial bodies could potentially sustain human life or other types of life.
@@ -21,13 +27,10 @@
 **RESTful APIs / Disparate Data Sources**
 1. https://api-ninjas.com/api/planets to get information on planets
 2. https://api.le-systeme-solaire.net/en/ to get information on moons
-3. https://api-ninjas.com/api/stars to get information on stars
+3. https://exoplanetarchive.ipac.caltech.edu/docs/API_mission_stars.html to get information on stars
 4. https://api.nasa.gov/ to get NASA images 
 5. https://en.wikipedia.org/api/rest_v1/#/ to scrape Wikipedia pages such as https://en.wikipedia.org/wiki/List_of_potentially_habitable_exoplanets
 
-
-**Postman API Documentation**
-https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
 **Models**
 1. Planets/Exoplanets (1000+ instances)
@@ -42,7 +45,6 @@ https://documenter.getpostman.com/view/20771905/2s83tFHWkc
     - Filterable Attributes: Mass, radius, gravity, temperature, axial tilt
     - Searchable Attributes: Name, planet it orbits, whether it is potentially habitable or not
     - Connection to others: Each moon orbits a planet which orbits a star
-    - Media: Each galaxy has planets and stars that are in it
 
 **Media on Instance Pages**
 - Each Model will have multiple images taken by NASA
@@ -54,4 +56,20 @@ https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 - How many potential habitable planets are there in the universe?
 - What planets and/or moons have features most similar to Earth?
 
+## Phase I Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 15 hours | 25 hours|
+| Summer Ely | 20 hours | 21 hours |
+| Jinjie Liu | 15 hours | 25 hours |
+| Nathan Sussman | 25 hours| 27 hours |
+| Megan Zhao | 10 hours | 15 hours |
 
+## Comments
+Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
+
+Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
+
+Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
+
+Dockerfile credit to [FindAHome](https://gitlab.com/aghayalod/find-a-home/-/blob/main/findahome-app/Dockerfile)
