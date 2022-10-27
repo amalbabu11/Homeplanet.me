@@ -13,7 +13,7 @@ function OurNavbar() {
       variant="light"
     >
       <Container>
-        <Navbar.Brand className="Title-text" href="/">
+        <Navbar.Brand className="Title-text" href="/" style={{color: 'white'}}>
           HomePlanet
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

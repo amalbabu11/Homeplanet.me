@@ -37,3 +37,6 @@ branch_dev:
 	@echo "switch to dev branch"
 	git checkout dev
 	git pull origin dev
+	
+selenium-tests:
+	python frontend/gui_tests/runSeleniumTests.py

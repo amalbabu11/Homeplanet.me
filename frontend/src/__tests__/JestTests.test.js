@@ -9,7 +9,7 @@ import MoonInstance from "../components/Moons/MoonInstance";
 import PlanetInstance from "../components/Planets/PlanetInstance";
 import About from "../components/About/About";
 import Home from "../components/Splash/Home";
-// 
+ 
 // Credit: https://gitlab.com/JohnPowow/animalwatch/-/blob/main/frontend/src/__tests__/JestTests.test.js
 
 describe("Overall rendering tests", () => {
@@ -89,7 +89,7 @@ describe("Overall rendering tests", () => {
     test("NavBar renders without crashing", () => {
         <BrowserRouter>
         render(<App />);
-        expect(screen.getByLabel('About')).toBeInTheDocument();
+        expect(screen.getByLabel('About Us')).toBeInTheDocument();
         </BrowserRouter>;
     });
 
