@@ -17,7 +17,7 @@
 
 **GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
 
-**Git SHA:** ad06aa69dcd91330ada87f6db2d4b14ed7c5d815
+**Git SHA:** c0a5599b83dbe6fb54519f47b1aabdbf706db11f
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
@@ -56,7 +56,18 @@
 - How many potential habitable planets are there in the universe?
 - What planets and/or moons have features most similar to Earth?
 
+
 ## Phase I Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 10 hours | 10 hours|
+| Summer Ely | 15 hours | 18 hours |
+| Jinjie Liu | 10 hours | 10 hours |
+| Nathan Sussman | 12 hours| 16 hours |
+| Megan Zhao | 10 hours | 6 hours |
+
+
+## Phase II Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
 | Amal Babu | 15 hours | 25 hours|
