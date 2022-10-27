@@ -1,3 +1,13 @@
+.instancePage {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("https://wallpaperaccess.com/full/31367.jpg");
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh);
+  display: flex;
+  flex-direction: column;
+}
+
 .body {
   background-color: #e5e5e5;
 }
