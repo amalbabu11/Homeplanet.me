@@ -40,6 +40,7 @@ class Star(Base):
     st_mass = Column(Float())
     st_logg = Column(Float())
     img = Column(String(80))
+    color = Column(String(10))
 
 
 class Moon(Base):
@@ -122,16 +123,9 @@ def fillStarTable():
             "st_mass": Float,
             "st_logg": Float,
             "img": String(80),
+            "color" : String(10)
         },
     )
-
-
-def math(num1, num2):
-    return num1 * num2 + num1
-
-
-math(5, 6)
-math(7, 8)
 
 
 def fillMoonTable():

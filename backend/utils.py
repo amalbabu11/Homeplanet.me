@@ -52,6 +52,7 @@ def get_moon_by_index(index: int):
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "img" : moon.img
         }
         for moon in session.query(Moon).filter_by(index=index)
     ]
@@ -77,6 +78,7 @@ def get_moon_by_name(name: str):
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "img" : moon.img
         }
         for moon in session.query(Moon).filter_by(englishName=name)
     ]
@@ -177,6 +179,7 @@ def get_stars():
             "st_mass": star.st_mass,
             "st_logg": star.st_logg,
             "img": star.img,
+            "color" : star.color,
         }
         for star in session.query(Star).all()
     ]
@@ -202,6 +205,7 @@ def get_star_by_index(index: str):
             "st_mass": star.st_mass,
             "st_logg": star.st_logg,
             "img": star.img,
+            "color" : star.color,
         }
         for star in session.query(Star).filter_by(index=index)
     ]
@@ -227,6 +231,7 @@ def get_star_by_name(name: str):
             "st_mass": star.st_mass,
             "st_logg": star.st_logg,
             "img": star.img,
+            "color" : star.color,
         }
         for star in session.query(Star).filter_by(star_name=name)
     ]
