@@ -5,7 +5,7 @@ import os
 import sys
 
 
-sys.path.append(os.path.abspath("."))
+sys.path.append(os.path.abspath(".."))
 
 
 def get_moons():
@@ -26,9 +26,37 @@ def get_moons():
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "img" : moon.img
         }
         for moon in session.query(Moon).all()
     ]
+    session.close()
+    return moons
+
+
+def get_moon_by_index(index: int):
+    """
+    ret: `list[dict]`, data in the table `Moon` with specific name
+    """
+    from data.databasebuilder import Moon, Session
+
+    session: Session = Session()
+    moons: list[dict] = [
+        {
+            "index": moon.index,
+            "englishName": moon.englishName,
+            "density": moon.density,
+            "gravity": moon.gravity,
+            "aroundPlanet": moon.aroundPlanet,
+            "massValue": moon.massValue,
+            "massExponent": moon.massExponent,
+            "volValue": moon.volValue,
+            "volExponent": moon.volExponent,
+            "img" : moon.img
+        }
+        for moon in session.query(Moon).filter_by(index=index)
+    ]
+    session.close()
     return moons
 
 
@@ -50,9 +78,11 @@ def get_moon_by_name(name: str):
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "img" : moon.img
         }
         for moon in session.query(Moon).filter_by(englishName=name)
     ]
+    session.close()
     return moons
 
 
@@ -77,6 +107,32 @@ def get_planets():
         }
         for planet in session.query(Planet).all()
     ]
+    session.close()
+    return planets
+
+
+def get_planet_by_index(index: int):
+    """
+    ret: `list[dict]`, data in the table `Planet` with specific name
+    """
+    from data.databasebuilder import Planet, Session
+
+    session: Session = Session()
+    planets: list[dict] = [
+        {
+            "index": planet.index,
+            "pl_name": planet.pl_name,
+            "hostname": planet.hostname,
+            "pl_masse": planet.pl_masse,
+            "pl_rade": planet.pl_rade,
+            "pl_dens": planet.pl_dens,
+            "pl_eqt": planet.pl_eqt,
+            "img": planet.img,
+            "orbit_img": planet.orbit_img,
+        }
+        for planet in session.query(Planet).filter_by(index=index)
+    ]
+    session.close()
     return planets
 
 
@@ -101,6 +157,7 @@ def get_planet_by_name(name: str):
         }
         for planet in session.query(Planet).filter_by(pl_name=name)
     ]
+    session.close()
     return planets
 
 
@@ -122,9 +179,37 @@ def get_stars():
             "st_mass": star.st_mass,
             "st_logg": star.st_logg,
             "img": star.img,
+            "color" : star.color,
         }
         for star in session.query(Star).all()
     ]
+    session.close()
+    return stars
+
+
+def get_star_by_index(index: str):
+    """
+    ret: `list[dict]`, data in the table `Star` with specific name
+    """
+    from data.databasebuilder import Star, Session
+
+    session: Session = Session()
+    stars = [
+        {
+            "index": star.index,
+            "star_name": star.star_name,
+            "st_teff": star.st_teff,
+            "st_lumclass": star.st_lumclass,
+            "st_age": star.st_age,
+            "st_rad": star.st_rad,
+            "st_mass": star.st_mass,
+            "st_logg": star.st_logg,
+            "img": star.img,
+            "color" : star.color,
+        }
+        for star in session.query(Star).filter_by(index=index)
+    ]
+    session.close()
     return stars
 
 
@@ -146,7 +231,9 @@ def get_star_by_name(name: str):
             "st_mass": star.st_mass,
             "st_logg": star.st_logg,
             "img": star.img,
+            "color" : star.color,
         }
         for star in session.query(Star).filter_by(star_name=name)
     ]
+    session.close()
     return stars

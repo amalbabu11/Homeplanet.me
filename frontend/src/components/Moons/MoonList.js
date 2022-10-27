@@ -4,19 +4,22 @@ import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function MoonList() {
   let [searchParams] = useSearchParams();
   
   let page = parseInt(searchParams.get("page") ?? "1")
-  let per_page = parseInt(searchParams.get("per_page") ?? "15")
+  let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [moons, setMoons] = useState([])
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `https://homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
+        // `https://homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
+        // `http://54.172.67.234:8000/api/all_moons?page=${page}&per_page=${per_page}`,
+        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -38,17 +41,17 @@ function MoonList() {
       <>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
-          <Grid container spacing={4} columns={16}>
+          <Grid container spacing={6} columns={20}>
           {moons.map((c) => (
               <Grid item xs={5}>
                 <Card className="moon_card">
-                <CardActionArea component={RouterLink} to={"/moon/" + c.key}>
-                  <MDBCardImage className="img-grp" src={c.img} />
+                <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
+                  <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.englishName} </h1>
                     <h3 class="cardSub">{c.state}</h3>
                     <CardContent>
-                    <ListGroup>
+                    {/* <ListGroup>
                         <ListGroupItem>
                           <strong>Mass:</strong> {c.mass} 10^{c.massExponent} kg
                         </ListGroupItem>
@@ -58,7 +61,7 @@ function MoonList() {
                         <ListGroupItem>
                           <strong>Gravity: </strong> ~{c.gravity} m.s^-2
                         </ListGroupItem>
-                      </ListGroup>
+                      </ListGroup> */}
                     </CardContent>
                   </CardContent> }
                 </CardActionArea>

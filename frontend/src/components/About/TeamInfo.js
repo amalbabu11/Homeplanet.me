@@ -30,7 +30,7 @@ const teamInfo = [
 			"Hi! My name is Summer Ely and I am a Junior in UT CS. I grew up here in Austin, TX. In my free time, I like watching movies, listening to music, and playing sports.",
 		commits: 0,
 		issues: 0,
-		tests: 0,
+		tests: 10,
     },
     {
         name: "Jinjie Liu",
@@ -42,7 +42,7 @@ const teamInfo = [
 		bio: "Welcome to our website! My name is Jinjie Liu and I'm a senior in UT CS. I'm an exchange student from China. My home university is Shanghai Jiaotong University. I'm a soccer fan. My favorite club is Barca.",
 		commits: 0,
 		issues: 0,
-		tests: 0,
+		tests: 20,
     },
     {
         name: "Nathan Sussman",
@@ -54,7 +54,7 @@ const teamInfo = [
 		bio: "Greetings! My name is Nathan Sussman. I'm a Junior at UT Austin, and I'm working towards my BS in computer science. I grew up in a somewhat small town next to Lake Travis, which is near the outskirts of Austin. My most frequent leisure pastime is playing video games with friends. I also like to read, skate, draw, and explore new places!",
 		commits: 0,
 		issues: 0,
-		tests: 0,
+		tests: 10,
     },
     {
         name: "Megan Zhao",

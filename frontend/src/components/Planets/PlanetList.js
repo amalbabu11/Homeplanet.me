@@ -4,20 +4,23 @@ import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function PlanetList() {
   let [searchParams] = useSearchParams();
   
   let page = parseInt(searchParams.get("page") ?? "1")
-  let per_page = parseInt(searchParams.get("per_page") ?? "15")
+  let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [planets, setPlanets] = useState([])
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `https://homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
+        // `https://homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
+        // `http://54.172.67.234:8000/api/all_planets?page=${page}&per_page=${per_page}`,
         // https://homeplanet.me/api/all_planets?page=1&per_page=15
+        `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -38,18 +41,18 @@ function PlanetList() {
       <>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
-          <Grid container spacing={4} columns={16}>
+          <Grid container spacing={6} columns={20}>
           {planets.map((c) => (
               <Grid item xs={5}>
                 <Card className="planet_card">
-                <CardActionArea component={RouterLink} to={"/planet/" + c.key}>
-                  <MDBCardImage className="img-grp" src={'http://www.exoplanetkyoto.org/exohtml/TOI-1260_cOrbit.html'} />
+                <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
+                  <MDBCardImage className="img-grp" src={c.img ?? defaultPlanetImg} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.pl_name} </h1>
                     <h3 class="cardSub">{c.state}</h3>
                     <CardContent>
                     <ListGroup>
-                        <ListGroupItem>
+                        {/* <ListGroupItem>
                           <strong>Mass:</strong> {c.pl_masse} 
                         </ListGroupItem>
                         <ListGroupItem>
@@ -60,7 +63,7 @@ function PlanetList() {
                         </ListGroupItem>
                         <ListGroupItem>
                           <strong>Eqt: </strong> ~{c.pl_eqt}
-                        </ListGroupItem>
+                        </ListGroupItem> */}
                       </ListGroup>
                     </CardContent>
                   </CardContent> }

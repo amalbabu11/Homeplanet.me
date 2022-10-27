@@ -39,5 +39,5 @@ branch_dev:
 	git pull origin dev
 
 # Credit: Univercity.me
-make selenium-test:
+selenium-test:
 	python3 ./frontend/gui_tests/selenium_runner.py

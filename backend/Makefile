@@ -10,12 +10,10 @@ else
 	PYTHON = python
 endif
 
-SRC = src
-TEST = test
-SERVER = $(SRC)/server.py
+SERVER = app.py
 # Add new py files into this item.
-FILES = $(SRC)/server.py
-TESTS = $(TEST)/backend_test.py
+FILES = app.py
+TESTS = tests.py
 REQ = requirements.txt
 
 DOCKER_NAME = backend
