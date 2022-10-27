@@ -9,7 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
-import moonOrbit from "../../assets/moons/moonOrbit.jpeg"
+import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function MoonInstance(props) {
