@@ -7,8 +7,8 @@
 | ------ | ------ | ------ |
 | Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
 | Summer Ely | [spe358](https://gitlab.com/spe358) | spe358 |
-| Jinjie Liu | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
-| Nathan Sussman (Leader) | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
+| Jinjie Liu (Leader) | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
+| Nathan Sussman | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
 | Megan Zhao | [banye0913](https://gitlab.com/banye0913) | dz4782 | 
 
 **Website URL:** homeplanet.me
@@ -59,11 +59,11 @@
 ## Phase I Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
-| Amal Babu | 10 hours | 10 hours|
-| Summer Ely | 15 hours | 18 hours |
-| Jinjie Liu | 10 hours | 10 hours |
-| Nathan Sussman | 12 hours| 16 hours |
-| Megan Zhao | 10 hours | 6 hours |
+| Amal Babu | 15 hours | 25 hours|
+| Summer Ely | 20 hours | 21 hours |
+| Jinjie Liu | 15 hours | 25 hours |
+| Nathan Sussman | 25 hours| 27 hours |
+| Megan Zhao | 10 hours | 15 hours |
 
 ## Comments
 Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
