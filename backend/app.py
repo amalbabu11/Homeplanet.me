@@ -2,9 +2,7 @@
 Initial server file.
 """
 import json
-import os
 import random
-import sys
 
 import flask
 import flask_cors
@@ -40,13 +38,14 @@ def api_all_moons():
     """
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
-    if page is None or per_page is None:
-        moons_slice: list[dict] = utils.get_moons()
+    if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
+        moons: list[dict] = utils.get_moons()
+        moons_slice: list[dict] = moons
     else:
         page: int = eval(page)
         per_page: int = eval(per_page)
         moons: list[dict] = utils.get_moons()
-        moons_slice: list[dict] = moons[page * per_page : (page + 1) * per_page]
+        moons_slice: list[dict] = moons[(page - 1) * per_page: page * per_page]
     ret: dict = {
         "size": len(moons_slice),
         "total_size": len(moons),
@@ -64,13 +63,15 @@ def api_all_planets():
     """
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
-    if page is None or per_page is None:
-        planets_slice: list[dict] = utils.get_planets()
+    if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
+        planets: list[dict] = utils.get_planets()
+        planets_slice: list[dict] = planets
     else:
         page: int = eval(page)
         per_page: int = eval(per_page)
         planets: list[dict] = utils.get_planets()
-        planets_slice: list[dict] = planets[page * per_page : (page + 1) * per_page]
+        planets_slice: list[dict] = planets[(
+            page - 1) * per_page: page * per_page]
     ret: dict = {
         "size": len(planets_slice),
         "total_size": len(planets),
@@ -88,13 +89,14 @@ def api_all_stars():
     """
     page: str = request.args.get("page")
     per_page: str = request.args.get("per_page")
-    if page is None or per_page is None:
-        stars_slice: list[dict] = utils.get_stars()
+    if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
+        stars: list[dict] = utils.get_stars()
+        stars_slice: list[dict] = stars
     else:
         page: int = eval(page)
         per_page: int = eval(per_page)
         stars: list[dict] = utils.get_stars()
-        stars_slice: list[dict] = stars[page * per_page : (page + 1) * per_page]
+        stars_slice: list[dict] = stars[(page - 1) * per_page: page * per_page]
     ret: dict = {
         "size": len(stars_slice),
         "total_size": len(stars),
@@ -190,12 +192,12 @@ def api_star():
     return json.dumps(star), 200, return_header
 
 
-@app.route("/api/recommand/moon", methods=["GET"])
-def recommand_moon():
+@app.route("/api/recommend/moon", methods=["GET"])
+def recommend_moon() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
-    ret:    `json`, the basic information of recommanded star and planet
+    ret:    `json`, the basic information of recommended star and planet
             `status_code`, the status code of this reply
     """
     moon: str = request.args.get("moon")
@@ -211,12 +213,12 @@ def recommand_moon():
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/planet", methods=["GET"])
-def recommand_planets():
+@app.route("/api/recommend/planet", methods=["GET"])
+def recommend_planets() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the planet. For the planet, it searches for an
      available star and randomly recommends a moon based on the galaxy it is in.
-    ret:    `json`, the basic information of recommanded star and moon
+    ret:    `json`, the basic information of recommended star and moon
             `status_code`, the status code of this reply
     """
     planet: str = request.args.get("planet")
@@ -232,12 +234,12 @@ def recommand_planets():
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/star", methods=["GET"])
-def recommand_stars():
+@app.route("/api/recommend/star", methods=["GET"])
+def recommend_stars() -> tuple[str, int, dict]:
     """
     This api returns recommendations based on the star. For the star, it searches for planets in
      the same galaxy and randomly recommends moons.
-    ret:    `json`, the basic information of recommanded planet and moon
+    ret:    `json`, the basic information of recommended planet and moon
             `status_code`, the status code of this reply
     """
     star: str = request.args.get("star")
