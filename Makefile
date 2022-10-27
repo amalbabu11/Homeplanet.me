@@ -37,3 +37,7 @@ branch_dev:
 	@echo "switch to dev branch"
 	git checkout dev
 	git pull origin dev
+
+# Credit: Univercity.me
+make selenium-test:
+	python3 ./frontend/gui_tests/selenium_runner.py
