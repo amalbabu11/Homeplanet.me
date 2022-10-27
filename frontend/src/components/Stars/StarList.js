@@ -19,7 +19,8 @@ function StarList() {
     const getData = async () => {
       let response = await fetch (
         // `https://homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`,
-        `http://54.172.67.234:8000/api/all_stars?page=${page}&per_page=${per_page}`,
+        // `http://54.172.67.234:8000/api/all_stars?page=${page}&per_page=${per_page}`,
+        `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`,
         // https://homeplanet.me/api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
