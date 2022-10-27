@@ -22,7 +22,7 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `https://homeplanet.me/api/recommand/moon?moon=${moon_name}`,
+        `https://api.homeplanet.me/api/recommand/moon?moon=${moon_name}`,
         { mode: 'cors', }
       );
       let body = []

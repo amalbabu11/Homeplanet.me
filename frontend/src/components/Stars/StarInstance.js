@@ -22,6 +22,13 @@ function StarInstance(props) {
               <img src={props.data.img} alt="star" class="star-img" width="350"/>
               <hr />
             </Col>
+            
+            <Col>
+              <hr />
+              <img src={props.data.color} alt="star" class="class-img" width="350"/>
+              <hr />
+            </Col>
+
             <Col>
             <hr />
               <img src={props.data.orbit_img} alt="orbit" class="star-orbit-img" width="350"/>
