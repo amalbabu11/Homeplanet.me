@@ -108,7 +108,7 @@ function MoonInstance(props) {
             </Col>
             <Col>
             <hr />
-              <img src={moon.orbit_img ?? moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
+              <img src={moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>
