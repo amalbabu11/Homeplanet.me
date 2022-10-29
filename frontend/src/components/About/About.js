@@ -216,12 +216,6 @@ const About = () => {
                     </Col>
                 </Row>
             </>
-        <Row className="g-3 m-0 justify-content-center" xs="auto">
-          <Card style={{ width: '26em' }}>
-          <h1>Hii</h1>
-          <embed type="text/html" src="http://www.exoplanetkyoto.org/exohtml/TOI-125_cOrbit.html" width="500" height="200"></embed>
-          </Card>
-        </Row>
       </Container>
     </Container>
   );
