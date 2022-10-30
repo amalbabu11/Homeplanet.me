@@ -72,7 +72,7 @@ function PlanetInstance(props) {
         let response = await fetch (
           // `https://homeplanet.me/api/star?index=${id}`,
           // `http://54.172.67.234:8000/api/star?index=${id}`,
-          `https://api.homeplanet.me/api/planet?index=${id}`,
+          `https://api.homeplanet.me/api/star?index=${id}`,
           { mode: 'cors', }
         );
         console.log("RESPONSE")
