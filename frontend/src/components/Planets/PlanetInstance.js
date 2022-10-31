@@ -89,6 +89,8 @@ function PlanetInstance(props) {
       getData();
     }, [id]);
 
+    let planet_img = `//images.weserv.nl/?url=${planet.img}`
+
   return (
     <div className="Container">
       <React.Fragment>
@@ -97,7 +99,11 @@ function PlanetInstance(props) {
           <Row className="Card">
             <Col>
               <hr />
-              <img src={planet.img} alt="planet" class="planet-img" width="350"/>
+              <img src={planet_img} alt="planet" class="planet-img" width="350"/>
+    
+              {/* <img src = planet_img/> */}
+              {/* <img src= "//images.weserv.nl/?url=http://www.exoplanetkyoto.org/exohtml/Planets/ColdRedJupiter.bmp&w=300&h=300"/> */}
+              {/* <img src={planet.img} alt="planet" class="planet-img" width="350"/> */}
               <hr />
             </Col>
             <Col>

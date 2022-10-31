@@ -46,7 +46,7 @@ function PlanetList() {
               <Grid item xs={5}>
                 <Card className="planet_card">
                 <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={c.img ?? defaultPlanetImg} />
+                  <MDBCardImage className="img-grp" src={`//images.weserv.nl/?url=${c.img}` ?? defaultPlanetImg} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.pl_name} </h1>
                     <h3 class="cardSub">{c.state}</h3>
