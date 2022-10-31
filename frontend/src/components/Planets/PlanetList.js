@@ -43,7 +43,7 @@ function PlanetList() {
           <Box >
           <Grid container spacing={6} columns={20}>
           {planets.map((c) => (
-              <Grid item xs={4}>
+              <Grid item xs={5}>
                 <Card className="planet_card">
                 <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
