@@ -15,13 +15,11 @@ function StarList() {
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [stars, setStars] = useState([])
+  let [numInstances, setInstances] = useState(0)
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`,
-        // `http://54.172.67.234:8000/api/all_stars?page=${page}&per_page=${per_page}`,
         `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`,
-        // https://homeplanet.me/api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -34,10 +32,11 @@ function StarList() {
       console.log("BODY")
       console.log(JSON.stringify(body))
       setStars(body['bodies']) 
+      setInstances(body['total_size'])
     };
     getData();
   }, [page, per_page]);
-
+  let total_pages = Math.ceil(numInstances/per_page)
   return (
     <Container >
       <>
@@ -62,7 +61,7 @@ function StarList() {
         </div>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
-            <Pagination shape="rounded" count={25} renderItem={(item) => (
+            <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
               <PaginationItem
               component={RouterLink}
               to={`?page=${item.page}&per_page=${per_page}`}
@@ -72,6 +71,16 @@ function StarList() {
               />
           </Stack>
       </div>
+      <Row>
+          <h3 className="text-center mt-5">
+          Displaying {per_page} out of {numInstances} Instances
+          </h3>
+        </Row>
+        <Row>
+          <h3 className="text-center mt-5">
+          Displaying {page} out of {total_pages} Pages
+          </h3>
+          </Row>
       </>
       </Container>
   );

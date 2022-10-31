@@ -13,13 +13,11 @@ function PlanetList() {
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [planets, setPlanets] = useState([])
+  let [numInstances, setInstances] = useState(0)
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
-        // `http://54.172.67.234:8000/api/all_planets?page=${page}&per_page=${per_page}`,
-        // https://homeplanet.me/api/all_planets?page=1&per_page=15
         `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
@@ -33,9 +31,11 @@ function PlanetList() {
       console.log("BODY")
       console.log(JSON.stringify(body))
       setPlanets(body['bodies'])
+      setInstances(body['total_size'])
     };
     getData();
   }, [page, per_page]);
+  let total_pages = Math.ceil(numInstances/per_page)
   return (
     <Container >
       <>
@@ -43,7 +43,7 @@ function PlanetList() {
           <Box >
           <Grid container spacing={6} columns={20}>
           {planets.map((c) => (
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <Card className="planet_card">
                 <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
@@ -62,7 +62,7 @@ function PlanetList() {
         </div>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
-            <Pagination shape="rounded" count={17} renderItem={(item) => (
+            <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
               <PaginationItem
               component={RouterLink}
               to={`?page=${item.page}&per_page=${per_page}`}
@@ -72,6 +72,16 @@ function PlanetList() {
               />
           </Stack>
       </div>
+      <Row>
+          <h3 className="text-center mt-5">
+          Displaying {per_page} out of {numInstances} Instances
+          </h3>
+        </Row>
+        <Row>
+          <h3 className="text-center mt-5">
+          Displaying {page} out of {total_pages} Pages
+          </h3>
+          </Row>
       </>
       </Container>
   );

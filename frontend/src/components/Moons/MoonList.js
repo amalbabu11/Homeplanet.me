@@ -13,12 +13,11 @@ function MoonList() {
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [moons, setMoons] = useState([])
+  let [numInstances, setInstances] = useState(0)
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
-        // `http://54.172.67.234:8000/api/all_moons?page=${page}&per_page=${per_page}`,
         `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
         { mode: 'cors', }
       );
@@ -29,13 +28,14 @@ function MoonList() {
       console.log(JSON.stringify(response))
       let body = []
       body = await response.json()
-
       console.log("BODY")
       console.log(JSON.stringify(body))
       setMoons(body['bodies'])
+      setInstances(body['total_size'])
     };
     getData();
   }, [page, per_page]);
+  let total_pages = Math.ceil(numInstances/per_page)
   return (
     <Container >
       <>
@@ -50,19 +50,6 @@ function MoonList() {
                   { <CardContent>
                     <h1 class="cardTitle"> {c.englishName} </h1>
                     <h3 class="cardSub">{c.state}</h3>
-                    <CardContent>
-                    {/* <ListGroup>
-                        <ListGroupItem>
-                          <strong>Mass:</strong> {c.mass} 10^{c.massExponent} kg
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Density:</strong> {c.massValue} 10^n kg
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Gravity: </strong> ~{c.gravity} m.s^-2
-                        </ListGroupItem>
-                      </ListGroup> */}
-                    </CardContent>
                   </CardContent> }
                 </CardActionArea>
                 </Card>
@@ -73,7 +60,7 @@ function MoonList() {
         </div>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
-            <Pagination shape="rounded" count={13} renderItem={(item) => (
+            <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
               <PaginationItem
               component={RouterLink}
               to={`?page=${item.page}&per_page=${per_page}`}
@@ -83,6 +70,16 @@ function MoonList() {
               />
           </Stack>
       </div>
+      <Row>
+          <h3 className="text-center mt-5">
+          Displaying {per_page} out of {numInstances} Instances
+          </h3>
+        </Row>
+        <Row>
+          <h3 className="text-center mt-5">
+          Displaying {page} out of {total_pages} Pages
+          </h3>
+          </Row>
       </>
       </Container>
   );
