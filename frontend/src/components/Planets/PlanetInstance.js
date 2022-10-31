@@ -8,8 +8,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
-
+// import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function PlanetInstance(props) {
   let id = useParams().planetId ?? "1"
@@ -89,8 +89,9 @@ function PlanetInstance(props) {
       getData();
     }, [id]);
 
-    let planet_img = `//images.weserv.nl/?url=${planet.img}`
-
+    // // let planet_img = `//images.weserv.nl/?url=${planet.img}`
+    // <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
+    // let planet_img = 
   return (
     <div className="Container">
       <React.Fragment>
@@ -99,7 +100,7 @@ function PlanetInstance(props) {
           <Row className="Card">
             <Col>
               <hr />
-              <img src={planet_img} alt="planet" class="planet-img" width="350"/>
+              <img src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} alt="planet" class="planet-img" width="350"/>
     
               {/* <img src = planet_img/> */}
               {/* <img src= "//images.weserv.nl/?url=http://www.exoplanetkyoto.org/exohtml/Planets/ColdRedJupiter.bmp&w=300&h=300"/> */}
@@ -108,8 +109,8 @@ function PlanetInstance(props) {
             </Col>
             <Col>
             <hr />
-              {/* <img src={planet.orbit_img} alt="orbit" class="planet-orbit-img" width="350"/> */}
-              <embed type="text/html" src={planet.orbit_img} width="500" height="200"></embed>
+              <img src={planet.orbit_img} alt="orbit" class="planet-orbit-img" width="350"/>
+              {/* <embed type="text/html" src={`//images.weserv.nl/?url=${planet.orbit_img}`planet.orbit_img} width="500" height="200"></embed> */}
               <hr />
             </Col>
             <Row>

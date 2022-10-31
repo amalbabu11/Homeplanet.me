@@ -46,25 +46,11 @@ function PlanetList() {
               <Grid item xs={5}>
                 <Card className="planet_card">
                 <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={`//images.weserv.nl/?url=${c.img}` ?? defaultPlanetImg} />
+                  <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
                   { <CardContent>
                     <h1 class="cardTitle"> {c.pl_name} </h1>
                     <h3 class="cardSub">{c.state}</h3>
                     <CardContent>
-                    <ListGroup>
-                        {/* <ListGroupItem>
-                          <strong>Mass:</strong> {c.pl_masse} 
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Radius:</strong> {c.pl_rade} 10^n kg
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Density: </strong> ~{c.pl_dens}
-                        </ListGroupItem>
-                        <ListGroupItem>
-                          <strong>Eqt: </strong> ~{c.pl_eqt}
-                        </ListGroupItem> */}
-                      </ListGroup>
                     </CardContent>
                   </CardContent> }
                 </CardActionArea>
