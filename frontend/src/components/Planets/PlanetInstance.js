@@ -8,15 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-// import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function PlanetInstance(props) {
   let id = useParams().planetId ?? "1"
   console.log("ID IS : " + id)
 
-  // let [searchParams] = useSearchParams();
-  // let index = parseInt(searchParams.get("index") ?? "1")
   let [planet, setPlanet] = useState([])
   let [star, setStar] = useState([])
   let [moon, setMoon] = useState([])
@@ -24,8 +21,6 @@ function PlanetInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `http://54.172.67.234:8000/api/planet?index=${id}`,
-        // `https://homeplanet.me/api/planet?index=${index}`,
         `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
@@ -47,8 +42,6 @@ function PlanetInstance(props) {
     useEffect(() => {
       const getData = async () => {
         let response = await fetch (
-          // `https://homeplanet.me/api/planet?index=${index}`,
-          // `http://54.172.67.234:8000/api/moon?index=${id}`,
           `https://api.homeplanet.me/api/moon?index=${id}`,
           { mode: 'cors', }
         );
@@ -70,8 +63,6 @@ function PlanetInstance(props) {
     useEffect(() => {
       const getData = async () => {
         let response = await fetch (
-          // `https://homeplanet.me/api/star?index=${id}`,
-          // `http://54.172.67.234:8000/api/star?index=${id}`,
           `https://api.homeplanet.me/api/star?index=${id}`,
           { mode: 'cors', }
         );
@@ -88,10 +79,6 @@ function PlanetInstance(props) {
       };
       getData();
     }, [id]);
-
-    // // let planet_img = `//images.weserv.nl/?url=${planet.img}`
-    // <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
-    // let planet_img = 
   return (
     <div className="Container">
       <React.Fragment>
