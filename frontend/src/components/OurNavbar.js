@@ -23,9 +23,8 @@ function OurNavbar() {
             <Nav.Link href="/Moons" style={{color: 'white'}}>Moons</Nav.Link>
             <Nav.Link href="/Stars" style={{color: 'white'}}>Stars</Nav.Link>
           </Nav>
-          <Nav>
-            <Nav.Link href="/About" style={{color: 'white'}}>About</Nav.Link>
-          </Nav>
+          <Nav><Nav.Link href="/Search" style={{color: 'white'}}>Search</Nav.Link></Nav>
+          <Nav><Nav.Link href="/About" style={{color: 'white'}}>About</Nav.Link></Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

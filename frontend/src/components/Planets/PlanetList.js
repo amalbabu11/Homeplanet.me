@@ -41,23 +41,23 @@ function PlanetList() {
       <>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
-          <Grid container spacing={6} columns={20}>
-          {planets.map((c) => (
-              <Grid item xs={5}>
-                <Card className="planet_card">
-                <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
-                  { <CardContent>
-                    <h1 class="cardTitle"> {c.pl_name} </h1>
-                    <h3 class="cardSub">{c.state}</h3>
-                    <CardContent>
-                    </CardContent>
-                  </CardContent> }
-                </CardActionArea>
-                </Card>
-              </Grid>
-          ))}
-          </Grid>
+            <Grid container spacing={6} columns={20}>
+            {planets.map((c) => (
+                <Grid item xs={5}>
+                  <Card className="planet_card">
+                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
+                    <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
+                    { <CardContent>
+                      <h1 class="cardTitle"> {c.pl_name} </h1>
+                      <h3 class="cardSub">{c.state}</h3>
+                      <CardContent>
+                      </CardContent>
+                    </CardContent> }
+                  </CardActionArea>
+                  </Card>
+                </Grid>
+            ))}
+            </Grid>
           </Box>
         </div>
        <div style={{display: 'flex', justifyContent: 'center'}}>
