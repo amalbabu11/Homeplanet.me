@@ -9,7 +9,7 @@ class Planets extends React.Component {
       <Container>
         <Row>
         <div class="container-group text-center">
-            <h1>Sort By</h1>
+            <h2>Sort By</h2>
           </div>
           <PlanetSort />
           </Row>
