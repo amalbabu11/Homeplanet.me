@@ -9,19 +9,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
-import moonOrbit from "../../assets/moons/moonOrbit.jpeg"
+import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function MoonInstance(props) {
   let id = useParams().moonId ?? "1"
   console.log("ID IS : " + id)
-  // let index = useParams().moonId ?? "1"
-  // console.log("ID IS : " + index)
-  // console.log("SEARCH PARAMS")
-  // console.log(searchParams)
-  // let [searchParams] = useSearchParams();
-  // let index = parseInt(searchParams.get("index") ?? "1")
-  // let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [moon, setMoon] = useState([])
   let [star, setStar] = useState([])
   let [planet, setPlanet] = useState([])
@@ -30,10 +23,6 @@ function MoonInstance(props) {
     const getData = async () => {
       let response = await fetch (
         `https://api.homeplanet.me/api/moon?index=${id}`,
-        // `https://homeplanet.me/api/moon?index=${index}`,
-        // `https://homeplanet.me/api/moon?index=${index}`, // TODO: comment this back in
-        // `http://54.172.67.234:8000/api/moon?index=${id}`, // TODO: comment this out
-        // http://54.172.67.234:800//api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -54,8 +43,6 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://homeplanet.me/api/star?index=${index}`,
-        // `http://54.172.67.234:8000/api/star?${id}`,
         `https://api.homeplanet.me/api/star?index=${id}`,
         { mode: 'cors', }
       );
@@ -77,7 +64,6 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://api.homeplanet.me/api/recommand/moon?moon=${moon_name}`,
         `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
@@ -108,7 +94,7 @@ function MoonInstance(props) {
             </Col>
             <Col>
             <hr />
-              <img src={moon.orbit_img ?? moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
+              <img src={moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>
@@ -136,13 +122,11 @@ function MoonInstance(props) {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* {planet.map((p) => ( */}
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
                             <p> {planet.pl_name}</p>
                           </Link>
-                        {/* ))} */}
                       </TableBody>
                     </Table>
                   </TableContainer>
@@ -162,13 +146,11 @@ function MoonInstance(props) {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* {star.map((p) => ( */}
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
                             <p> {star.star_name}</p>
                           </Link>
-                        {/* ))} */}
                       </TableBody>
                     </Table>
                   </TableContainer>

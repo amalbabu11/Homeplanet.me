@@ -17,7 +17,7 @@
 
 **GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
 
-**Git SHA:** ad06aa69dcd91330ada87f6db2d4b14ed7c5d815
+**Git SHA:** c0a5599b83dbe6fb54519f47b1aabdbf706db11f
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
@@ -57,6 +57,32 @@
 - What planets and/or moons have features most similar to Earth?
 
 ## Phase I Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 15 hours | 25 hours|
+| Summer Ely | 20 hours | 21 hours |
+| Jinjie Liu | 15 hours | 25 hours |
+| Nathan Sussman | 25 hours| 27 hours |
+| Megan Zhao | 10 hours | 15 hours |
+
+## Comments
+Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
+
+Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
+
+Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
+
+## Phase I Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 10 hours | 10 hours|
+| Summer Ely | 15 hours | 18 hours |
+| Jinjie Liu | 10 hours | 10 hours |
+| Nathan Sussman | 12 hours| 16 hours |
+| Megan Zhao | 10 hours | 6 hours |
+
+
+## Phase II Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
 | Amal Babu | 15 hours | 25 hours|
