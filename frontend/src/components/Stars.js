@@ -10,7 +10,7 @@ class Stars extends React.Component {
         <Row>
           <Col>
             <div class="container-group text-center">
-              <h1>Sort By</h1>
+              <h2>Sort By</h2>
             </div>
             <StarSort />
           </Col>
