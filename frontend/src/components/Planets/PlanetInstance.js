@@ -101,7 +101,7 @@ function PlanetInstance(props) {
                 <div class="bodyText">
                   {/*This is the information provided by get_planets() in utils.py*/}
                   <p>{" "}<strong>Mass:</strong> {planet.pl_masse} Earth masses{" "}</p>
-                  <p>{" "}<strong>Radius: </strong> {planet.pl_rade} Earth radiuses{" "}</p>
+                  <p>{" "}<strong>Radius: </strong> {planet.pl_rade} Earth radii{" "}</p>
                   <p>{" "}<strong>Density: </strong> {planet.pl_dens} g/cm^3{" "}</p>
                   <p>{" "}<strong>Equilibrium Temperature: </strong> {planet.pl_eqt} Kelvin{" "}</p>
                   <p>{" "}<strong>Orbits around: </strong> {planet.hostname}{" "}</p>
