@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+import defaultPlanetOrbit from "../../assets/planets/defaultPlanetOrbit.png"
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function PlanetInstance(props) {
   let id = useParams().planetId ?? "1"
@@ -91,10 +92,10 @@ function PlanetInstance(props) {
               <hr />
             </Col>
             <Col>
-            <hr />
-              <embed type="text/html" src={planet.orbit_img} width="500" height="200"></embed>
               <hr />
-              </Col>
+              <img src={planet.orbit_img ? `//images.weserv.nl/?url=${planet.orbit_img}` : defaultPlanetOrbit} alt="planet" class="planet-orbit" width="350"/>
+              <hr />
+            </Col>
             <Row>
               <Col>
                 <div class="bodyText">
