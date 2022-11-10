@@ -19,12 +19,12 @@ function OurNavbar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/Planets" style={{color: 'white'}}>Planets</Nav.Link>
-            <Nav.Link href="/Moons" style={{color: 'white'}}>Moons</Nav.Link>
-            <Nav.Link href="/Stars" style={{color: 'white'}}>Stars</Nav.Link>
+            <Nav.Link href="/Planets" style={{color: 'white'}} className="nav-link">Planets</Nav.Link>
+            <Nav.Link href="/Moons" style={{color: 'white'}} className="nav-link">Moons</Nav.Link>
+            <Nav.Link href="/Stars" style={{color: 'white'}} className="nav-link">Stars</Nav.Link>
           </Nav>
-          <Nav><Nav.Link href="/Search" style={{color: 'white'}}>Search</Nav.Link></Nav>
-          <Nav><Nav.Link href="/About" style={{color: 'white'}}>About</Nav.Link></Nav>
+          <Nav><Nav.Link href="/Search" style={{color: 'white'}} className="nav-link">Search</Nav.Link></Nav>
+          <Nav><Nav.Link href="/About" style={{color: 'white'}} className="nav-link">About</Nav.Link></Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

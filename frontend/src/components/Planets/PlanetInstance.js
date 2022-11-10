@@ -12,10 +12,6 @@ import Paper from "@mui/material/Paper";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import { CardActionArea, CardContent } from "@mui/material";
 
-// testing import for user story #15 and 45
-import Box from "@mui/material/Box"; 
-import Card from "@mui/material/Card"
-import ExplanationBox from "./ExplanationBox.js";
 
 // cleans up PlanetInstance by removing excessive String text. returns a map of explanations
 function fillExplanations() {
@@ -29,9 +25,26 @@ function fillExplanations() {
   unit_explanations.set("radius", "Earth radiuses are how many times you would \
   need to multiply the radius of the Earth in order to reach the radius of \
   this planet. One Earth radius is about: 6,378 km according \
-  to https://imagine.gsfc.nasa.gov/features/cosmic/earth_info.html#:~:text=Its%20equatorial%20radius%20is%206378,the%20polar%20and%20equatorial%20values.");
+  to https://imagine.gsfc.nasa.gov/features/cosmic/earth_info.html#\
+  :~:text=Its%20equatorial%20radius%20is%206378,the%20polar%20and%20\
+  equatorial%20values.");
+
+  unit_explanations.set("density", "Density is the measure of how much \
+  mass fits into a space. In other words mass/volume = density. \
+  In this case, it is measured in grams per cubic centimeter. \
+  See more at: https://en.wikipedia.org/wiki/Density");
+
+  unit_explanations.set("eq_temp", "Equilibrium Temperature (eq_temp) \
+  not written yet");
+  
+  unit_explanations.set("hostname", "hostname not written yet (and I don't \
+  know if this one needs an explanation)");
 
   return unit_explanations;
+}
+
+function displayExplanation(key){
+  return <p>key</p>
 }
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
@@ -43,9 +56,11 @@ function PlanetInstance(props) {
   let [star, setStar] = useState([])
   let [moon, setMoon] = useState([])
 
-  const [isHovering, setIsHovering] = useState(false);
-  const handleMouseOver = () => setIsHovering(true);
-  const handleMouseOut = () => setIsHovering(false);
+  // Used for explanations of units of measurement
+  const [explanationNum, setExplanationNum] = useState(0);
+  function handleClick (exNum) {
+    setExplanationNum(exNum);
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -135,27 +150,71 @@ function PlanetInstance(props) {
             <Row>
               <Col align="center">
                 <div class="bodyText">
-                  {/*This is the information provided by get_planets() in utils.py*/}
-                   <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}> 
+                  <p>Click on each field to see explanation about unit of measurement</p>
+
+                  {/* This is the information provided by get_planets() in utils.py*/}
+                   <p onClick={() => handleClick(1)}> 
                   <strong>Mass:</strong> {planet.pl_masse} Earth masses
                   </p>
-                   {isHovering && (<div>
+                   {explanationNum == 1 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>
-                              <p>{unit_explanations.get("mass")}</p>
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                      </Table>
+                      <TableCell>
+                        <p>{unit_explanations.get("mass")}</p>
+                      </TableCell>
                     </TableContainer>
                   </div>)}
+
+                  <p onClick={() => handleClick(2)}> 
+                  <strong>Radius:</strong> {planet.pl_rade} Earth radiuses
+                  </p>
+                   {explanationNum == 2 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("radius")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+                  
+                  <p onClick={() => handleClick(3)}> 
+                  <strong>Density: </strong> {planet.pl_dens} g/cm^3
+                  </p>
+                   {explanationNum == 3 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("density")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+                  
+                  <p onClick={() => handleClick(4)}> 
+                  <strong>Equilibrium Temperature: </strong> {planet.pl_eqt} Kelvin
+                  </p>
+                   {explanationNum == 4 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("eq_temp")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+                  
+                  <p onClick={() => handleClick(5)}> 
+                  <strong>Orbits around: </strong> {planet.hostname}
+                  </p>
+                   {explanationNum == 5 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("hostname")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                 
+
+                  {/* <p><strong>Mass:</strong> {planet.pl_masse} Earth masses</p>
                   <p>{" "}<strong>Radius: </strong> {planet.pl_rade} Earth radiuses{" "}</p>
                   <p>{" "}<strong>Density: </strong> {planet.pl_dens} g/cm^3{" "}</p>
                   <p>{" "}<strong>Equilibrium Temperature: </strong> {planet.pl_eqt} Kelvin{" "}</p>
-                  <p>{" "}<strong>Orbits around: </strong> {planet.hostname}{" "}</p>
+                  <p>{" "}<strong>Orbits around: </strong> {planet.hostname}{" "}</p> */}
                 </div>
               </Col>
               <Row>

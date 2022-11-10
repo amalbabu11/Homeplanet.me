@@ -5,23 +5,28 @@ import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
+// used for MoonSearch
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function MoonList() {
   let [searchParams] = useSearchParams();
-  // parse user input from search bar so it can be passed to backend
-  // let searchVal = 
-  
-  let page = parseInt(searchParams.get("page") ?? "1")
-  let per_page = parseInt(searchParams.get("per_page") ?? "12")
-  let [moons, setMoons] = useState([])
-  let [numInstances, setInstances] = useState(0)
+
+  let page = parseInt(searchParams.get("page") ?? "1");
+  let per_page = parseInt(searchParams.get("per_page") ?? "12");
+  let search_val = searchParams.get("search") ?? "none";
+  // console.log()
+  let [moons, setMoons] = useState([]);
+  let [numInstances, setInstances] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
       // instead of getting all_moons, we specify an array(?) of search params, then let backend deal with it? then we just display the list as normal.
+      console.log(`https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&search=${search_val}`)
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`,
+        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&search=${search_val}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -39,9 +44,36 @@ function MoonList() {
     getData();
   }, [page, per_page]);
   let total_pages = Math.ceil(numInstances/per_page)
-  return (
+
+
+  const [searchVal, setSearchVal] = useState("");
+  return (  
     <Container >
       <>
+      {/* Begin Moon Search Implmentation */}
+        <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20}}>
+          <form>
+          <TextField
+              id="search-bar"
+              className="text"
+              onInput={(e) => {
+                  setSearchVal(e.target.value);
+                }}
+                label="Search for a moon"
+                placeholder="Example: Titan"
+                size="small"/>
+
+              <IconButton type="submit" aria-label="search" href={'#/search='+searchVal}>
+                  <SearchIcon style={{ fill: "blue"}}/>
+                  {/* onPress={() => window.location.reload()} */}
+              </IconButton>
+          </form>
+
+          {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
+          <p>searchVal: {searchVal}</p>
+        </div>
+      {/* End Moon Search implementation, start Moon List implmentation */}
+
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
           <Grid container spacing={6} columns={20}>
