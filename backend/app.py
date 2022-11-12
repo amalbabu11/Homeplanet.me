@@ -19,6 +19,11 @@ flask_cors.CORS(app, supports_credentials=True)
 error_header = {"Content-Type": "text/plain"}
 return_header = {"Content-Type": "application/json"}
 
+def searchFunction(query: str, object: dict):
+    for key in object:
+        if isinstance(object[key], str) and query in object[key]:
+            return True
+    return False
 
 @app.route("/api", methods=["GET"])
 def index() -> str:
@@ -47,32 +52,44 @@ def api_all_moons():
     sort_mass_exponent: str = request.args.get("sort-mass-exponent")
     sort_vol_value: str = request.args.get("sort-vol-value")
     sort_vol_exponent: str = request.args.get("sort-vol-exponent")
+    search_val: str = request.args.get("search")
+
+    moons: list[dict] = utils.get_moons()
+
+    if search_val is not None:
+        moons = list(filter(
+            lambda x:  search_val in x["englishName"].lower() 
+            or search_val in x["aroundPlanet"].lower(),
+            moons
+        ))
+
+    if sort_index:
+        moons = sorted(moons, key=lambda moon: moon["index"])
+    elif sort_english_name:
+        moons = sorted(moons, key=lambda moon: moon["englishName"])
+    elif sort_density:
+        moons = sorted(moons, key=lambda moon: moon["density"])
+    elif sort_gravity:
+        moons = sorted(moons, key=lambda moon: moon["gravity"])
+    elif sort_around_planet:
+        moons = sorted(moons, key=lambda moon: moon["aroundPlanet"])
+    elif sort_mass_value:
+        moons = sorted(moons, key=lambda moon: moon["massValue"])
+    elif sort_mass_exponent:
+        moons = sorted(moons, key=lambda moon: moon["massExponent"])
+    elif sort_vol_value:
+        moons = sorted(moons, key=lambda moon: moon["volValue"])
+    elif sort_vol_exponent:
+        moons = sorted(moons, key=lambda moon: moon["volExponent"])
+
+
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
-        moons: list[dict] = utils.get_moons()
         moons_slice: list[dict] = moons
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        moons: list[dict] = utils.get_moons()
         moons_slice: list[dict] = moons[(page - 1) * per_page : page * per_page]
-    if sort_index:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["index"])
-    elif sort_english_name:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["englishName"])
-    elif sort_density:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["density"])
-    elif sort_gravity:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["gravity"])
-    elif sort_around_planet:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["aroundPlanet"])
-    elif sort_mass_value:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["massValue"])
-    elif sort_mass_exponent:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["massExponent"])
-    elif sort_vol_value:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["volValue"])
-    elif sort_vol_exponent:
-        moons_slice = sorted(moons_slice, key=lambda moon: moon["volExponent"])
+    
     ret: dict = {
         "size": len(moons_slice),
         "total_size": len(moons),
@@ -97,28 +114,41 @@ def api_all_planets():
     sort_pl_rade: str = request.args.get("sort-pl-rade")
     sort_pl_dens: str = request.args.get("sort-pl-dens")
     sort_pl_eqt: str = request.args.get("sort-pl-eqt")
+    search_val: str = request.args.get("search")
+
+    planets: list[dict] = utils.get_planets()
+
+    if search_val is not None:
+        planets = list(filter(
+            lambda x:  search_val in x["pl_name"].lower() 
+            or search_val in x["hostname"].lower(),
+            planets
+        ))
+
+    if sort_index:
+        planets = sorted(planets, key=lambda planet: planet["index"])
+    elif sort_pl_name:
+        planets = sorted(planets, key=lambda planet: planet["pl_name"])
+    elif sort_hostname:
+        planets = sorted(planets, key=lambda planet: planet["hostname"])
+    elif sort_pl_masse:
+        planets = sorted(planets, key=lambda planet: planet["pl_masse"])
+    elif sort_pl_rade:
+        planets = sorted(planets, key=lambda planet: planet["pl_rade"])
+    elif sort_pl_dens:
+        planets = sorted(planets, key=lambda planet: planet["pl_dens"])
+    elif sort_pl_eqt:
+        planets = sorted(planets, key=lambda planet: planet["pl_eqt"])
+
+
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
-        planets: list[dict] = utils.get_planets()
         planets_slice: list[dict] = planets
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        planets: list[dict] = utils.get_planets()
         planets_slice: list[dict] = planets[(page - 1) * per_page : page * per_page]
-    if sort_index:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["index"])
-    elif sort_pl_name:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["pl_name"])
-    elif sort_hostname:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["hostname"])
-    elif sort_pl_masse:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["pl_masse"])
-    elif sort_pl_rade:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["pl_rade"])
-    elif sort_pl_dens:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["pl_dens"])
-    elif sort_pl_eqt:
-        planets_slice = sorted(planets_slice, key=lambda planet: planet["pl_eqt"])
+
+    print(planets_slice)
     ret: dict = {
         "size": len(planets_slice),
         "total_size": len(planets),
@@ -145,32 +175,45 @@ def api_all_stars():
     sort_st_mass: str = request.args.get("sort-st-mass")
     sort_st_logg: str = request.args.get("sort-st-logg")
     sort_color: str = request.args.get("sort-color")
+    search_val: str = request.args.get("search")
+
+    stars: list[dict] = utils.get_stars()
+
+    if search_val is not None:
+        stars = list(filter(
+            lambda x:  search_val in x["star_name"].lower() 
+            or search_val in x["st_lumclass"].lower()
+            or search_val in x["color"].lower(),
+            stars
+        ))
+
+    if sort_index:
+        stars = sorted(stars, key=lambda star: star["index"])
+    elif sort_star_name:
+        stars = sorted(stars, key=lambda star: star["star_name"])
+    elif sort_st_teff:
+        stars = sorted(stars, key=lambda star: star["st_teff"])
+    elif sort_st_lumclass:
+        stars = sorted(stars, key=lambda star: star["st_lumclass"])
+    elif sort_st_age:
+        stars = sorted(stars, key=lambda star: star["st_age"])
+    elif sort_st_rad:
+        stars = sorted(stars, key=lambda star: star["st_rad"])
+    elif sort_st_mass:
+        stars = sorted(stars, key=lambda star: star["st_mass"])
+    elif sort_st_logg:
+        stars = sorted(stars, key=lambda star: star["st_logg"])
+    elif sort_color:
+        stars = sorted(stars, key=lambda star: star["color"])
+
+
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
-        stars: list[dict] = utils.get_stars()
         stars_slice: list[dict] = stars
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        stars: list[dict] = utils.get_stars()
         stars_slice: list[dict] = stars[(page - 1) * per_page : page * per_page]
-    if sort_index:
-        stars_slice = sorted(stars_slice, key=lambda star: star["index"])
-    elif sort_star_name:
-        stars_slice = sorted(stars_slice, key=lambda star: star["star_name"])
-    elif sort_st_teff:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_teff"])
-    elif sort_st_lumclass:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_lumclass"])
-    elif sort_st_age:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_age"])
-    elif sort_st_rad:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_rad"])
-    elif sort_st_mass:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_mass"])
-    elif sort_st_logg:
-        stars_slice = sorted(stars_slice, key=lambda star: star["st_logg"])
-    elif sort_color:
-        stars_slice = sorted(stars_slice, key=lambda star: star["color"])
+
     ret: dict = {
         "size": len(stars_slice),
         "total_size": len(stars),
