@@ -26,7 +26,7 @@ def get_moons() -> list[dict]:
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
-            "img": moon.img
+            "img": moon.img,
         }
         for moon in session.query(Moon).all()
     ]
@@ -52,9 +52,9 @@ def get_moon_by_index(index: int) -> list[dict]:
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
-            "img": moon.img
+            "img": moon.img,
         }
-        for moon in session.query(Moon).filter_by(index=index)
+        for moon in session.query(Moon).filter(Moon.index == index)
     ]
     session.close()
     return moons
@@ -78,9 +78,9 @@ def get_moon_by_name(name: str) -> list[dict]:
             "massExponent": moon.massExponent if moon.massExponent else 0,
             "volValue": moon.volValue if moon.volValue else 0,
             "volExponent": moon.volExponent if moon.volExponent else 0,
-            "img": moon.img
+            "img": moon.img,
         }
-        for moon in session.query(Moon).filter_by(englishName=name)
+        for moon in session.query(Moon).filter(Moon.englishName.contains(name))
     ]
     session.close()
     return moons
@@ -130,7 +130,7 @@ def get_planet_by_index(index: int) -> list[dict]:
             "img": planet.img,
             "orbit_img": planet.orbit_img,
         }
-        for planet in session.query(Planet).filter_by(index=index)
+        for planet in session.query(Planet).filter(Planet.index == index)
     ]
     session.close()
     return planets
@@ -155,7 +155,7 @@ def get_planet_by_name(name: str) -> list[dict]:
             "img": planet.img,
             "orbit_img": planet.orbit_img,
         }
-        for planet in session.query(Planet).filter_by(pl_name=name)
+        for planet in session.query(Planet).filter(Planet.pl_name.contains(name))
     ]
     session.close()
     return planets
@@ -207,7 +207,7 @@ def get_star_by_index(index: str):
             "img": star.img,
             "color": star.color,
         }
-        for star in session.query(Star).filter_by(index=index)
+        for star in session.query(Star).filter(Star.index == index)
     ]
     session.close()
     return stars
@@ -233,7 +233,7 @@ def get_star_by_name(name: str) -> list[dict]:
             "img": star.img,
             "color": star.color,
         }
-        for star in session.query(Star).filter_by(star_name=name)
+        for star in session.query(Star).filter(Star.star_name.contains(name))
     ]
     session.close()
     return stars
