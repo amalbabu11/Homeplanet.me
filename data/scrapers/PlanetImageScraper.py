@@ -29,7 +29,7 @@ def getImageAddress(name: str):
 
 def getOrbitUrl(name):
     name = modifyName(name)
-    orbit_url = url  + name + 'Orbit.html'
+    orbit_url = url  + name + '_Spc.png'
     return orbit_url
 
 if __name__ == '__main__':

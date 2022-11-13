@@ -2,7 +2,6 @@ from sqlalchemy import Integer, Float, create_engine, Column, String, Sequence
 from sqlalchemy.orm import declarative_base, sessionmaker
 import argparse
 import pandas as pd
-import pyexcel as p
 
 
 import json
@@ -54,6 +53,7 @@ class Moon(Base):
     massExponent = Column(Float())
     volValue = Column(Float())
     volExponent = Column(Float())
+    discoveryDate = Column(Integer())
     img = Column(String(200))
 
 
@@ -149,6 +149,7 @@ def fillMoonTable():
         "density",
         "gravity",
         "aroundPlanet",
+        "discoveryDate"
     ]
     for elem in data:
         if elem["mass"] is not None:
@@ -161,6 +162,7 @@ def fillMoonTable():
             elem["volExponent"] = elem["vol"]["volExponent"]
 
         elem["aroundPlanet"] = elem["aroundPlanet"]["planet"]
+        elem["discoveryDate"] = int(elem["discoveryDate"][-4:]) if elem["discoveryDate"] != '' else -1
 
         columnValues = {key: elem[key] if key in elem.keys() else None for key in keys}
         name = columnValues["englishName"]
