@@ -8,10 +8,10 @@ function PlanetSort() {
           Sort
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item href="#/sort-mass">Mass</Dropdown.Item>
-          <Dropdown.Item href="#/sort-radius">Radius</Dropdown.Item>
-          <Dropdown.Item href="#/sort-density">Density</Dropdown.Item>
-          <Dropdown.Item href="#/sort-eqtmp">Equilibrium Temperature</Dropdown.Item>
+          <Dropdown.Item href="#/sort-pl-masse">Mass</Dropdown.Item>
+          <Dropdown.Item href="#/sort-pl-rade">Radius</Dropdown.Item>
+          <Dropdown.Item href="#/sort-pl-dens">Density</Dropdown.Item>
+          <Dropdown.Item href="#/sort-pl-eqt">Equilibrium Temperature</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </Container>

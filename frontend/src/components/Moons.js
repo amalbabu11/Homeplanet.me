@@ -27,8 +27,6 @@ class Moons extends React.Component {
             <MoonList />  
           </Col>
         </Row>
-
-      </Container>
       </Container>
     );
   }
