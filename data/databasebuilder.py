@@ -78,6 +78,7 @@ def fillPlanetTable():
             "pl_rade": Float,
             "pl_dens": Float,
             "st_eqt": Float,
+            "pl_orbper": Float,
             "img": String(120),
             "orbit_img": String(120),
         },
