@@ -26,6 +26,7 @@ def get_moons() -> list[dict]:
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "discoveryDate": moon.discoveryDate,
             "img": moon.img,
         }
         for moon in session.query(Moon).all()
