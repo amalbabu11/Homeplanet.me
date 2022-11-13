@@ -19,13 +19,13 @@ function PlanetList() {
   parser.href = window.location.href;
   console.log("parser.href = " + parser.href);
   console.log("parser.hash = " + parser.hash);
-  var sort_param = parser.hash.slice(2);
-  console.log("sort param = " + sort_param)
+  var sort_val = parser.hash.slice(2);
+  console.log("sort param = " + sort_val)
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}&${sort_param}=true`,
+        `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}&${sort_val}=true`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -41,7 +41,7 @@ function PlanetList() {
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page, sort_param]);
+  }, [page, per_page, sort_val]);
   let total_pages = Math.ceil(numInstances/per_page)
   return (
     <Container >
