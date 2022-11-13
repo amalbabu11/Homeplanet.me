@@ -24,6 +24,7 @@ class Planet(Base):
     pl_rade = Column(Float())
     pl_dens = Column(Float())
     pl_eqt = Column(Float())
+    pl_orbper = Column(Float())
     img = Column(String(120))
     orbit_img = Column(String(120))
 

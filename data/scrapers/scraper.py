@@ -131,7 +131,7 @@ def get_all_data():
 
 
 def get_exoplanet_data():
-    url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,pl_masse,pl_rade,pl_dens,pl_eqt+from+ps+where+disc_facility+=+'Transiting Exoplanet Survey Satellite (TESS)'&format=csv&"
+    url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,hostname,pl_masse,pl_rade,pl_dens,pl_eqt,pl_orbper+from+ps+where+disc_facility+=+'Transiting Exoplanet Survey Satellite (TESS)'&format=csv&"
 
     response = requests.get(url)
 
