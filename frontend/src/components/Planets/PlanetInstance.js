@@ -13,8 +13,9 @@ import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import { CardActionArea, CardContent } from "@mui/material";
 
 
-// cleans up PlanetInstance by removing excessive String text. returns a map of explanations
+// cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
+  // TODO: In the future, might be able to export map to be shared by all <...>Instance.js files
   const unit_explanations = new Map();
   
   unit_explanations.set("mass", "Earth masses are how many times you would need \
@@ -30,21 +31,19 @@ function fillExplanations() {
   equatorial%20values.");
 
   unit_explanations.set("density", "Density is the measure of how much \
-  mass fits into a space. In other words mass/volume = density. \
+  mass fits into a space. In other words, mass/volume = density. \
   In this case, it is measured in grams per cubic centimeter. \
   See more at: https://en.wikipedia.org/wiki/Density");
 
-  unit_explanations.set("eq_temp", "Equilibrium Temperature (eq_temp) \
-  not written yet");
+  unit_explanations.set("eq_temp", "When no other sources of energy are \
+  considered, and when a planet is treated as if it had no atmosphere; the \
+  temperature the planet would become is the equilibrium temperature. This is \
+  because it won't get any hotter than the energy the sun is providing.");
   
-  unit_explanations.set("hostname", "hostname not written yet (and I don't \
-  know if this one needs an explanation)");
+  unit_explanations.set("hostname", "The hostname is just the celestial body \
+  (planet, star, moon, etc) that THIS celestial body orbits around.");
 
   return unit_explanations;
-}
-
-function displayExplanation(key){
-  return <p>key</p>
 }
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
@@ -56,7 +55,7 @@ function PlanetInstance(props) {
   let [star, setStar] = useState([])
   let [moon, setMoon] = useState([])
 
-  // Used for explanations of units of measurement
+  // Used for explanations of units of measurement. records which button is pressed
   const [explanationNum, setExplanationNum] = useState(0);
   function handleClick (exNum) {
     setExplanationNum(exNum);
@@ -150,13 +149,14 @@ function PlanetInstance(props) {
             <Row>
               <Col align="center">
                 <div class="bodyText">
-                  <p>Click on each field to see explanation about unit of measurement</p>
+
+                  <p>Click on each bolded attribute below to see more information</p>
 
                   {/* This is the information provided by get_planets() in utils.py*/}
                    <p onClick={() => handleClick(1)}> 
-                  <strong>Mass:</strong> {planet.pl_masse} Earth masses
+                    <strong>Mass:</strong> {planet.pl_masse ?? "Unknown"} Earth masses
                   </p>
-                   {explanationNum == 1 && (<div>
+                   {explanationNum === 1 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("mass")}</p>
@@ -165,9 +165,9 @@ function PlanetInstance(props) {
                   </div>)}
 
                   <p onClick={() => handleClick(2)}> 
-                  <strong>Radius:</strong> {planet.pl_rade} Earth radiuses
+                  <strong>Radius:</strong> {planet.pl_rade ?? "Unknown"} Earth radiuses
                   </p>
-                   {explanationNum == 2 && (<div>
+                   {explanationNum === 2 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("radius")}</p>
@@ -176,9 +176,9 @@ function PlanetInstance(props) {
                   </div>)}
                   
                   <p onClick={() => handleClick(3)}> 
-                  <strong>Density: </strong> {planet.pl_dens} g/cm^3
+                  <strong>Density: </strong> {planet.pl_dens ?? "Unknown"} g/cm^3
                   </p>
-                   {explanationNum == 3 && (<div>
+                   {explanationNum === 3 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("density")}</p>
@@ -187,9 +187,9 @@ function PlanetInstance(props) {
                   </div>)}
                   
                   <p onClick={() => handleClick(4)}> 
-                  <strong>Equilibrium Temperature: </strong> {planet.pl_eqt} Kelvin
+                  <strong>Equilibrium Temperature: </strong> {planet.pl_eqt ?? "Unknown"} Kelvin
                   </p>
-                   {explanationNum == 4 && (<div>
+                   {explanationNum === 4 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("eq_temp")}</p>
@@ -198,9 +198,9 @@ function PlanetInstance(props) {
                   </div>)}
                   
                   <p onClick={() => handleClick(5)}> 
-                  <strong>Orbits around: </strong> {planet.hostname}
+                  <strong>Hostname: </strong> {planet.hostname ?? "Unknown"}
                   </p>
-                   {explanationNum == 5 && (<div>
+                   {explanationNum === 5 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("hostname")}</p>
@@ -208,13 +208,6 @@ function PlanetInstance(props) {
                     </TableContainer>
                   </div>)}
 
-                 
-
-                  {/* <p><strong>Mass:</strong> {planet.pl_masse} Earth masses</p>
-                  <p>{" "}<strong>Radius: </strong> {planet.pl_rade} Earth radiuses{" "}</p>
-                  <p>{" "}<strong>Density: </strong> {planet.pl_dens} g/cm^3{" "}</p>
-                  <p>{" "}<strong>Equilibrium Temperature: </strong> {planet.pl_eqt} Kelvin{" "}</p>
-                  <p>{" "}<strong>Orbits around: </strong> {planet.hostname}{" "}</p> */}
                 </div>
               </Col>
               <Row>

@@ -20,13 +20,20 @@ function MoonList() {
   // console.log()
   let [moons, setMoons] = useState([]);
   let [numInstances, setInstances] = useState(0);
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+  console.log("parser.href = " + parser.href);
+  console.log("parser.hash = " + parser.hash);
+  var sort_val = parser.hash.slice(2);
+  console.log("sort param = " + sort_val)
 
   useEffect(() => {
     const getData = async () => {
       // instead of getting all_moons, we specify an array(?) of search params, then let backend deal with it? then we just display the list as normal.
-      console.log(`https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&search=${search_val}`)
+
+
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&search=${search_val}`,
+        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&${sort_val}=true`,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -42,9 +49,8 @@ function MoonList() {
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page]);
+  }, [page, per_page, sort_val]);
   let total_pages = Math.ceil(numInstances/per_page)
-
 
   const [searchVal, setSearchVal] = useState("");
   return (  
