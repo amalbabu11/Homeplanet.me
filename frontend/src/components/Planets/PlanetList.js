@@ -16,7 +16,6 @@ function PlanetList() {
   
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
-  // let sort = searchParams.get("sort")
   let [planets, setPlanets] = useState([])
   let [numInstances, setInstances] = useState(0)
   var parser = document.createElement('a');
@@ -25,25 +24,17 @@ function PlanetList() {
   console.log("parser.hash = " + parser.hash);
   var sort_val = parser.hash.slice(2);
   console.log("sort param = " + sort_val)
-  const [searchVal, setSearchVal] = useState("");
+  const [search_val, setSearchVal] = useState("");
 
   useEffect(() => {
     // credit to AnimalWatch.me
-    // var params = {};
-    // if (sort_val !== "") {
-    //   params["sort"] = sort_val;
-    // }
-    // if (searchVal !== "") {
-    //   params["search"] = searchVal;
-    // }
     var api_url = `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`;
     if (sort_val !== "" && sort_val !== null){
       api_url += `&` + sort_val + `=true`;
     }
-    if (searchVal !== "" && searchVal !== null){
-      api_url += `&search=` + searchVal;
+    if (search_val !== "" && search_val !== null){
+      api_url += `&search=` + search_val;
     }
-    // https://api.homeplanet.me/api/all_planets?page=1&per_page=15&sort-plorbper=true&search=toi
     const getData = async () => {
       let response = await fetch (
         api_url,
@@ -62,7 +53,7 @@ function PlanetList() {
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page, sort_val, searchVal]);
+  }, [page, per_page, sort_val, search_val]);
   let total_pages = Math.ceil(numInstances/per_page)
 
   return (
@@ -80,11 +71,6 @@ function PlanetList() {
                 label="Search for a Planet"
                 placeholder="Example: Earth"
                 size="small"/>
-
-              {/* if you don't know what this is, delete it:
-                <IconButton type="submit"}>
-                  <SearchIcon style={{ fill: "blue"}}/>
-              </IconButton> */}
           </form>
 
           {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}

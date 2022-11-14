@@ -16,7 +16,6 @@ function MoonList() {
 
   let page = parseInt(searchParams.get("page") ?? "1");
   let per_page = parseInt(searchParams.get("per_page") ?? "12");
-  let search_val = searchParams.get("search") ?? "none";
   // console.log()
   let [moons, setMoons] = useState([]);
   let [numInstances, setInstances] = useState(0);
@@ -26,14 +25,20 @@ function MoonList() {
   console.log("parser.hash = " + parser.hash);
   var sort_val = parser.hash.slice(2);
   console.log("sort param = " + sort_val)
+  const [search_val, setSearchVal] = useState("");
 
   useEffect(() => {
+    // credit to AnimalWatch.me
+    var api_url = `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`;
+    if (sort_val !== "" && sort_val !== null){
+      api_url += `&` + sort_val + `=true`;
+    }
+    if (search_val !== "" && search_val !== null){
+      api_url += `&search=` + search_val;
+    }
     const getData = async () => {
-      // instead of getting all_moons, we specify an array(?) of search params, then let backend deal with it? then we just display the list as normal.
-
-
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&${sort_val}=true`,
+        api_url,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -45,14 +50,13 @@ function MoonList() {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setMoons(body['bodies'])
+      setMoons(body['bodies']) 
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page, sort_val]);
+  }, [page, per_page, sort_val, search_val]);
   let total_pages = Math.ceil(numInstances/per_page)
 
-  const [searchVal, setSearchVal] = useState("");
   return (  
     <Container >
       <>
@@ -68,14 +72,8 @@ function MoonList() {
                 label="Search for a moon"
                 placeholder="Example: Titan"
                 size="small"/>
-
-              <IconButton type="submit" aria-label="search" href={'#/search='+searchVal}>
-                  <SearchIcon style={{ fill: "blue"}}/>
-              </IconButton>
           </form>
 
-          {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
-          <p>searchVal: {searchVal}</p>
         </div>
       {/* End Moon Search implementation, start Moon List implmentation */}
 
