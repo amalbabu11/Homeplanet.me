@@ -52,6 +52,7 @@ def api_all_moons():
     sort_mass_exponent: str = request.args.get("sort-mass-exponent")
     sort_vol_value: str = request.args.get("sort-vol-value")
     sort_vol_exponent: str = request.args.get("sort-vol-exponent")
+    sort_discovery_date: str = request.args.get("sort-discovery-date")
     search_val: str = request.args.get("search")
 
     moons: list[dict] = utils.get_moons()
@@ -81,6 +82,8 @@ def api_all_moons():
         moons = sorted(moons, key=lambda moon: moon["volValue"])
     elif sort_vol_exponent:
         moons = sorted(moons, key=lambda moon: moon["volExponent"])
+    elif sort_discovery_date:
+        moons = sorted(moons, key=lambda moon: moon["discoveryDate"])
 
 
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
@@ -114,6 +117,7 @@ def api_all_planets():
     sort_pl_rade: str = request.args.get("sort-pl-rade")
     sort_pl_dens: str = request.args.get("sort-pl-dens")
     sort_pl_eqt: str = request.args.get("sort-pl-eqt")
+    sort_pl_orbper: str = request.args.get("sort-pl-orbper")
     search_val: str = request.args.get("search")
 
     planets: list[dict] = utils.get_planets()
@@ -139,6 +143,8 @@ def api_all_planets():
         planets = sorted(planets, key=lambda planet: planet["pl_dens"])
     elif sort_pl_eqt:
         planets = sorted(planets, key=lambda planet: planet["pl_eqt"])
+    elif sort_pl_orbper:
+        planets = sorted(planets, key=lambda planet: planet["pl_orbper"])
 
 
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:

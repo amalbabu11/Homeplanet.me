@@ -216,6 +216,7 @@ function MoonInstance(props) {
                   <p>{" "}<strong>Density:</strong> {moon.density} 10^n g/km^3{" "}</p>
                   <p>{" "}<strong>Gravity:</strong> {moon.gravity} m.s^-2{" "}</p>
                   <p>{" "}<strong>Volume:</strong> {moon.volValue} 10^{moon.volExponent} km^3{" "}</p>
+                  <p>{" "}<strong>Discovered In:</strong> {moon.discoveryDate} AD{" "}</p>
                   <p>{" "}<strong>Habitable? </strong> {moon.is_habitable ?? "No"}{" "}</p>
                   <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p> */}
 

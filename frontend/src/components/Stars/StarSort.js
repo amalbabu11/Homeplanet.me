@@ -8,9 +8,11 @@ function StarSort() {
           Sort
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item href="#/404">Not Implemented 1</Dropdown.Item>
-          <Dropdown.Item href="#/404">Not Implemented 2</Dropdown.Item>
-
+          <Dropdown.Item href="#/sort-st-rad">Radius</Dropdown.Item>
+          <Dropdown.Item href="#/sort-st-mass">Mass</Dropdown.Item>
+          <Dropdown.Item href="#/sort-st-age">Age</Dropdown.Item>
+          <Dropdown.Item href="#/sort-st-logg">Gravity</Dropdown.Item>
+          <Dropdown.Item href="#/sort_st_teff">Temperature</Dropdown.Item>
           {/* </Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>

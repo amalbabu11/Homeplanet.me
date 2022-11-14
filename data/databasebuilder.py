@@ -2,7 +2,6 @@ from sqlalchemy import Integer, Float, create_engine, Column, String, Sequence
 from sqlalchemy.orm import declarative_base, sessionmaker
 import argparse
 import pandas as pd
-import pyexcel as p
 
 
 import json
@@ -25,6 +24,7 @@ class Planet(Base):
     pl_rade = Column(Float())
     pl_dens = Column(Float())
     pl_eqt = Column(Float())
+    pl_orbper = Column(Float())
     img = Column(String(120))
     orbit_img = Column(String(120))
 
@@ -54,6 +54,7 @@ class Moon(Base):
     massExponent = Column(Float())
     volValue = Column(Float())
     volExponent = Column(Float())
+    discoveryDate = Column(Integer())
     img = Column(String(200))
 
 
@@ -77,6 +78,7 @@ def fillPlanetTable():
             "pl_rade": Float,
             "pl_dens": Float,
             "st_eqt": Float,
+            "pl_orbper": Float,
             "img": String(120),
             "orbit_img": String(120),
         },
@@ -149,6 +151,7 @@ def fillMoonTable():
         "density",
         "gravity",
         "aroundPlanet",
+        "discoveryDate"
     ]
     for elem in data:
         if elem["mass"] is not None:
@@ -161,6 +164,7 @@ def fillMoonTable():
             elem["volExponent"] = elem["vol"]["volExponent"]
 
         elem["aroundPlanet"] = elem["aroundPlanet"]["planet"]
+        elem["discoveryDate"] = int(elem["discoveryDate"][-4:]) if elem["discoveryDate"] != '' else -1
 
         columnValues = {key: elem[key] if key in elem.keys() else None for key in keys}
         name = columnValues["englishName"]

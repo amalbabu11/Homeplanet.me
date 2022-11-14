@@ -26,6 +26,7 @@ def get_moons() -> list[dict]:
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "discoveryDate": moon.discoveryDate,
             "img": moon.img,
         }
         for moon in session.query(Moon).all()
@@ -52,6 +53,7 @@ def get_moon_by_index(index: int) -> list[dict]:
             "massExponent": moon.massExponent,
             "volValue": moon.volValue,
             "volExponent": moon.volExponent,
+            "discoveryDate": moon.discoveryDate,
             "img": moon.img,
         }
         for moon in session.query(Moon).filter(Moon.index == index)
@@ -78,6 +80,7 @@ def get_moon_by_name(name: str) -> list[dict]:
             "massExponent": moon.massExponent if moon.massExponent else 0,
             "volValue": moon.volValue if moon.volValue else 0,
             "volExponent": moon.volExponent if moon.volExponent else 0,
+            "discoveryDate": moon.discoveryDate,
             "img": moon.img,
         }
         for moon in session.query(Moon).filter(Moon.englishName.contains(name))
@@ -102,6 +105,7 @@ def get_planets() -> list[dict]:
             "pl_rade": planet.pl_rade if planet.pl_rade else 0,
             "pl_dens": planet.pl_dens if planet.pl_dens else 0,
             "pl_eqt": planet.pl_eqt if planet.pl_eqt else 0,
+            "pl_orbper": planet.pl_orbper if planet.pl_orbper else 0,
             "img": planet.img,
             "orbit_img": planet.orbit_img,
         }
@@ -127,6 +131,7 @@ def get_planet_by_index(index: int) -> list[dict]:
             "pl_rade": planet.pl_rade,
             "pl_dens": planet.pl_dens,
             "pl_eqt": planet.pl_eqt,
+            "pl_orbper": planet.pl_orbper,
             "img": planet.img,
             "orbit_img": planet.orbit_img,
         }
@@ -152,6 +157,7 @@ def get_planet_by_name(name: str) -> list[dict]:
             "pl_rade": planet.pl_rade,
             "pl_dens": planet.pl_dens,
             "pl_eqt": planet.pl_eqt,
+            "pl_orbper": planet.pl_orbper,
             "img": planet.img,
             "orbit_img": planet.orbit_img,
         }

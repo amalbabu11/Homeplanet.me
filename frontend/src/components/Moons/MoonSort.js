@@ -8,10 +8,11 @@ function MoonSort() {
           Sort
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item href="#/sort-mass">Mass</Dropdown.Item>
+          <Dropdown.Item href="#/sort-mass-exponent">Mass</Dropdown.Item>
           <Dropdown.Item href="#/sort-density">Density</Dropdown.Item>
           <Dropdown.Item href="#/sort-gravity">Gravity</Dropdown.Item>
-          <Dropdown.Item href="#/sort-volume">Volume</Dropdown.Item>
+          <Dropdown.Item href="#/sort-vol-exponent">Volume</Dropdown.Item>
+          <Dropdown.Item href="#/sort-discovery-date">Discovery Date</Dropdown.Item>
           {/* </Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
