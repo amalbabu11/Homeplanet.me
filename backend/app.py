@@ -21,7 +21,7 @@ return_header = {"Content-Type": "application/json"}
 
 def searchFunction(query: str, object: dict):
     for key in object:
-        if isinstance(object[key], str) and query in object[key]:
+        if isinstance(object[key], str) and query.lower() in object[key].lower():
             return True
     return False
 
