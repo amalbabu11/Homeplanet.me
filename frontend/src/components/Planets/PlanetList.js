@@ -5,6 +5,10 @@ import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+// used for Planet search
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function PlanetList() {
@@ -12,6 +16,7 @@ function PlanetList() {
   
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
+  let search_val = searchParams.get("search") ?? "none";
   // let sort = searchParams.get("sort")
   let [planets, setPlanets] = useState([])
   let [numInstances, setInstances] = useState(0)
@@ -43,9 +48,34 @@ function PlanetList() {
     getData();
   }, [page, per_page, sort_val]);
   let total_pages = Math.ceil(numInstances/per_page)
+
+  const [searchVal, setSearchVal] = useState("");
   return (
     <Container >
       <>
+      {/* Begin Planet Search Implmentation */}
+      <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20}}>
+          <form>
+          <TextField
+              id="search-bar"
+              className="text"
+              onInput={(e) => {
+                  setSearchVal(e.target.value);
+                }}
+                label="Search for a Planet"
+                placeholder="Example: Earth"
+                size="small"/>
+
+              <IconButton type="submit" aria-label="search" href={'#/search='+searchVal}>
+                  <SearchIcon style={{ fill: "blue"}}/>
+              </IconButton>
+          </form>
+
+          {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
+          <p>searchVal: {searchVal}</p>
+        </div>
+      {/* End Star Search implementation, start Moon List implmentation */}
+
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
             <Grid container spacing={6} columns={20}>

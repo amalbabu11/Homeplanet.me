@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
-// used for MoonSearch
+// used for Moon search
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
@@ -71,7 +71,6 @@ function MoonList() {
 
               <IconButton type="submit" aria-label="search" href={'#/search='+searchVal}>
                   <SearchIcon style={{ fill: "blue"}}/>
-                  {/* onPress={() => window.location.reload()} */}
               </IconButton>
           </form>
 

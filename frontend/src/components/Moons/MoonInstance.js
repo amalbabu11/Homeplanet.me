@@ -179,7 +179,10 @@ function MoonInstance(props) {
                   </div>)}
 
                 <p onClick={() => handleClick(4)}> 
-                  <strong>Volume:</strong> {moon.volValue ?? "Unknown"} * 10^{moon.volExponent} km^3
+                  <strong>Volume: </strong> 
+                  {moon.volValue != 0 && moon.volValue} 
+                  {moon.volValue == 0 && "Unknown "} 
+                  * 10^{moon.volExponent} km^3
                   </p>
                    {explanationNum === 4 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
@@ -210,15 +213,6 @@ function MoonInstance(props) {
                       </TableCell>
                     </TableContainer>
                   </div>)}
-
-
-                  {/* <p>{" "}<strong>Mass:</strong> {moon.massValue} 10^{moon.massExponent} kg{" "}</p>
-                  <p>{" "}<strong>Density:</strong> {moon.density} 10^n g/km^3{" "}</p>
-                  <p>{" "}<strong>Gravity:</strong> {moon.gravity} m.s^-2{" "}</p>
-                  <p>{" "}<strong>Volume:</strong> {moon.volValue} 10^{moon.volExponent} km^3{" "}</p>
-                  <p>{" "}<strong>Discovered In:</strong> {moon.discoveryDate} AD{" "}</p>
-                  <p>{" "}<strong>Habitable? </strong> {moon.is_habitable ?? "No"}{" "}</p>
-                  <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p> */}
 
                 </div>
               </Col>
