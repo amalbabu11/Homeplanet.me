@@ -19,11 +19,13 @@ flask_cors.CORS(app, supports_credentials=True)
 error_header = {"Content-Type": "text/plain"}
 return_header = {"Content-Type": "application/json"}
 
+
 def searchFunction(query: str, object: dict):
     for key in object:
         if isinstance(object[key], str) and query.lower() in object[key].lower():
             return True
     return False
+
 
 @app.route("/api", methods=["GET"])
 def index() -> str:
@@ -53,13 +55,14 @@ def api_all_moons():
     sort_vol_value: str = request.args.get("sort-vol-value")
     sort_vol_exponent: str = request.args.get("sort-vol-exponent")
     sort_discovery_date: str = request.args.get("sort-discovery-date")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     moons: list[dict] = utils.get_moons()
 
     if search_val is not None:
+        search_val = search_val.lower()
         moons = list(filter(
-            lambda x:  search_val in x["englishName"].lower() 
+            lambda x:  search_val in x["englishName"].lower()
             or search_val in x["aroundPlanet"].lower(),
             moons
         ))
@@ -85,14 +88,13 @@ def api_all_moons():
     elif sort_discovery_date:
         moons = sorted(moons, key=lambda moon: moon["discoveryDate"])
 
-
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         moons_slice: list[dict] = moons
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        moons_slice: list[dict] = moons[(page - 1) * per_page : page * per_page]
-    
+        moons_slice: list[dict] = moons[(page - 1) * per_page: page * per_page]
+
     ret: dict = {
         "size": len(moons_slice),
         "total_size": len(moons),
@@ -118,13 +120,14 @@ def api_all_planets():
     sort_pl_dens: str = request.args.get("sort-pl-dens")
     sort_pl_eqt: str = request.args.get("sort-pl-eqt")
     sort_pl_orbper: str = request.args.get("sort-pl-orbper")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     planets: list[dict] = utils.get_planets()
 
     if search_val is not None:
+        search_val = search_val.lower()
         planets = list(filter(
-            lambda x:  search_val in x["pl_name"].lower() 
+            lambda x:  search_val in x["pl_name"].lower()
             or search_val in x["hostname"].lower(),
             planets
         ))
@@ -146,13 +149,13 @@ def api_all_planets():
     elif sort_pl_orbper:
         planets = sorted(planets, key=lambda planet: planet["pl_orbper"])
 
-
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         planets_slice: list[dict] = planets
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        planets_slice: list[dict] = planets[(page - 1) * per_page : page * per_page]
+        planets_slice: list[dict] = planets[(
+            page - 1) * per_page: page * per_page]
 
     print(planets_slice)
     ret: dict = {
@@ -181,13 +184,14 @@ def api_all_stars():
     sort_st_mass: str = request.args.get("sort-st-mass")
     sort_st_logg: str = request.args.get("sort-st-logg")
     sort_color: str = request.args.get("sort-color")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     stars: list[dict] = utils.get_stars()
 
     if search_val is not None:
+        search_val = search_val.lower()
         stars = list(filter(
-            lambda x:  search_val in x["star_name"].lower() 
+            lambda x:  search_val in x["star_name"].lower()
             or search_val in x["st_lumclass"].lower()
             or search_val in x["color"].lower(),
             stars
@@ -212,13 +216,12 @@ def api_all_stars():
     elif sort_color:
         stars = sorted(stars, key=lambda star: star["color"])
 
-
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         stars_slice: list[dict] = stars
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        stars_slice: list[dict] = stars[(page - 1) * per_page : page * per_page]
+        stars_slice: list[dict] = stars[(page - 1) * per_page: page * per_page]
 
     ret: dict = {
         "size": len(stars_slice),
