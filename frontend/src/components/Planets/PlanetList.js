@@ -29,18 +29,24 @@ function PlanetList() {
 
   useEffect(() => {
     // credit to AnimalWatch.me
-    var params = {};
-    if (sort_val !== "") {
-      params["sort"] = sort_val;
+    // var params = {};
+    // if (sort_val !== "") {
+    //   params["sort"] = sort_val;
+    // }
+    // if (searchVal !== "") {
+    //   params["search"] = searchVal;
+    // }
+    var api_url = `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`;
+    if (sort_val !== "" && sort_val !== null){
+      api_url += `&` + sort_val + `=true`;
     }
-    if (searchVal !== "") {
-      params["search"] = searchVal;
+    if (searchVal !== "" && searchVal !== null){
+      api_url += `&search=` + searchVal;
     }
-
     // https://api.homeplanet.me/api/all_planets?page=1&per_page=15&sort-plorbper=true&search=toi
     const getData = async () => {
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}&${params["sort]"]}=true&search=${params["search"]}`,
+        api_url,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -82,7 +88,7 @@ function PlanetList() {
           </form>
 
           {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
-          <p>searchVal: {searchVal}</p>
+          {/* <p>searchVal: {searchVal}</p> */}
         </div>
       {/* End Star Search implementation, start Moon List implmentation */}
 

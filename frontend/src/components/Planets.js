@@ -7,17 +7,17 @@ class Planets extends React.Component {
   render() {
     return (
       <Container>
+          {/* <div class="container-group text-center"> */}
+              <h1>Planets</h1>
+            {/* </div> */}
         <Row>
-        <div class="container-group text-center">
+        {/* <div class="container-group text-center"> */}
             <h2>Sort By</h2>
-          </div>
+          {/* </div> */}
           <PlanetSort />
           </Row>
         <Row>
           <Col>
-            <div class="container-group text-center">
-              <h1>Planets</h1>
-            </div>
             <PlanetList />
           </Col>
         </Row>
