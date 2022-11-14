@@ -11,6 +11,41 @@ import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
 
+// cleans up code by relocating high quantity String text. returns a map of explanations
+function fillExplanations() {
+  const unit_explanations = new Map();
+  
+  unit_explanations.set("mass", "A kilogram is approximately 2.205 pounds. \
+  The total mass can be thought of as moving the decimal place of the first \
+  number to the right a number of times equal to the exponent number. For \
+  example: 1.15 * 10^3 => 1150.00");
+
+  unit_explanations.set("density", "Density is the measure of how much \
+  mass fits into a space. In other words, mass/volume = density. \
+  In this case, it is measured in grams per cubic centimeter. \
+  See more at: https://en.wikipedia.org/wiki/Density");
+  
+  unit_explanations.set("gravity", "Measured in meters/(second^2). Speed \
+  (or velocity) is measured in meters per second. Gravity is a \
+  measure of how something will accelerate - or change speeds over time. \
+  As acceleration is the change in speed over time, this is measured as \
+  (meters/second)/second, or m/s^2.");
+
+  unit_explanations.set("volume", "Volume is the measure of how much space \
+  something will fill. In this case, it is measured in cubic kilometers \
+  The total volume can be thought of as moving the decimal place of the first \
+  number to the right a number of times equal to the exponent number. For \
+  example: 1.15 * 10^3 => 1150.00");
+  
+  unit_explanations.set("habitability", "This field tells us if it would be \
+  theoretically possible for life to exist on this celestial body.");
+  
+  unit_explanations.set("host_planet", "The host planet is just the planet \
+  that this moon orbits around.");
+
+  return unit_explanations;
+}
+
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function MoonInstance(props) {
   let id = useParams().moonId ?? "1"
@@ -18,6 +53,12 @@ function MoonInstance(props) {
   let [moon, setMoon] = useState([])
   let [star, setStar] = useState([])
   let [planet, setPlanet] = useState([])
+
+  // Used for explanations of units of measurement. records which button is pressed
+  const [explanationNum, setExplanationNum] = useState(0);
+  function handleClick (exNum) {
+    setExplanationNum(exNum);
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -81,6 +122,9 @@ function MoonInstance(props) {
     getData();
   }, [id]);
 
+  // unit_explanations is a map of all explanations
+  const unit_explanations = fillExplanations();
+
   return (
     <div className="Container">
       <React.Fragment>
@@ -98,14 +142,83 @@ function MoonInstance(props) {
               <hr />
             </Col>
             <Row>
-              <Col>
+              <Col align="center">
                 <div class="bodyText">
-                  <p>{" "}<strong>Mass:</strong> {moon.massValue} 10^{moon.massExponent} kg{" "}</p>
+
+                <p onClick={() => handleClick(1)}> 
+                    <strong>Mass:</strong> {moon.massValue ?? "Unknown"} * 10^{moon.massExponent} kg
+                  </p>
+                   {explanationNum === 1 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("mass")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(2)}> 
+                    <strong>Density:</strong> {moon.density ?? "Unknown"} g/cm^3
+                  </p>
+                   {explanationNum === 2 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("density")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(3)}> 
+                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s^2
+                  </p>
+                   {explanationNum === 3 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("gravity")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(4)}> 
+                  <strong>Volume:</strong> {moon.volValue ?? "Unknown"} * 10^{moon.volExponent} km^3
+                  </p>
+                   {explanationNum === 4 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("volume")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(5)}> 
+                  <strong>Habitable? </strong> {moon.is_habitable ?? "No"}
+                  </p>
+                   {explanationNum === 5 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("habitability")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(6)}> 
+                  <strong>Host planet: </strong> {moon.aroundPlanet ?? "Unknown"}
+                  </p>
+                   {explanationNum === 6 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("host_planet")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+
+                  {/* <p>{" "}<strong>Mass:</strong> {moon.massValue} 10^{moon.massExponent} kg{" "}</p>
                   <p>{" "}<strong>Density:</strong> {moon.density} 10^n g/km^3{" "}</p>
                   <p>{" "}<strong>Gravity:</strong> {moon.gravity} m.s^-2{" "}</p>
                   <p>{" "}<strong>Volume:</strong> {moon.volValue} 10^{moon.volExponent} km^3{" "}</p>
                   <p>{" "}<strong>Habitable? </strong> {moon.is_habitable ?? "No"}{" "}</p>
-                  <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p>
+                  <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p> */}
+
                 </div>
               </Col>
               <Row>
