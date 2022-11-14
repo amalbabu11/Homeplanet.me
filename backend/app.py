@@ -21,7 +21,7 @@ return_header = {"Content-Type": "application/json"}
 
 def searchFunction(query: str, object: dict):
     for key in object:
-        if isinstance(object[key], str) and query in object[key]:
+        if isinstance(object[key], str) and query.lower() in object[key].lower():
             return True
     return False
 
@@ -53,7 +53,7 @@ def api_all_moons():
     sort_vol_value: str = request.args.get("sort-vol-value")
     sort_vol_exponent: str = request.args.get("sort-vol-exponent")
     sort_discovery_date: str = request.args.get("sort-discovery-date")
-    search_val: str = request.args.get("search")
+    search_val: str = request.args.get("search").lower()
 
     moons: list[dict] = utils.get_moons()
 
@@ -118,7 +118,7 @@ def api_all_planets():
     sort_pl_dens: str = request.args.get("sort-pl-dens")
     sort_pl_eqt: str = request.args.get("sort-pl-eqt")
     sort_pl_orbper: str = request.args.get("sort-pl-orbper")
-    search_val: str = request.args.get("search")
+    search_val: str = request.args.get("search").lower()
 
     planets: list[dict] = utils.get_planets()
 
@@ -181,7 +181,7 @@ def api_all_stars():
     sort_st_mass: str = request.args.get("sort-st-mass")
     sort_st_logg: str = request.args.get("sort-st-logg")
     sort_color: str = request.args.get("sort-color")
-    search_val: str = request.args.get("search")
+    search_val: str = request.args.get("search").lower()
 
     stars: list[dict] = utils.get_stars()
 
