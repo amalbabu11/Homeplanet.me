@@ -9,6 +9,7 @@ import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Highlighter from "react-highlight-words";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 
@@ -85,7 +86,7 @@ function StarList() {
                 <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
                   { <CardContent>
-                    <h1 class="cardTitle"> {c.star_name} </h1>
+                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
                     <h3 class="cardSub">{c.state}</h3>
                   </CardContent> }
                 </CardActionArea>

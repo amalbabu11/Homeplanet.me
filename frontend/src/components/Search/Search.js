@@ -8,6 +8,8 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
   import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
   import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
   import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+  import Highlighter from "react-highlight-words";
+
   // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
   function Search() {
     let [searchParams] = useSearchParams();
@@ -82,7 +84,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                     <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                       <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
                       { <CardContent>
-                        <h1 class="cardTitle"> {c.pl_name} </h1>
+                        <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
                         <h3 class="cardSub">{c.state}</h3>
                         <CardContent>
                         </CardContent>
@@ -104,7 +106,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                 <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
                   { <CardContent>
-                    <h1 class="cardTitle"> {c.englishName} </h1>
+                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
                     <h3 class="cardSub">{c.state}</h3>
                   </CardContent> }
                 </CardActionArea>
@@ -124,7 +126,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                 <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
                   { <CardContent>
-                    <h1 class="cardTitle"> {c.star_name} </h1>
+                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
                     <h3 class="cardSub">{c.state}</h3>
                   </CardContent> }
                 </CardActionArea>

@@ -9,6 +9,7 @@ import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Highlighter from "react-highlight-words";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function PlanetList() {
@@ -73,10 +74,7 @@ function PlanetList() {
                 size="small"/>
           </form>
 
-          {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
-          {/* <p>searchVal: {searchVal}</p> */}
         </div>
-      {/* End Star Search implementation, start Moon List implmentation */}
 
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
@@ -87,7 +85,7 @@ function PlanetList() {
                   <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                     <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
                     { <CardContent>
-                      <h1 class="cardTitle"> {c.pl_name} </h1>
+                      <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
                       <h3 class="cardSub">{c.state}</h3>
                       <CardContent>
                       </CardContent>
