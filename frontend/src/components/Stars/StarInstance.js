@@ -35,7 +35,7 @@ function fillExplanations() {
   the star. Stars are put into different classifications based on their \
   electromagnetic radiation output. Put simply, electromagnetic radition is \
   light - although there is much more too it than that. For more information \
-  see https://en.wikipedia.org/wiki/Stellar_classification and \
+  see: https://en.wikipedia.org/wiki/Stellar_classification and \
   https://en.wikipedia.org/wiki/Luminosity");
 
   unit_explanations.set("temperature", "A measure of how hot a star is in \
@@ -45,7 +45,9 @@ function fillExplanations() {
   explanations of gravity. However, instead of measureing in \
   meters/(seconds)^2, it is measured in (centimeters * grams)/(seconds)^2. \
   Either way, surface gravity is a measure of the acceleration downwards that \
-  an object would experience at the surface of the star.");
+  an object would experience at the surface of the star. For more \
+  information see: https://en.wikipedia.org/wiki/\
+  Centimetre%E2%80%93gram%E2%80%93second_system_of_units");
   
   unit_explanations.set("age", "The age of the star. Gyr measures billions of \
   years, so 1 gyr is 1 billion years old.");

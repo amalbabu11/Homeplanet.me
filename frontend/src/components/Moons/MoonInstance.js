@@ -29,7 +29,8 @@ function fillExplanations() {
   (or velocity) is measured in meters per second. Gravity is a \
   measure of how something will accelerate - or change speeds over time. \
   As acceleration is the change in speed over time, this is measured as \
-  (meters/second)/second, or m/s^2.");
+  (meters/second)/second, or m/s^2. For more information see:\
+  https://en.wikipedia.org/wiki/Gravity_of_Earth");
 
   unit_explanations.set("volume", "Volume is the measure of how much space \
   something will fill. In this case, it is measured in cubic kilometers \

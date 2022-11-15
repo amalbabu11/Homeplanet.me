@@ -38,7 +38,10 @@ function fillExplanations() {
   unit_explanations.set("eq_temp", "When no other sources of energy are \
   considered, and when a planet is treated as if it had no atmosphere; the \
   temperature the planet would become is the equilibrium temperature. This is \
-  because it won't get any hotter than the energy the sun is providing.");
+  because it won't get any hotter than the energy the sun is providing. See \
+  more at: https://en.wikipedia.org/wiki/Planetary_equilibrium_temperature#:\
+  ~:text=Thermal%20equilibrium%20exists%20when%20the,\
+  is%20the%20planetary%20equilibrium%20temperature.");
   
   unit_explanations.set("hostname", "The hostname is just the celestial body \
   (planet, star, moon, etc) that THIS celestial body orbits around.");
