@@ -61,11 +61,13 @@ def api_all_moons():
 
     if search_val is not None:
         search_val = search_val.lower()
-        moons = list(filter(
-            lambda x:  search_val in x["englishName"].lower()
-            or search_val in x["aroundPlanet"].lower(),
-            moons
-        ))
+        moons = list(
+            filter(
+                lambda x: search_val in x["englishName"].lower()
+                or search_val in x["aroundPlanet"].lower(),
+                moons,
+            )
+        )
 
     if sort_index:
         moons = sorted(moons, key=lambda moon: moon["index"])
@@ -93,7 +95,7 @@ def api_all_moons():
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        moons_slice: list[dict] = moons[(page - 1) * per_page: page * per_page]
+        moons_slice: list[dict] = moons[(page - 1) * per_page : page * per_page]
 
     ret: dict = {
         "size": len(moons_slice),
@@ -126,11 +128,13 @@ def api_all_planets():
 
     if search_val is not None:
         search_val = search_val.lower()
-        planets = list(filter(
-            lambda x:  search_val in x["pl_name"].lower()
-            or search_val in x["hostname"].lower(),
-            planets
-        ))
+        planets = list(
+            filter(
+                lambda x: search_val in x["pl_name"].lower()
+                or search_val in x["hostname"].lower(),
+                planets,
+            )
+        )
 
     if sort_index:
         planets = sorted(planets, key=lambda planet: planet["index"])
@@ -154,10 +158,7 @@ def api_all_planets():
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        planets_slice: list[dict] = planets[(
-            page - 1) * per_page: page * per_page]
-
-    print(planets_slice)
+        planets_slice: list[dict] = planets[(page - 1) * per_page : page * per_page]
     ret: dict = {
         "size": len(planets_slice),
         "total_size": len(planets),
@@ -190,12 +191,14 @@ def api_all_stars():
 
     if search_val is not None:
         search_val = search_val.lower()
-        stars = list(filter(
-            lambda x:  search_val in x["star_name"].lower()
-            or search_val in x["st_lumclass"].lower()
-            or search_val in x["color"].lower(),
-            stars
-        ))
+        stars = list(
+            filter(
+                lambda x: search_val in x["star_name"].lower()
+                or search_val in x["st_lumclass"].lower()
+                or search_val in x["color"].lower(),
+                stars,
+            )
+        )
 
     if sort_index:
         stars = sorted(stars, key=lambda star: star["index"])
@@ -221,7 +224,7 @@ def api_all_stars():
     else:
         page: int = int(page)
         per_page: int = int(per_page)
-        stars_slice: list[dict] = stars[(page - 1) * per_page: page * per_page]
+        stars_slice: list[dict] = stars[(page - 1) * per_page : page * per_page]
 
     ret: dict = {
         "size": len(stars_slice),
@@ -321,9 +324,9 @@ def api_star():
 @app.route("/api/recommand/moon", methods=["GET"])
 def recommand_moon():
     """
-    This api returns recommendations based on the moon. For the moon it returns a random star
+    This api returns recommandations based on the moon. For the moon it returns a random star
      and a random planet.
-    ret:    `json`, the basic information of recommended star and planet
+    ret:    `json`, the basic information of recommanded star and planet
             `status_code`, the status code of this reply
     """
     moon: str = request.args.get("moon")
@@ -342,9 +345,9 @@ def recommand_moon():
 @app.route("/api/recommand/planet", methods=["GET"])
 def recommand_planets():
     """
-    This api returns recommendations based on the planet. For the planet, it searches for an
-     available star and randomly recommends a moon based on the galaxy it is in.
-    ret:    `json`, the basic information of recommended star and moon
+    This api returns recommandations based on the planet. For the planet, it searches for an
+     available star and randomly recommands a moon based on the galaxy it is in.
+    ret:    `json`, the basic information of recommanded star and moon
             `status_code`, the status code of this reply
     """
     planet: str = request.args.get("planet")
@@ -363,9 +366,9 @@ def recommand_planets():
 @app.route("/api/recommand/star", methods=["GET"])
 def recommand_stars():
     """
-    This api returns recommendations based on the star. For the star, it searches for planets in
-     the same galaxy and randomly recommends moons.
-    ret:    `json`, the basic information of recommended planet and moon
+    This api returns recommandations based on the star. For the star, it searches for planets in
+     the same galaxy and randomly recommands moons.
+    ret:    `json`, the basic information of recommanded planet and moon
             `status_code`, the status code of this reply
     """
     star: str = request.args.get("star")
