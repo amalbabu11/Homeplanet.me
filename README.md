@@ -56,6 +56,21 @@
 - How many potential habitable planets are there in the universe?
 - What planets and/or moons have features most similar to Earth?
 
+## Phase I Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 15 hours | 25 hours|
+| Summer Ely | 20 hours | 21 hours |
+| Jinjie Liu | 15 hours | 25 hours |
+| Nathan Sussman | 25 hours| 27 hours |
+| Megan Zhao | 10 hours | 15 hours |
+
+## Comments
+Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
+
+Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
+
+Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
 
 ## Phase I Time Log
 | Name | Estimated Time | Actual Time |

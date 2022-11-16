@@ -9,31 +9,64 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
-import moonOrbit from "../../assets/moons/moonOrbit.jpeg"
+import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
+import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+// cleans up code by relocating high quantity String text. returns a map of explanations
+function fillExplanations() {
+  const unit_explanations = new Map();
+  
+  unit_explanations.set("mass", "A kilogram is approximately 2.205 pounds. \
+  The total mass can be thought of as moving the decimal place of the first \
+  number to the right a number of times equal to the exponent number. For \
+  example: 1.15 * 10^3 => 1150.00");
+
+  unit_explanations.set("density", "Density is the measure of how much \
+  mass fits into a space. In other words, mass/volume = density. \
+  In this case, it is measured in grams per cubic centimeter. \
+  See more at: https://en.wikipedia.org/wiki/Density");
+  
+  unit_explanations.set("gravity", "Measured in meters/(second^2). Speed \
+  (or velocity) is measured in meters per second. Gravity is a \
+  measure of how something will accelerate - or change speeds over time. \
+  As acceleration is the change in speed over time, this is measured as \
+  (meters/second)/second, or m/s^2. For more information see:\
+  https://en.wikipedia.org/wiki/Gravity_of_Earth");
+
+  unit_explanations.set("volume", "Volume is the measure of how much space \
+  something will fill. In this case, it is measured in cubic kilometers \
+  The total volume can be thought of as moving the decimal place of the first \
+  number to the right a number of times equal to the exponent number. For \
+  example: 1.15 * 10^3 => 1150.00");
+  
+  unit_explanations.set("habitability", "This field tells us if it would be \
+  theoretically possible for life to exist on this celestial body.");
+  
+  unit_explanations.set("host_planet", "The host planet is just the planet \
+  that this moon orbits around.");
+
+  return unit_explanations;
+}
 
 // Adapted from Electrends https://gitlab.com/dandom25/electrends/
 function MoonInstance(props) {
   let id = useParams().moonId ?? "1"
   console.log("ID IS : " + id)
-  // let index = useParams().moonId ?? "1"
-  // console.log("ID IS : " + index)
-  // console.log("SEARCH PARAMS")
-  // console.log(searchParams)
-  // let [searchParams] = useSearchParams();
-  // let index = parseInt(searchParams.get("index") ?? "1")
-  // let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [moon, setMoon] = useState([])
   let [star, setStar] = useState([])
   let [planet, setPlanet] = useState([])
+
+  // Used for explanations of units of measurement. records which button is pressed
+  const [explanationNum, setExplanationNum] = useState(0);
+  function handleClick (exNum) {
+    setExplanationNum(exNum);
+  }
 
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
         `https://api.homeplanet.me/api/moon?index=${id}`,
-        // `https://homeplanet.me/api/moon?index=${index}`,
-        // `https://homeplanet.me/api/moon?index=${index}`, // TODO: comment this back in
-        // `http://54.172.67.234:8000/api/moon?index=${id}`, // TODO: comment this out
-        // http://54.172.67.234:800//api/all_stars?page=1&per_page=15
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -54,8 +87,6 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://homeplanet.me/api/star?index=${index}`,
-        // `http://54.172.67.234:8000/api/star?${id}`,
         `https://api.homeplanet.me/api/star?index=${id}`,
         { mode: 'cors', }
       );
@@ -77,7 +108,6 @@ function MoonInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        // `https://api.homeplanet.me/api/recommand/moon?moon=${moon_name}`,
         `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
@@ -95,6 +125,9 @@ function MoonInstance(props) {
     getData();
   }, [id]);
 
+  // unit_explanations is a map of all explanations
+  const unit_explanations = fillExplanations();
+
   return (
     <div className="Container">
       <React.Fragment>
@@ -108,18 +141,82 @@ function MoonInstance(props) {
             </Col>
             <Col>
             <hr />
-              <img src={moon.orbit_img ?? moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
+              <img src={moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
               <hr />
             </Col>
             <Row>
-              <Col>
+              <Col align="center">
                 <div class="bodyText">
-                  <p>{" "}<strong>Mass:</strong> {moon.massValue} 10^{moon.massExponent} kg{" "}</p>
-                  <p>{" "}<strong>Density:</strong> {moon.density} 10^n g/km^3{" "}</p>
-                  <p>{" "}<strong>Gravity:</strong> {moon.gravity} m.s^-2{" "}</p>
-                  <p>{" "}<strong>Volume:</strong> {moon.volValue} 10^{moon.volExponent} km^3{" "}</p>
-                  <p>{" "}<strong>Habitable? </strong> {moon.is_habitable ?? "No"}{" "}</p>
-                  <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p>
+                <p>Click on each bolded attribute below to see more information</p>
+                <p onClick={() => handleClick(1)}> 
+                    <strong>Mass:</strong> {moon.massValue ?? "Unknown"} * 10^{moon.massExponent} kg
+                  </p>
+                   {explanationNum === 1 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("mass")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(2)}> 
+                    <strong>Density:</strong> {moon.density ?? "Unknown"} g/cm^3
+                  </p>
+                   {explanationNum === 2 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("density")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(3)}> 
+                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s^2
+                  </p>
+                   {explanationNum === 3 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("gravity")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(4)}> 
+                  <strong>Volume: </strong> 
+                  {moon.volValue != 0 && moon.volValue} 
+                  {moon.volValue == 0 && "Unknown "} 
+                  * 10^{moon.volExponent} km^3
+                  </p>
+                   {explanationNum === 4 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("volume")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(5)}> 
+                  <strong>Habitable? </strong> {moon.is_habitable ?? "No"}
+                  </p>
+                   {explanationNum === 5 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("habitability")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
+                <p onClick={() => handleClick(6)}> 
+                  <strong>Host planet: </strong> {moon.aroundPlanet ?? "Unknown"}
+                  </p>
+                   {explanationNum === 6 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("host_planet")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
+
                 </div>
               </Col>
               <Row>
@@ -131,18 +228,17 @@ function MoonInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Planet This Moon Orbits: </strong>{" "}
+                            <strong> Planet You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* {planet.map((p) => ( */}
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
+                            <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                             <p> {planet.pl_name}</p>
                           </Link>
-                        {/* ))} */}
                       </TableBody>
                     </Table>
                   </TableContainer>
@@ -162,13 +258,12 @@ function MoonInstance(props) {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {/* {star.map((p) => ( */}
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
+                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
                             <p> {star.star_name}</p>
                           </Link>
-                        {/* ))} */}
                       </TableBody>
                     </Table>
                   </TableContainer>

@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Arvo");
+.search-card {
+    height: 450px;
+    width: 225px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+
+.search-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.search-card-mini {
+    height: 350px;
+    width: 225px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+
+.search-card-mini:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.search-action {
+    height: 450px;
+    width: 225px;
+}
+
+.search-button {
+    height:50px;
+    width: 1000px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.searchbar {
+    width: 800px;
+    background-color: white;
+}
+
+.title-wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.center-row {
+    justify-content: center;
+}
+
+.card-content-wrap{
+    margin-top: 32px;
+}
+
+.card-title {
+    font-size: medium;
+    line-height: 85%;
+}
+
+.card-sub {
+    font-family: 'Arvo';
+    font-size: medium;
+}
+
+.companyLogo {
+    height: 150px;
+    width: 225px;
+    line-height:90%;
+}
+
+.cardContent {
+    font-size:14px;
+    line-height:90%;
+}
+
+.bar-box {
+    margin-top: 128px;
+    margin-bottom: 192px;
+}
+
+.last-spacer {
+    margin-bottom: 32px;
+}

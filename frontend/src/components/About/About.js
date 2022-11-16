@@ -4,6 +4,7 @@ import TeamInfo from "./TeamInfo.js"
 import toolInfo from "./ToolInfo.js"
 import APIInfo from "./APIInfo.js"
 import "../../styles/About.css";
+import { Stack } from "@mui/material";
 
 const api_version = "v4"
 const id = "39622546"
@@ -112,11 +113,11 @@ const About = () => {
         
       </Container>
       <h1>Team Members</h1>
-      <Row className="g-3 m-0 justify-content-center" xs="auto" md={5}>
+      <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="0px">
         {teamMembers.map((member) => {
           return (
             <Col key={member.name} as="div">
-              <Card className="bioCard" style={{ width: "16rem" }}>
+              <Card className="bioCard" style={{ width: "15rem" }}>
                 <Card.Img className="bioPic" variant="top" src={member.picture} />
                 <Card.Body>
                   <Card.Title>{member.name}</Card.Title>
@@ -132,7 +133,7 @@ const About = () => {
             </Col>
           );
         })}
-      </Row>
+      </Stack>
 
       <h1>Repository Statistics</h1>
       <Container>
@@ -216,12 +217,6 @@ const About = () => {
                     </Col>
                 </Row>
             </>
-        <Row className="g-3 m-0 justify-content-center" xs="auto">
-          <Card style={{ width: '26em' }}>
-          <h1>Hii</h1>
-          <embed type="text/html" src="http://www.exoplanetkyoto.org/exohtml/TOI-125_cOrbit.html" width="500" height="200"></embed>
-          </Card>
-        </Row>
       </Container>
     </Container>
   );

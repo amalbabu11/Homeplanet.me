@@ -118,3 +118,7 @@ Col {
   white-space: nowrap;
   text-shadow: 0 0 20px black, 0 0 20px black;
 }
+
+.align-center {
+  text-align:center
+}
