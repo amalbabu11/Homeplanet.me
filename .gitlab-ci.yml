@@ -2,7 +2,8 @@ image: node:latest
 
 stages:
     - build
-    - test
+    - test-jest
+    - test-selenium
     - deploy
 
 build_frontend:
@@ -15,7 +16,7 @@ build_frontend:
 
 # Credit: https://gitlab.com/JohnPowow/animalwatch/-/blob/main/.gitlab-ci.yml
 test_jest:
-    stage: test
+    stage: test-jest
     image: node:latest
     script:
         - echo "trying jest tests"
@@ -26,38 +27,12 @@ test_jest:
         - npm install --save-dev babel-jest @babel/core @babel/preset-env
         - npm run test
         
-# Pipeline code for exectuting Selenium tests from group Tuition Ball: https://gitlab.com/vijaykvuyyuru/swe-college-football-project/-/blob/dev/.gitlab-ci.yml
-selenium_tests:
-  stage: test
-  image: python:3.8
-  script:
-    - pip install --upgrade pip
-    - pip install selenium
-
-    # Adding trusting keys and Google Chrome to apt for repositories
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    - sh -c "echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >>   /etc/apt/sources.list"
-
-    # Update apt and install Google chrome and an unzipper to docker
-    - apt-get -q -y update
-    - apt-get install -y google-chrome-stable
-    - apt-get install -yqq unzip
-
-    # Download the webdriver for chrome
-    - wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-
-    # Unzip the Chrome Driver into /usr/local/bin directory
-    - unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-
-    - python frontend/gui_tests/runSeleniumTests.py
-
 # Credit to Univercity.me and AnimalWatch.net
-selenium_tests:
-  stage: test
+selenium_test:
+  stage: test-selenium
   image: python:3.8
   script:
-    # I successfully ran all of the below commands on linux to prepare for selenium (except make selenium-tests)
+    # I successfully ran all of the below commands on linux to prepare for selenium (except make selenium-test)
     - pip install -r ./frontend/gui_tests/requirements.txt
         
     - sudo apt-get update -q -y
@@ -71,7 +46,7 @@ selenium_tests:
     - sudo apt-get update -q -y
     - sudo apt-get install -y google-chrome-stable
 
-    - make selenium-tests
+    - make selenium-test
 
 deploy_frontend:
     stage: deploy
