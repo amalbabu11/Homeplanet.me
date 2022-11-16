@@ -75,14 +75,13 @@ function PlanetList() {
           </form>
 
         </div>
-
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Box >
-            <Grid container spacing={6} columns={20}>
-            {planets.map((c) => (
-                <Grid item xs={5}>
-                  <Card className="planet_card">
-                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index))}>
+        
+      <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {planets.map((c) => (
+            <Card className="planet_card">
+                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
                     <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
                     { <CardContent>
                       <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
@@ -92,11 +91,10 @@ function PlanetList() {
                     </CardContent> }
                   </CardActionArea>
                   </Card>
-                </Grid>
-            ))}
-            </Grid>
-          </Box>
-        </div>
+          ))}
+              </Stack>
+            </div>
+          </Container>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (

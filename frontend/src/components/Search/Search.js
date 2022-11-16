@@ -77,63 +77,69 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
           <div style={{display: 'flex', justifyContent: 'center'}}>
             <Box >
                 <h2>Planet Results</h2>
-              <Grid container spacing={6} columns={20}>
-              {planets.map((c) => (
-                  <Grid item xs={5}>
-                    <Card className="planet_card">
-                    <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
-                      <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
-                      { <CardContent>
-                        <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
-                        <h3 class="cardSub">{c.state}</h3>
-                        <CardContent>
-                        </CardContent>
-                      </CardContent> }
-                    </CardActionArea>
-                    </Card>
-                  </Grid>
-              ))}
-              </Grid>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {planets.map((c) => (
+            <Card className="planet_card">
+                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
+                    <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
+                    { <CardContent>
+                      <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
+                      <h3 class="cardSub">{c.state}</h3>
+                      <CardContent>
+                      </CardContent>
+                    </CardContent> }
+                  </CardActionArea>
+                  </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
             </Box>
           </div>
           <div style={{display: 'flex', justifyContent: 'center'}}>
             <Box >
                 <h2>Moon Results</h2>
-              <Grid container spacing={6} columns={20}>
-              {moons.map((c) => (
-              <Grid item xs={5}>
-                <Card className="moon_card">
-                <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
-                  <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
-                  { <CardContent>
-                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
-                    <h3 class="cardSub">{c.state}</h3>
-                  </CardContent> }
-                </CardActionArea>
-                </Card>
-              </Grid>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {moons.map((c) => (
+            <Card className="moon_card">
+            <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
+              <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
+              { <CardContent>
+                <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
+                <h3 class="cardSub">{c.state}</h3>
+              </CardContent> }
+            </CardActionArea>
+            </Card>
           ))}
-              </Grid>
+              </Stack>
+            </div>
+          </Container>
             </Box>
           </div>
           <div style={{display: 'flex', justifyContent: 'center'}}>
             <Box >
                 <h2>Star Results</h2>
-              <Grid container spacing={6} columns={20}>
-              {stars.map((c) => (  // same thing as: for c in stars
-              <Grid item xs={5}>
-                <Card className="star_card">
-                <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
-                  { <CardContent>
-                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
-                    <h3 class="cardSub">{c.state}</h3>
-                  </CardContent> }
-                </CardActionArea>
-                </Card>
-              </Grid>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {stars.map((c) => (
+              <Card className="star_card">
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
+                <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
+                { <CardContent>
+                  <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
+                  <h3 class="cardSub">{c.state}</h3>
+                </CardContent> }
+              </CardActionArea>
+              </Card>
           ))}
-              </Grid>
+              </Stack>
+            </div>
+          </Container>
             </Box>
           </div>
         </>
