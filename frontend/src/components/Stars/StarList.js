@@ -1,5 +1,5 @@
 import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
-  CardContent, CardHeader, CardMedia, Typography, } from "@mui/material";
+  CardContent, CardHeader, CardMedia, Typography, Table, } from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
@@ -77,12 +77,13 @@ function StarList() {
           </form>
         </div>
 
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Box >
-          <Grid container spacing={6} columns={20}>
-          {stars.map((c) => (  // same thing as: for c in stars
-              <Grid item xs={5}>
-                <Card className="star_card">
+        {/* <div style={{display: 'flex', justifyContent: 'center'}}> */}
+          {/* <Box > */}
+          {/* <Grid container spacing={6} columns={20}> */}
+          {/* {stars.map((c) => (  // same thing as: for c in stars */}
+              {/* // <Grid item xs={5}> */}
+              {/* <Table> */}
+                {/* <Card className="star_card">
                 <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
                   { <CardContent>
@@ -90,12 +91,31 @@ function StarList() {
                     <h3 class="cardSub">{c.state}</h3>
                   </CardContent> }
                 </CardActionArea>
-                </Card>
-              </Grid>
+                </Card> */}
+                {/* </Table>/ */}
+              {/* // </Grid> */}
+          {/* ))} */}
+          {/* </Grid>/ */}
+          {/* </Box> */}
+        {/* </div> */}
+      <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {stars.map((c) => (
+              <Card className="star_card">
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
+                <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
+                { <CardContent>
+                  <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
+                  <h3 class="cardSub">{c.state}</h3>
+                </CardContent> }
+              </CardActionArea>
+              </Card>
           ))}
-          </Grid>
-          </Box>
-        </div>
+              </Stack>
+            </div>
+          </Container>
+
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (

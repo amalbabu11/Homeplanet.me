@@ -78,7 +78,7 @@ function MoonList() {
         </div>
       {/* End Moon Search implementation, start Moon List implmentation */}
 
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        {/* <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
           <Grid container spacing={6} columns={20}>
           {moons.map((c) => (
@@ -96,7 +96,24 @@ function MoonList() {
           ))}
           </Grid>
           </Box>
-        </div>
+        </div> */}
+      <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+          {moons.map((c) => (
+            <Card className="moon_card">
+            <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
+              <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
+              { <CardContent>
+                <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
+                <h3 class="cardSub">{c.state}</h3>
+              </CardContent> }
+            </CardActionArea>
+            </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
