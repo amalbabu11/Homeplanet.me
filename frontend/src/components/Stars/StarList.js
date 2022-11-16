@@ -82,7 +82,7 @@ function StarList() {
         <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {stars.map((c) => (
               <Card className="star_card">
-              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
                 <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
                 { <CardContent>
                   <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
