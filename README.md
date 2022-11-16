@@ -17,7 +17,7 @@
 
 **GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
 
-**Git SHA:** c0a5599b83dbe6fb54519f47b1aabdbf706db11f
+**Git SHA:** 45ad2f8d5632ad46b7852d283db86f40e1694a1d
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
