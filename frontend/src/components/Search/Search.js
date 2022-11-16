@@ -70,7 +70,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                     setSearchVal(e.target.value);
                   }}
                   label="Search"
-                  placeholder="Example: Earth"
+                  placeholder="Example: Phobos"
                   size="small"/>
             </form>
           </div>  
