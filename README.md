@@ -5,10 +5,10 @@
 **Names of the team members:**
 | Name | GitLabID | UTEID |
 | ------ | ------ | ------ |
-| Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
-| Summer Ely (Phase III Leader) | [spe358](https://gitlab.com/spe358) | spe358 |
-| Jinjie Liu (Phase II Leader) | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
 | Nathan Sussman (Phase I Leader) | [NathanSuss](https://gitlab.com/NathanSuss) | nes924 |
+| Jinjie Liu (Phase II Leader) | [JinjieLiu](https://gitlab.com/JinjieLiu) | jl82669 |
+| Summer Ely (Phase III Leader) | [spe358](https://gitlab.com/spe358) | spe358 |
+| Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
 | Megan Zhao | [banye0913](https://gitlab.com/banye0913) | dz4782 | 
 
 **Website URL:** homeplanet.me
