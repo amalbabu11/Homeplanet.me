@@ -78,7 +78,7 @@ function PlanetList() {
         
       <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {planets.map((c) => (
             <Card className="planet_card">
                   <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>

@@ -99,7 +99,7 @@ function MoonList() {
         </div> */}
       <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {moons.map((c) => (
             <Card className="moon_card">
             <CardActionArea component={RouterLink} to={"/moon/" + c.index}>

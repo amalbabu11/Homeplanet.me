@@ -79,7 +79,7 @@ function StarList() {
 
       <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {stars.map((c) => (
               <Card className="star_card">
               <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>

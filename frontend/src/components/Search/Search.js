@@ -79,7 +79,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                 <h2>Planet Results</h2>
                 <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {planets.map((c) => (
             <Card className="planet_card">
                   <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
@@ -103,7 +103,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                 <h2>Moon Results</h2>
                 <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {moons.map((c) => (
             <Card className="moon_card">
             <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
@@ -125,7 +125,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
                 <h2>Star Results</h2>
                 <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {stars.map((c) => (
               <Card className="star_card">
               <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
