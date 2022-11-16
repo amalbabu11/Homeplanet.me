@@ -10,7 +10,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
-
+import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
@@ -145,7 +147,7 @@ function MoonInstance(props) {
             <Row>
               <Col align="center">
                 <div class="bodyText">
-
+                <p>Click on each bolded attribute below to see more information</p>
                 <p onClick={() => handleClick(1)}> 
                     <strong>Mass:</strong> {moon.massValue ?? "Unknown"} * 10^{moon.massExponent} kg
                   </p>
@@ -226,7 +228,7 @@ function MoonInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Planet This Moon Orbits: </strong>{" "}
+                            <strong> Planet You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -234,6 +236,7 @@ function MoonInstance(props) {
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
+                            <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                             <p> {planet.pl_name}</p>
                           </Link>
                       </TableBody>
@@ -258,6 +261,7 @@ function MoonInstance(props) {
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
+                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
                             <p> {star.star_name}</p>
                           </Link>
                       </TableBody>

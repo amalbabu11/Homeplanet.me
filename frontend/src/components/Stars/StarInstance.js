@@ -12,6 +12,9 @@ import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 import redStar from "../../assets/stars/red-star.jpeg"
 import blueStar from "../../assets/stars/blue-star.jpeg"
 import yellowStar from "../../assets/stars/yellow-star.png"
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
 
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
@@ -171,7 +174,7 @@ function StarInstance(props) {
                <Col align="center">
                  <div class="bodyText">
 
-
+                 <p>Click on each bolded attribute below to see more information</p>
                  <p onClick={() => handleClick(1)}> 
                  <strong>Mass: </strong> {star.st_mass ?? "Unknown"} Suns
                   </p>
@@ -259,6 +262,7 @@ function StarInstance(props) {
                            <Link
                              class="link"
                              to={"/moon/" + moon.index}>
+                              <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
                              <p> {moon.englishName}</p>
                            </Link>
                          {/* ))} */}
@@ -285,6 +289,7 @@ function StarInstance(props) {
                            <Link
                              class="link"
                              to={"/planet/" + planet.index}>
+                            <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                              <p> {planet.pl_name}</p>
                            </Link>
                          {/* ))} */}
