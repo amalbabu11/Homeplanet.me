@@ -61,7 +61,7 @@ const teamInfo = [
 		username: "banye0913",
 		email: "zhaoduoduo0913@utexas.edu",
 		picture: megan,
-		git_key: "Megan Zhao",
+		git_key: "Duoduo Zhao",
 		role: "Frontend",
 		bio:
 			"Hi! My Name is Duoduo Zhao. You can call me Megan. I'm a senior at UTCS. I was born and raised in China. I went to Michigan for high school and here I am in Austin for college. I have the best puppy in the world, and her name is Mochi. I love bartending and working out in my free time.",

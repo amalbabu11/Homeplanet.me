@@ -8,10 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 // import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import { CardActionArea, CardContent } from "@mui/material";
-
+import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
 
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
@@ -230,6 +232,7 @@ function PlanetInstance(props) {
                           <Link
                             class="link"
                             to={"/moon/" + moon.index}>
+                              <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
                             <p> {moon.englishName}</p>
                           </Link>
                       </TableBody>
@@ -246,7 +249,7 @@ function PlanetInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Stars You Might Be Interested In: </strong>{" "}
+                            <strong> Star You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -254,6 +257,7 @@ function PlanetInstance(props) {
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
+                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
                             <p> {star.star_name}</p>
                           </Link>
                       </TableBody>
