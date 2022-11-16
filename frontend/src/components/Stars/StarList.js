@@ -72,32 +72,11 @@ function StarList() {
                   setSearchVal(e.target.value);
                 }}
                 label="Search for a Star"
-                placeholder="Example: Sun"
+                placeholder="Example: alf cen A"
                 size="small"/>
           </form>
         </div>
 
-        {/* <div style={{display: 'flex', justifyContent: 'center'}}> */}
-          {/* <Box > */}
-          {/* <Grid container spacing={6} columns={20}> */}
-          {/* {stars.map((c) => (  // same thing as: for c in stars */}
-              {/* // <Grid item xs={5}> */}
-              {/* <Table> */}
-                {/* <Card className="star_card">
-                <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
-                  { <CardContent>
-                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
-                    <h3 class="cardSub">{c.state}</h3>
-                  </CardContent> }
-                </CardActionArea>
-                </Card> */}
-                {/* </Table>/ */}
-              {/* // </Grid> */}
-          {/* ))} */}
-          {/* </Grid>/ */}
-          {/* </Box> */}
-        {/* </div> */}
       <Container>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="40px">

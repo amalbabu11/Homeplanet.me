@@ -70,7 +70,7 @@ function PlanetList() {
                   setSearchVal(e.target.value);
                 }}
                 label="Search for a Planet"
-                placeholder="Example: Earth"
+                placeholder="Example: TOI-1749 c"
                 size="small"/>
           </form>
 
