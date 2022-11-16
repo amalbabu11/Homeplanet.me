@@ -59,43 +59,37 @@
 ## Phase I Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
-| Amal Babu | 15 hours | 25 hours|
-| Summer Ely | 20 hours | 21 hours |
-| Jinjie Liu | 15 hours | 25 hours |
-| Nathan Sussman | 25 hours| 27 hours |
-| Megan Zhao | 10 hours | 15 hours |
-
-## Comments
-Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
-
-Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
-
-Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
-
-## Phase I Time Log
-| Name | Estimated Time | Actual Time |
-| ------ | ------ | ------ |
 | Amal Babu | 10 hours | 10 hours|
 | Summer Ely | 15 hours | 18 hours |
 | Jinjie Liu | 10 hours | 10 hours |
 | Nathan Sussman | 12 hours| 16 hours |
 | Megan Zhao | 10 hours | 6 hours |
 
-
 ## Phase II Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
 | Amal Babu | 15 hours | 25 hours|
-| Summer Ely | 20 hours | 21 hours |
+| Summer Ely | 20 hours | 29 hours |
 | Jinjie Liu | 15 hours | 25 hours |
 | Nathan Sussman | 25 hours| 27 hours |
 | Megan Zhao | 10 hours | 15 hours |
 
+## Phase III Time Log
+| Name | Estimated Time | Actual Time |
+| ------ | ------ | ------ |
+| Amal Babu | 10 hours | 15 hours|
+| Summer Ely | 15 hours | 25 hours |
+| Jinjie Liu | 10 hours | 15 hours |
+| Nathan Sussman | 15 hours| 25 hours |
+| Megan Zhao | 10 hours | 10 hours |
+
 ## Comments
-Overall file structure, Cards components, and List classes adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
+Overall file structure, List classes, Sorting, and Searching adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
 
 Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
 
 Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
 
 Dockerfile credit to [FindAHome](https://gitlab.com/aghayalod/find-a-home/-/blob/main/findahome-app/Dockerfile)
+
+Jest and Selenium tests credit to [AnimalWatch](https://gitlab.com/JohnPowow/animalwatch/)
