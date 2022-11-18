@@ -11,6 +11,7 @@ function PlanetSort() {
           <Dropdown.Item href="#/sort-pl-masse">Mass</Dropdown.Item>
           <Dropdown.Item href="#/sort-pl-rade">Radius</Dropdown.Item>
           <Dropdown.Item href="#/sort-pl-dens">Density</Dropdown.Item>
+          <Dropdown.Item href="#/sort-pl-orbper">Orbital Period</Dropdown.Item>
           <Dropdown.Item href="#/sort-pl-eqt">Equilibrium Temperature</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
