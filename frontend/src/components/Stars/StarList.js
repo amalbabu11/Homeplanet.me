@@ -1,13 +1,17 @@
 import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
-  CardContent, CardHeader, CardMedia, Typography, } from "@mui/material";
+  CardContent, CardHeader, CardMedia, Typography, Table, } from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+// used for Star search
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+import Highlighter from "react-highlight-words";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
-
 
 function StarList() {
   let [searchParams] = useSearchParams();
@@ -16,10 +20,26 @@ function StarList() {
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [stars, setStars] = useState([])
   let [numInstances, setInstances] = useState(0)
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+  console.log("parser.href = " + parser.href);
+  console.log("parser.hash = " + parser.hash);
+  var sort_val = parser.hash.slice(2);
+  console.log("sort param = " + sort_val)
+  const [search_val, setSearchVal] = useState("");
+
   useEffect(() => {
+    // credit to AnimalWatch.me
+    var api_url = `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`;
+    if (sort_val !== "" && sort_val !== null){
+      api_url += `&` + sort_val + `=true`;
+    }
+    if (search_val !== "" && search_val !== null){
+      api_url += `&search=` + search_val;
+    }
     const getData = async () => {
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`,
+        api_url,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -35,30 +55,46 @@ function StarList() {
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page]);
+  }, [page, per_page, sort_val, search_val]);
   let total_pages = Math.ceil(numInstances/per_page)
+
+  // const [searchVal, setSearchVal] = useState("");
   return (
     <Container >
       <>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <Box >
-          <Grid container spacing={6} columns={20}>
-          {stars.map((c) => (  // same thing as: for c in stars
-              <Grid item xs={5}>
-                <Card className="star_card">
-                <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
-                  <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
-                  { <CardContent>
-                    <h1 class="cardTitle"> {c.star_name} </h1>
-                    <h3 class="cardSub">{c.state}</h3>
-                  </CardContent> }
-                </CardActionArea>
-                </Card>
-              </Grid>
-          ))}
-          </Grid>
-          </Box>
+      {/* Begin Star Search Implmentation */}
+      <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20}}>
+          <form>
+          <TextField
+              id="search-bar"
+              className="text"
+              onInput={(e) => {
+                  setSearchVal(e.target.value);
+                }}
+                label="Search for a Star"
+                placeholder="Example: alf cen A"
+                size="small"/>
+          </form>
         </div>
+
+      <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+          {stars.map((c) => (
+              <Card className="star_card">
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
+                <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
+                { <CardContent>
+                  <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
+                  <h3 class="cardSub">{c.state}</h3>
+                </CardContent> }
+              </CardActionArea>
+              </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
+
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (

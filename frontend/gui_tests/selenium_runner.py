@@ -15,6 +15,8 @@ import sys
 PATH = "./frontend/gui_tests/chromedriver.exe"
 # URL = "https://main.d2etp2sj08ud8d.amplifyapp.com"
 
+
+
 class SeleniumTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -27,7 +29,7 @@ class SeleniumTests(unittest.TestCase):
         # self.driver = webdriver.Chrome(
         #     service=Service(ChromeDriverManager().install()), options=testoptions
         # )
-        cls.link = "https://main.d2etp2sj08ud8d.amplifyapp.com/Planets"
+        cls.link = "https://homeplanet.me/"
         ops = Options()
         ops.add_argument("--headless")
         ops.add_argument("--disable-gpu")
@@ -48,40 +50,94 @@ class SeleniumTests(unittest.TestCase):
     def waitForLoad(self):
         try:
             a = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "Mercury"))
+                EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "HomePlanet"))
             )
         except Exception as e:
             self.assertEqual(True, False)
-        
-    def testPlanetsPagetLoads(self):
-        assert 'Planet' in self.driver.page_source
-    
-    def testPlanetsPageHasPlanet1(self):
-        assert 'Mercury' in self.driver.page_source
 
-    def testPlanetsPageHasPlanet2(self):
-        assert 'Earth' in self.driver.page_source
-    
-    def testPlanetsPageHasPlanet3(self):
-        assert 'Neptune' in self.driver.page_source
 
-    def testPlanetsPageHasRadiusAttribute(self):
-        assert 'Radius' in self.driver.page_source
-    
-    def testPlanetsPageHasMassAttribute(self):
-        assert 'Mass' in self.driver.page_source
-    
-    def testPlanetsPageHasTempAttribute(self):
-        assert 'Temperature' in self.driver.page_source
-    
-    def testPlanetsPageHasDistanceFromEarthAttribute(self):
-        assert 'Distance From Earth' in self.driver.page_source
-    
-    def testPlanetsPageHasSizeUnits(self):
-        assert 'Jupiters' in self.driver.page_source
-    
-    def testPlanetsPageHasTempUnits(self):
-        assert 'Kelvin' in self.driver.page_source
+    # Test 1: test successful loading of the page
+    def testTitle(self):
+        title = self.driver.title
+        self.assertEqual(title, "HomePlanet")
+
+    # Test 2: test Planets URL
+    def testPlanetsURL(self):
+        element = self.driver.find_elements(By.CLASS_NAME, "nav-link")[0]
+        newURL = element.get_attribute('href')
+
+        self.assertEqual(newURL, "https://www.homeplanet.me/Planets")
+
+    # Test 3: test Moons Page URL
+    def testMoonsURL(self):
+        element = self.driver.find_elements(By.CLASS_NAME, "nav-link")[1]
+        newURL = element.get_attribute('href')
+
+        self.assertEqual(newURL, "https://www.homeplanet.me/Moons")
+
+    # Test 4: test Stars Page URL
+    def testStarsURL(self):
+        element = self.driver.find_elements(By.CLASS_NAME, "nav-link")[2]
+        newURL = element.get_attribute('href')
+
+        self.assertEqual(newURL, "https://www.homeplanet.me/Stars")
+
+    # Test 5: test that the Planets page loads successfully
+    def testPlanetsLoading(self):
+        self.driver.get("https://www.homeplanet.me/Planets")
+        element = self.driver.find_element(By.TAG_NAME, "h1")
+
+        self.assertEqual(element.text, "Planets")
+        self.driver.get(self.link)
+
+    # Test 6: test that the Moons page loads successfully
+    def testMoonsLoading(self):
+        self.driver.get("https://www.homeplanet.me/Moons")
+        element = self.driver.find_element(By.TAG_NAME, "h1")
+
+        self.assertEqual(element.text, "Moons")
+        self.driver.get(self.link)
+
+    # Test 7: test that the Moons page loads successfully
+    def testStarsLoading(self):
+        self.driver.get("https://www.homeplanet.me/Stars")
+        element = self.driver.find_element(By.TAG_NAME, "h1")
+
+        self.assertEqual(element.text, "Stars")
+        self.driver.get(self.link)
+
+    # Test 8: test that the About Us page loads successfully
+    def testAboutUsLoading(self):
+        self.driver.get("https://www.homeplanet.me/About")
+        element = self.driver.find_element(By.TAG_NAME, "h1")
+
+        self.assertEqual(element.text, "About Us")
+        self.driver.get(self.link)
+
+    # Test 9: test that the Planet page has a Sort Button
+    def testPlanetHasSort(self):
+        self.driver.get("https://www.homeplanet.me/Planets")
+        element = self.driver.find_element(By.TAG_NAME, "h2")
+
+        self.assertEqual(element.text, "Sort By")
+        self.driver.get(self.link)
+
+    # Test 10: test that the Moon page has a Sort Button
+    def testMoonHasSort(self):
+        self.driver.get("https://www.homeplanet.me/Moons")
+        element = self.driver.find_element(By.TAG_NAME, "h2")
+
+        self.assertEqual(element.text, "Sort By")
+        self.driver.get(self.link)
+
+    # Test 11: test that the Stars page has a Sort Button
+    def testStarHasSort(self):
+        self.driver.get("https://www.homeplanet.me/Stars")
+        element = self.driver.find_element(By.TAG_NAME, "h2")
+
+        self.assertEqual(element.text, "Sort By")
+        self.driver.get(self.link)
+
 
 
 if __name__ == "__main__":
