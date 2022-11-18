@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 // import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+import defaultPlanetOrbit from "../../assets/planets/defaultPlanetOrbit.png"
 import { CardActionArea, CardContent } from "@mui/material";
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
