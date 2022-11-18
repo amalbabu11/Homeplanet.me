@@ -147,10 +147,10 @@ function PlanetInstance(props) {
               <hr />
             </Col>
             <Col>
-            <hr />
-              <embed type="text/html" src={planet.orbit_img} width="500" height="200"></embed>
               <hr />
-              </Col>
+              <img src={planet.orbit_img ? `//images.weserv.nl/?url=${planet.orbit_img}` : defaultPlanetOrbit} alt="planet" class="planet-orbit" width="350"/>
+              <hr />
+            </Col>
             <Row>
               <Col align="center">
                 <div class="bodyText">

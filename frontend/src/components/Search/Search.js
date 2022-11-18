@@ -82,7 +82,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
         <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {planets.map((c) => (
             <Card className="planet_card">
-                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index) + 1)}>
+                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index))}>
                     <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
                     { <CardContent>
                       <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
@@ -128,7 +128,7 @@ import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
         <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
           {stars.map((c) => (
               <Card className="star_card">
-              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index) + 1)}>
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
                 <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
                 { <CardContent>
                   <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>

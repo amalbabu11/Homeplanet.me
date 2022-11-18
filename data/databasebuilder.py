@@ -102,7 +102,6 @@ def fillStarTable():
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
     data.index += 1
-
     with open("images.json", "r") as f:
         starImages = json.load(f)
     
