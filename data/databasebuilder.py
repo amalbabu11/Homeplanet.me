@@ -62,7 +62,7 @@ def fillPlanetTable():
     dataPath = "../data/exoplanet_data.csv"
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
-
+    data.index += 1
     print(data.head())
 
     data.to_sql(
@@ -101,7 +101,7 @@ def fillStarTable():
     dataPath = "../data/exostar_data.csv"
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
-
+    data.index += 1
     with open("images.json", "r") as f:
         starImages = json.load(f)
     
