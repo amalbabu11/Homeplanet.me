@@ -45,6 +45,10 @@ function fillExplanations() {
   more at: https://en.wikipedia.org/wiki/Planetary_equilibrium_temperature#:\
   ~:text=Thermal%20equilibrium%20exists%20when%20the,\
   is%20the%20planetary%20equilibrium%20temperature.");
+
+  unit_explanations.set("orb_per", "Orbital period is the amount of time a given \
+  astronomical object takes to complete one orbit around another object, in this case, \
+  the planet around its star.");
   
   unit_explanations.set("hostname", "The hostname is just the celestial body \
   (planet, star, moon, etc) that THIS celestial body orbits around.");
@@ -202,7 +206,7 @@ function PlanetInstance(props) {
                       </TableCell>
                     </TableContainer>
                   </div>)}
-                  
+
                   <p onClick={() => handleClick(5)}> 
                   <strong>Hostname: </strong> {planet.hostname ?? "Unknown"}
                   </p>
@@ -214,6 +218,16 @@ function PlanetInstance(props) {
                     </TableContainer>
                   </div>)}
 
+                  <p onClick={() => handleClick(6)}> 
+                  <strong>Orbital Period: </strong> {planet.pl_orbper ?? "Unknown"} Earth Years
+                  </p>
+                   {explanationNum === 6 && (<div>
+                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                      <TableCell>
+                        <p>{unit_explanations.get("orb_per")}</p>
+                      </TableCell>
+                    </TableContainer>
+                  </div>)}
                 </div>
               </Col>
               <Row>
