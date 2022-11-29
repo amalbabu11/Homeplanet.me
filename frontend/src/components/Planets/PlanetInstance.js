@@ -133,9 +133,6 @@ function PlanetInstance(props) {
       getData();
     }, [id]);
 
-    // // let planet_img = `//images.weserv.nl/?url=${planet.img}`
-    // <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
-    // let planet_img = 
 
   // unit_explanations is a map of all explanations
   const unit_explanations = fillExplanations();
