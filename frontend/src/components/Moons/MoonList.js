@@ -71,7 +71,7 @@ function MoonList() {
                   setSearchVal(e.target.value);
                 }}
                 label="Search for a moon"
-                placeholder="Example: Megaclite"
+                placeholder="Example: Phobos"
                 size="small"/>
           </form>
 

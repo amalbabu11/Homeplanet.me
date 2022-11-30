@@ -216,7 +216,7 @@ function PlanetInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Moons That Orbit This Planet: </strong>{" "}
+                            <strong> Moons You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
