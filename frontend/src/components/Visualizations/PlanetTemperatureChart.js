@@ -101,13 +101,14 @@ function PlanetTemperatureChart() {
             {/* <h4>Race Demographics within Texas</h4> */}
             {/* <OurPieChart data={pieData}/> */}
             {/* <h2><br></br></h2> */}
-            <h5>Number of Planets in each Temperature range.</h5>
+            <h4>How many planets have an average temperature that is suitable for humans?</h4>
+            <BarChart data={barData}/>
             <p>Each planet's equilibrium temperature is rounded to the nearest hundred Kelvin and 
                 placed in a bucket. 
             </p>
             <p>The blue bars show the planets that would be too cold for humans,
                 the green is the number of planets within the habitable range, and the red is too hot.</p>
-            <BarChart data={barData}/>
+            
             {/* <h2><br></br></h2> */}
             {/* <h4>Election Results based on District Population and Turnout</h4> */}
             {/* <OurScatterChart data={scatterData}/> */}
