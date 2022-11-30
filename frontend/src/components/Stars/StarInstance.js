@@ -135,7 +135,7 @@ function StarInstance(props) {
           <Row className="Card">
              <Col>
                <hr />
-               <img src={star.img} alt="star" class="star-img" width="350"/>
+               <img src={star.img ?? defaultStarImg} alt="star" class="star-img" width="350"/>
               <hr />
              </Col>
              <Col>
