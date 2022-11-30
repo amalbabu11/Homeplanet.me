@@ -24,6 +24,7 @@ function OurNavbar() {
             <Nav.Link href="/Stars" style={{color: 'white'}} className="nav-link">Stars</Nav.Link>
           </Nav>
           <Nav><Nav.Link href="/Visualizations" style={{color: 'white'}} className="nav-link">Our Visualizations</Nav.Link></Nav>
+          <Nav><Nav.Link href="/ProviderVisualizations" style={{color: 'white'}} className="nav-link">Provider Visualizations</Nav.Link></Nav>
           <Nav><Nav.Link href="/Search" style={{color: 'white'}} className="nav-link">Search</Nav.Link></Nav>
           <Nav><Nav.Link href="/About" style={{color: 'white'}} className="nav-link">About</Nav.Link></Nav>
         </Navbar.Collapse>
