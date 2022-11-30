@@ -13,6 +13,12 @@ import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+import EarthImg from "../../assets/planets/EarthImg.jpeg"
+import MarsImg from "../../assets/planets/MarsImg.jpeg"
+import NeptuneImg from "../../assets/planets/Neptune.jpeg"
+import UranusImg from "../../assets/planets/UranusImg.jpeg"
+import JupiterImg from "../../assets/planets/JupiterImg.jpeg"
+
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
@@ -127,6 +133,19 @@ function MoonInstance(props) {
 
   // unit_explanations is a map of all explanations
   const unit_explanations = fillExplanations();
+  // console.log("star.aroundplanet = " + )
+  let planet_img = "";
+  if (moon.aroundPlanet === "terre"){
+    planet_img = EarthImg;
+  } else if (moon.aroundPlanet === "jupiter"){
+    planet_img = JupiterImg;
+  } else if (moon.aroundPlanet === "uranus"){
+    planet_img = UranusImg;
+  } else if (moon.aroundPlanet === "mars"){
+    planet_img = MarsImg;
+  } else {
+    planet_img = NeptuneImg;
+  }
 
   return (
     <div className="Container">
@@ -139,11 +158,7 @@ function MoonInstance(props) {
               <img src={moon.img ?? defaultMoonImg} alt="moon" class="moon-img" width="350"/>
               <hr />
             </Col>
-            <Col>
-            <hr />
-              <img src={moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
-              <hr />
-            </Col>
+            
             <Row>
               <Col align="center">
                 <div class="bodyText">
@@ -183,8 +198,8 @@ function MoonInstance(props) {
 
                 <p onClick={() => handleClick(4)}> 
                   <strong>Volume: </strong> 
-                  {moon.volValue != 0 && moon.volValue} 
-                  {moon.volValue == 0 && "Unknown "} 
+                  {moon.volValue !== 0 && moon.volValue} 
+                  {moon.volValue === 0 && "Unknown "} 
                   * 10^{moon.volExponent} km^3
                   </p>
                    {explanationNum === 4 && (<div>
@@ -219,6 +234,13 @@ function MoonInstance(props) {
 
                 </div>
               </Col>
+              <Row>
+              <Col>
+            <hr />
+              <img src={planet_img} alt="orbit" class="moon-orbit-img" width="350"/>
+              <hr />
+              </Col>
+            </Row>
               <Row>
               <Col>
                 <div class="model-links">
