@@ -71,6 +71,7 @@ function PlanetInstance(props) {
     setExplanationNum(exNum);
   }
 
+  // fetch data about this planet
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
@@ -91,48 +92,27 @@ function PlanetInstance(props) {
     getData();
   }, [id]);
 
-    // Fetching the reccomended moon based on this planet
-    useEffect(() => {
-      const getData = async () => {
-        let response = await fetch (
-          `https://api.homeplanet.me/api/moon?index=${id}`,
-          { mode: 'cors', }
-        );
-        console.log("RESPONSE")
-        console.log(response)
-        console.log(response.text)
-        console.log(response.status)
-        console.log(JSON.stringify(response))
-        let body = []
-        body = await response.json()
-        console.log("BODY")
-        console.log(JSON.stringify(body))
-        setMoon(body[0]) 
-      };
-      getData();
-    }, [id]);
-
-    // Fetching the reccomended star based on this planet
-    useEffect(() => {
-      const getData = async () => {
-        let response = await fetch (
-          `https://api.homeplanet.me/api/star?index=${id}`,
-          { mode: 'cors', }
-        );
-        console.log("RESPONSE")
-        console.log(response)
-        console.log(response.text)
-        console.log(response.status)
-        console.log(JSON.stringify(response))
-        let body = []
-        body = await response.json()
-        console.log("BODY")
-        console.log(JSON.stringify(body))
-        setStar(body[0]) 
-      };
-      getData();
-    }, [id]);
-
+  // fetch recommended moon and star based on this planet
+  useEffect(() => {
+    const getData = async () => {
+      let response = await fetch (
+        `https://api.homeplanet.me/api/recommand/planet?planet=${id}`, 
+        { mode: 'cors', }
+      );
+      console.log("RESPONSE");
+      console.log(response);
+      console.log(response.text);
+      console.log(response.status);
+      console.log(JSON.stringify(response));
+      let body = [];
+      body = await response.json();
+      console.log("BODY");
+      console.log(JSON.stringify(body));
+      setStar(body["star"][0]);
+      setMoon(body["moon"][0]);
+    };
+    getData();
+  }, [id]);
 
   // unit_explanations is a map of all explanations
   const unit_explanations = fillExplanations();
