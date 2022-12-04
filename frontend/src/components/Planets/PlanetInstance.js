@@ -18,7 +18,6 @@ import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
 
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
-  // TODO: In the future, might be able to export map to be shared by all <...>Instance.js files
   const unit_explanations = new Map();
   
   unit_explanations.set("mass", "Earth masses are how many times you would need \

@@ -1,6 +1,6 @@
 // Credit: https://gitlab.com/dandom25/electrends/
 
-import BarChart from "./BarChart";
+import BarChart from "./OurBarChart";
 import React, { useEffect, useState } from "react";
 
 function PlanetTemperatureChart() {
@@ -58,30 +58,22 @@ function PlanetTemperatureChart() {
             }
             else if(planet.pl_eqt < 312){
                 data[3].NumPlanets++;
-                // data[2].College += district.college_grad;
                 ++cnts[3];
             } else if(planet.pl_eqt < 400){
                 data[4].NumPlanets++;
                 ++cnts[4];
             } else if(planet.pl_eqt < 500){
                 data[5].NumPlanets++;
-                // data[3].Highschool += district.hs_grad;
-                // data[3].College += district.college_grad;
                 ++cnts[5];
             } else if (planet.pl_eqt < 600){
                 data[6].NumPlanets++;
                 ++cnts[6];
             } else if (planet.pl_eqt !== null && planet.pl_eqt !== 0){
-                // console.log("Greater than 600: pl_eqt = " + planet.pl_eqt);
                 data[7].NumPlanets++;
                 ++cnts[7];
             }
         });
 
-        // data.forEach((, index) => {
-        //     category.College /= cnts[index];
-        //     category.Highschool /= cnts[index];
-        // });
         console.log("Planet temp data array");
         console.log(data);
         return data;
@@ -89,11 +81,6 @@ function PlanetTemperatureChart() {
 
     return(
         <div>
-            {/* <h1>Our Visualizations</h1> */}
-            {/* <h1><br></br></h1> */}
-            {/* <h4>Race Demographics within Texas</h4> */}
-            {/* <OurPieChart data={pieData}/> */}
-            {/* <h2><br></br></h2> */}
             <h4>How many planets have an average temperature that is suitable for humans?</h4>
             <BarChart data={barData}/>
             <p>Each planet's equilibrium temperature is rounded to the nearest hundred Kelvin and 
@@ -102,10 +89,6 @@ function PlanetTemperatureChart() {
             <p>The blue bars show the planets that would be too cold for humans,
                 the green is the number of planets within the habitable range, and the red is too hot.</p>
             
-            {/* <h2><br></br></h2> */}
-            {/* <h4>Election Results based on District Population and Turnout</h4> */}
-            {/* <OurScatterChart data={scatterData}/> */}
-            {/* <h2><br></br></h2> */}
         </div>
     );
 
