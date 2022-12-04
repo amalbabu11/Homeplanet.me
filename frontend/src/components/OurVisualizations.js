@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 // import CompanyEmissionsChart from "./Visualizations/CompanyEmissionsChart";
 // import FacilityEmissionsChart from "./Visualizations/FacilityEmissionsChart";
 import PlanetTemperatureChart from "./Visualizations/PlanetTemperatureChart";
+import MoonSizeChart from "./Visualizations/MoonSizeChart";
 import { Stack } from "@mui/material"
 // import "../styles/Visualizations.css"
 
@@ -15,6 +16,11 @@ function Visualizations() {
       <Stack>
       <h3 className="wrapperTitle">Planet Temperatures</h3>
       <PlanetTemperatureChart />
+      </Stack>
+
+      <Stack>
+      <h3 className="wrapperTitle">Moon Sizes</h3>
+      <MoonSizeChart />
       </Stack>
 
     </Container>

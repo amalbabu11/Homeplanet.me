@@ -24,7 +24,7 @@ function fillExplanations() {
   unit_explanations.set("mass", "Earth masses are how many times you would need \
   to multiply the mass of the Earth in order to reach the mass of this \
   planet. One Earth mass \
-  is: 5.972 x 10^24 kg according to https://en.wikipedia.org/wiki/Earth");
+  is: 5.972 x 10^²⁴ kg according to https://en.wikipedia.org/wiki/Earth");
 
   unit_explanations.set("radius", "Earth radiuses are how many times you would \
   need to multiply the radius of the Earth in order to reach the radius of \
@@ -216,7 +216,7 @@ function PlanetInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Moons You Might Be Interested In: </strong>{" "}
+                            <strong> Moon With The Same Percentile Mass: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -241,7 +241,7 @@ function PlanetInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Star You Might Be Interested In: </strong>{" "}
+                            <strong> Star This Planet Orbits: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>

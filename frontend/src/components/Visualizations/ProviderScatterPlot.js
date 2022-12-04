@@ -16,8 +16,8 @@ function OurScatterChart(props) {
             <YAxis dataKey="y" type="number" name="Number of Complaints" domain={[0, 100]} label={{ value: 'Complaints', angle: -90, position: 'insideLeft' }} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
             <Legend />
-            <Scatter name="Recalled" data={props.data[0]} fill="#0015bc" />
-            <Scatter name="Not Recalled" data={props.data[1]} fill="#e9141d" />
+            <Scatter name="Recalled" data={props.data[0]} fill= "#e9141d"/>
+            <Scatter name="Not Recalled" data={props.data[1]} fill="#0015bc" />
         </ScatterChart></Row>
     );
 

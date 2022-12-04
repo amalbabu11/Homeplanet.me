@@ -4,7 +4,7 @@ import Home from "./components/Splash/Home.js";
 import Moons from "./components/Moons.js";
 import Planets from "./components/Planets.js";
 import Stars from "./components/Stars.js";
-import Visualizations from "./components/Visualizations.js";
+import Visualizations from "./components/OurVisualizations.js";
 import ProviderVisualizations from "./components/ProviderVisualizations.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";

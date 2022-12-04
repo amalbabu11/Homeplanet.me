@@ -46,7 +46,7 @@ function fillExplanations() {
   
   unit_explanations.set("gravity", "Surface gravity is very similar to other \
   explanations of gravity. However, instead of measureing in \
-  meters/(seconds)^2, it is measured in (centimeters * grams)/(seconds)^2. \
+  meters/(seconds)², it is measured in (centimeters * grams)/(seconds)². \
   Either way, surface gravity is a measure of the acceleration downwards that \
   an object would experience at the surface of the star. For more \
   information see: https://en.wikipedia.org/wiki/\
@@ -226,7 +226,7 @@ function StarInstance(props) {
                          <TableRow>
                            <TableCell>
                              {" "}
-                             <strong> Moon You Might Be Interested In: </strong>{" "}
+                             <strong> Moon With Same Percentile Mass: </strong>{" "}
                            </TableCell>
                          </TableRow>
                        </TableHead>
@@ -253,7 +253,7 @@ function StarInstance(props) {
                          <TableRow>
                            <TableCell>
                              {" "}
-                             <strong> Planet You Might Be Interested In: </strong>{" "}
+                             <strong> Planet That Orbits This Star: </strong>{" "}
                            </TableCell>
                          </TableRow>
                        </TableHead>

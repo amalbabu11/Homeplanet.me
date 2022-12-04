@@ -8,9 +8,9 @@ class Planets extends React.Component {
   render() {
     return (
       <Container>
-          <h1 className="outlineText">Planets</h1>
+          <h1>Planets</h1>
         <Row>
-            <h2 className="outlineText">Sort By</h2>
+            <h2>Sort By</h2>
           <PlanetSort />
           </Row>
         <Row>

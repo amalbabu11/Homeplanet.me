@@ -8,14 +8,7 @@ function PlanetTemperatureChart() {
     const [barData, setBarData] = useState([]);
 
   useEffect(() => {
-    // credit to AnimalWatch.me
     var api_url = `https://api.homeplanet.me/api/all_planets?`;
-    // if (sort_val !== "" && sort_val !== null){
-    //   api_url += `&` + sort_val + `=true`;
-    // }
-    // if (search_val !== "" && search_val !== null){
-    //   api_url += `&search=` + search_val;
-    // }
     const getData = async () => {
       let response = await fetch (
         api_url,
