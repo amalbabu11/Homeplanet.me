@@ -9,10 +9,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
-import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+import EarthImg from "../../assets/planets/EarthImg.jpeg"
+import MarsImg from "../../assets/planets/MarsImg.jpeg"
+import NeptuneImg from "../../assets/planets/Neptune.jpeg"
+import UranusImg from "../../assets/planets/UranusImg.jpeg"
+import JupiterImg from "../../assets/planets/JupiterImg.jpeg"
+import SaturnImg from "../../assets/planets/SaturnImg.jpeg"
+import PlutoImg from "../../assets/planets/PlutoImg.jpeg"
+
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
@@ -27,11 +34,11 @@ function fillExplanations() {
   In this case, it is measured in grams per cubic centimeter. \
   See more at: https://en.wikipedia.org/wiki/Density");
   
-  unit_explanations.set("gravity", "Measured in meters/(second^2). Speed \
+  unit_explanations.set("gravity", "Measured in meters/(second²). Speed \
   (or velocity) is measured in meters per second. Gravity is a \
   measure of how something will accelerate - or change speeds over time. \
   As acceleration is the change in speed over time, this is measured as \
-  (meters/second)/second, or m/s^2. For more information see:\
+  (meters/second)/second, or m/s². For more information see:\
   https://en.wikipedia.org/wiki/Gravity_of_Earth");
 
   unit_explanations.set("volume", "Volume is the measure of how much space \
@@ -127,6 +134,23 @@ function MoonInstance(props) {
 
   // unit_explanations is a map of all explanations
   const unit_explanations = fillExplanations();
+  // console.log("star.aroundplanet = " + )
+  let planet_img = "";
+  if (moon.aroundPlanet === "terre"){
+    planet_img = EarthImg;
+  } else if (moon.aroundPlanet === "pluton"){
+    planet_img = PlutoImg;
+  } else if (moon.aroundPlanet === "uranus"){
+    planet_img = UranusImg;
+  } else if (moon.aroundPlanet === "mars"){
+    planet_img = MarsImg;
+  } else if (moon.aroundPlanet === "neptune"){
+    planet_img = NeptuneImg;
+  } else if (moon.aroundPlanet === "saturn"){
+    planet_img = SaturnImg;
+  } else {
+    planet_img = JupiterImg;
+  }
 
   return (
     <div className="Container">
@@ -139,11 +163,7 @@ function MoonInstance(props) {
               <img src={moon.img ?? defaultMoonImg} alt="moon" class="moon-img" width="350"/>
               <hr />
             </Col>
-            <Col>
-            <hr />
-              <img src={moonOrbit} alt="orbit" class="moon-orbit-img" width="350"/>
-              <hr />
-            </Col>
+            
             <Row>
               <Col align="center">
                 <div class="bodyText">
@@ -171,7 +191,7 @@ function MoonInstance(props) {
                   </div>)}
 
                 <p onClick={() => handleClick(3)}> 
-                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s^2
+                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s²
                   </p>
                    {explanationNum === 3 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
@@ -183,8 +203,8 @@ function MoonInstance(props) {
 
                 <p onClick={() => handleClick(4)}> 
                   <strong>Volume: </strong> 
-                  {moon.volValue != 0 && moon.volValue} 
-                  {moon.volValue == 0 && "Unknown "} 
+                  {moon.volValue !== 0 && moon.volValue} 
+                  {moon.volValue === 0 && "Unknown "} 
                   * 10^{moon.volExponent} km^3
                   </p>
                    {explanationNum === 4 && (<div>
@@ -221,6 +241,13 @@ function MoonInstance(props) {
               </Col>
               <Row>
               <Col>
+            <hr />
+              <img src={planet_img} alt="orbit" class="moon-orbit-img" width="350"/>
+              <hr />
+              </Col>
+            </Row>
+              <Row>
+              <Col>
                 <div class="model-links">
                   <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 250 }}>
@@ -228,7 +255,7 @@ function MoonInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Planet You Might Be Interested In: </strong>{" "}
+                            <strong> Planet With Same Percentile Mass: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -253,7 +280,7 @@ function MoonInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Star You Might Be Interested In: </strong>{" "}
+                            <strong> Star With Same Percentile Mass: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>

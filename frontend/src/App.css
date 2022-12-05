@@ -11,3 +11,13 @@
   font-family: "Helvetica", sans-serif;
   color:white;
 }
+
+.outlineText
+{
+    color: white;
+    text-shadow:
+    -0.5px -0.5px 0 white,
+    0.5px -0.5px 0 white,
+    -0.5px 0.5px 0 white,
+    0.5px 0.5px 0 white;  
+}
