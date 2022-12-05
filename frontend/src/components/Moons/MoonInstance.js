@@ -23,7 +23,7 @@ import PlutoImg from "../../assets/planets/PlutoImg.jpeg"
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
-  
+
   unit_explanations.set("mass", "A kilogram is approximately 2.205 pounds. \
   The total mass can be thought of as moving the decimal place of the first \
   number to the right a number of times equal to the exponent number. For \
@@ -33,7 +33,7 @@ function fillExplanations() {
   mass fits into a space. In other words, mass/volume = density. \
   In this case, it is measured in grams per cubic centimeter. \
   See more at: https://en.wikipedia.org/wiki/Density");
-  
+
   unit_explanations.set("gravity", "Measured in meters/(second²). Speed \
   (or velocity) is measured in meters per second. Gravity is a \
   measure of how something will accelerate - or change speeds over time. \
@@ -46,10 +46,10 @@ function fillExplanations() {
   The total volume can be thought of as moving the decimal place of the first \
   number to the right a number of times equal to the exponent number. For \
   example: 1.15 * 10^3 => 1150.00");
-  
+
   unit_explanations.set("habitability", "This field tells us if it would be \
   theoretically possible for life to exist on this celestial body.");
-  
+
   unit_explanations.set("host_planet", "The host planet is just the planet \
   that this moon orbits around.");
 
@@ -66,13 +66,13 @@ function MoonInstance(props) {
 
   // Used for explanations of units of measurement. records which button is pressed
   const [explanationNum, setExplanationNum] = useState(0);
-  function handleClick (exNum) {
+  function handleClick(exNum) {
     setExplanationNum(exNum);
   }
 
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch (
+      let response = await fetch(
         `https://api.homeplanet.me/api/moon?index=${id}`,
         { mode: 'cors', }
       );
@@ -85,7 +85,7 @@ function MoonInstance(props) {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setMoon(body[0]) 
+      setMoon(body[0])
     };
     getData();
   }, [id]);
@@ -93,7 +93,7 @@ function MoonInstance(props) {
   // Fetching the reccomended star based on this moon
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch (
+      let response = await fetch(
         `https://api.homeplanet.me/api/star?index=${id}`,
         { mode: 'cors', }
       );
@@ -106,7 +106,7 @@ function MoonInstance(props) {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setStar(body[0]) 
+      setStar(body[0])
     };
     getData();
   }, [id]);
@@ -114,7 +114,7 @@ function MoonInstance(props) {
   // Fetching the reccomended planet based on this moon
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch (
+      let response = await fetch(
         `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
@@ -127,7 +127,7 @@ function MoonInstance(props) {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setPlanet(body[0]) 
+      setPlanet(body[0])
     };
     getData();
   }, [id]);
@@ -136,17 +136,17 @@ function MoonInstance(props) {
   const unit_explanations = fillExplanations();
   // console.log("star.aroundplanet = " + )
   let planet_img = "";
-  if (moon.aroundPlanet === "terre"){
+  if (moon.aroundPlanet === "terre") {
     planet_img = EarthImg;
-  } else if (moon.aroundPlanet === "pluton"){
+  } else if (moon.aroundPlanet === "pluton") {
     planet_img = PlutoImg;
-  } else if (moon.aroundPlanet === "uranus"){
+  } else if (moon.aroundPlanet === "uranus") {
     planet_img = UranusImg;
-  } else if (moon.aroundPlanet === "mars"){
+  } else if (moon.aroundPlanet === "mars") {
     planet_img = MarsImg;
-  } else if (moon.aroundPlanet === "neptune"){
+  } else if (moon.aroundPlanet === "neptune") {
     planet_img = NeptuneImg;
-  } else if (moon.aroundPlanet === "saturn"){
+  } else if (moon.aroundPlanet === "saturn") {
     planet_img = SaturnImg;
   } else {
     planet_img = JupiterImg;
@@ -156,81 +156,81 @@ function MoonInstance(props) {
     <div className="Container">
       <React.Fragment>
         <Container className="card-container">
-        <Row><h1 class="cardTitle">{moon.englishName}</h1></Row>
+          <Row><h1 class="cardTitle">{moon.englishName}</h1></Row>
           <Row className="Card">
             <Col>
               <hr />
-              <img src={moon.img ?? defaultMoonImg} alt="moon" class="moon-img" width="350"/>
+              <img src={moon.img ?? defaultMoonImg} alt="moon" class="moon-img" width="350" />
               <hr />
             </Col>
-            
+
             <Row>
               <Col align="center">
                 <div class="bodyText">
-                <p>Click on each bolded attribute below to see more information</p>
-                <p onClick={() => handleClick(1)}> 
+                  <p>Click on each bolded attribute below to see more information</p>
+                  <p onClick={() => handleClick(1)}>
                     <strong>Mass:</strong> {moon.massValue ?? "Unknown"} * 10^{moon.massExponent} kg
                   </p>
-                   {explanationNum === 1 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 1 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("mass")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                <p onClick={() => handleClick(2)}> 
+                  <p onClick={() => handleClick(2)}>
                     <strong>Density:</strong> {moon.density ?? "Unknown"} g/cm^3
                   </p>
-                   {explanationNum === 2 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 2 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("density")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                <p onClick={() => handleClick(3)}> 
-                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s²
+                  <p onClick={() => handleClick(3)}>
+                    <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s²
                   </p>
-                   {explanationNum === 3 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 3 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("gravity")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                <p onClick={() => handleClick(4)}> 
-                  <strong>Volume: </strong> 
-                  {moon.volValue !== 0 && moon.volValue} 
-                  {moon.volValue === 0 && "Unknown "} 
-                  * 10^{moon.volExponent} km^3
+                  <p onClick={() => handleClick(4)}>
+                    <strong>Volume: </strong>
+                    {moon.volValue !== 0 && moon.volValue}
+                    {moon.volValue === 0 && "Unknown "}
+                    * 10^{moon.volExponent} km^3
                   </p>
-                   {explanationNum === 4 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 4 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("volume")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                <p onClick={() => handleClick(5)}> 
-                  <strong>Habitable? </strong> {moon.is_habitable ?? "No"}
+                  <p onClick={() => handleClick(5)}>
+                    <strong>Habitable? </strong> {moon.is_habitable ?? "No"}
                   </p>
-                   {explanationNum === 5 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 5 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("habitability")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                <p onClick={() => handleClick(6)}> 
-                  <strong>Host planet: </strong> {moon.aroundPlanet ?? "Unknown"}
+                  <p onClick={() => handleClick(6)}>
+                    <strong>Host planet: </strong> {moon.aroundPlanet ?? "Unknown"}
                   </p>
-                   {explanationNum === 6 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 6 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("host_planet")}</p>
                       </TableCell>
@@ -240,63 +240,63 @@ function MoonInstance(props) {
                 </div>
               </Col>
               <Row>
-              <Col>
-            <hr />
-              <img src={planet_img} alt="orbit" class="moon-orbit-img" width="350"/>
-              <hr />
-              </Col>
-            </Row>
+                <Col>
+                  <hr />
+                  <img src={planet_img} alt="orbit" class="moon-orbit-img" width="350" />
+                  <hr />
+                </Col>
+              </Row>
               <Row>
-              <Col>
-                <div class="model-links">
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 250 }}>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>
-                            {" "}
-                            <strong> Planet With Same Percentile Mass: </strong>{" "}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
+                <Col>
+                  <div class="model-links">
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 250 }}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>
+                              {" "}
+                              <strong> Planet With Same Percentile Mass: </strong>{" "}
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
                             <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                             <p> {planet.pl_name}</p>
                           </Link>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                  <br></br>
-                </div>
-              </Col>
-              <Col>
-                <div class="model-links">
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 250 }}>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>
-                            {" "}
-                            <strong> Star With Same Percentile Mass: </strong>{" "}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                    <br></br>
+                  </div>
+                </Col>
+                <Col>
+                  <div class="model-links">
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 250 }}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>
+                              {" "}
+                              <strong> Star With Same Percentile Mass: </strong>{" "}
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
-                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
+                            <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg} />
                             <p> {star.star_name}</p>
                           </Link>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                  <br></br>
-                </div>
-              </Col>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                    <br></br>
+                  </div>
+                </Col>
               </Row>
             </Row>
           </Row>

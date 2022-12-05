@@ -2,7 +2,6 @@ import React from "react";
 import StarList from "./Stars/StarList.js";
 import StarFilter from "./Stars/StarFilter.js";
 import { Container, Col, Row } from "react-bootstrap";
-import StarSort from "./Stars/StarSort.js";
 
 class Stars extends React.Component {
   render() {
@@ -11,12 +10,12 @@ class Stars extends React.Component {
           <h1>Stars</h1>
         <Row>
           <Col>
-          <h2>Sort By</h2>
-          <StarSort />
+          {/* <h2>Sort By</h2> */}
+          {/* <StarSort /> */}
           </Col>
           <Col>
-          <h2>Filter By Luminosity Class</h2>
-            <StarFilter />
+          {/* <h2>Filter By Luminosity Class</h2> */}
+            {/* <StarFilter /> */}
           </Col>
           </Row>
         <Row>

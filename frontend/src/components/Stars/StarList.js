@@ -1,9 +1,11 @@
-import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
-  CardContent, CardHeader, CardMedia, Typography, Table, } from "@mui/material";
+import {
+  Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card,
+  CardContent, CardHeader, CardMedia, Typography, Table,
+} from "@mui/material";
 import { Link as RouterLink, useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
-import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Form, ListGroupItem } from "react-bootstrap";
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
 // used for Star search
 import IconButton from "@mui/material/IconButton";
@@ -15,7 +17,7 @@ import Highlighter from "react-highlight-words";
 
 function StarList() {
   let [searchParams] = useSearchParams();
-  
+
   let page = parseInt(searchParams.get("page") ?? "1")
   let per_page = parseInt(searchParams.get("per_page") ?? "12")
   let [stars, setStars] = useState([])
@@ -24,21 +26,25 @@ function StarList() {
   parser.href = window.location.href;
   console.log("parser.href = " + parser.href);
   console.log("parser.hash = " + parser.hash);
-  var sort_val = parser.hash.slice(2);
-  console.log("sort param = " + sort_val)
   const [search_val, setSearchVal] = useState("");
+  const [sort_val, setSortVal] = useState("");
+  const [filter_val, setFilterVal] = useState("");
 
   useEffect(() => {
     // credit to AnimalWatch.me
     var api_url = `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`;
-    if (sort_val !== "" && sort_val !== null){
+    if (sort_val !== "" && sort_val !== null) {
       api_url += `&` + sort_val + `=true`;
     }
-    if (search_val !== "" && search_val !== null){
+    if (search_val !== "" && search_val !== null) {
       api_url += `&search=` + search_val;
     }
+    if (filter_val !== "" && filter_val !== null) {
+      api_url += `&filter=` + filter_val;
+    }
+
     const getData = async () => {
-      let response = await fetch (
+      let response = await fetch(
         api_url,
         { mode: 'cors', }
       );
@@ -51,74 +57,99 @@ function StarList() {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setStars(body['bodies']) 
+      setStars(body['bodies'])
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page, sort_val, search_val]);
-  let total_pages = Math.ceil(numInstances/per_page)
+  }, [page, per_page, sort_val, search_val, filter_val]);
+  let total_pages = Math.ceil(numInstances / per_page)
 
-  // const [searchVal, setSearchVal] = useState("");
   return (
     <Container >
       <>
-      {/* Begin Star Search Implmentation */}
-      <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20}}>
+        {/* Begin Star Search Implmentation */}
+        <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20 }}>
           <form>
-          <TextField
+            <TextField
               id="search-bar"
               className="text"
               onInput={(e) => {
-                  setSearchVal(e.target.value);
-                }}
-                label="Search for a Star"
-                placeholder="Example: alf cen A"
-                size="small"/>
+                setSearchVal(e.target.value);
+              }}
+              label="Search for a Star"
+              placeholder="Example: alf cen A"
+              size="small" />
           </form>
         </div>
 
-      <Container>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
-          {stars.map((c) => (
-              <Card className="star_card">
-              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
-                <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
-                { <CardContent>
-                  <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
-                  <h3 class="cardSub">{c.state}</h3>
-                </CardContent> }
-              </CardActionArea>
-              </Card>
-          ))}
-              </Stack>
-            </div>
-          </Container>
+        {/* sort button implementation */}
+        <Row>
+          <Form.Group as={Col} controlId="formSort">
+            <Form.Label>Sort by</Form.Label>
+            <Form.Select type="sort" onChange={(e) => setSortVal(e.target.value)}>
+              <option value="">-</option>
+              <option value="sort-st-rad">Radius</option>
+              <option value="sort-st-age">Age</option>
+              <option value="sort-st-logg">Gravity</option>
+              <option value="sort_st_teff">Temperature</option>
+            </Form.Select>
+          </Form.Group>
 
-       <div style={{display: 'flex', justifyContent: 'center'}}>
+          {/* filter button implementation */}
+          <Form.Group as={Col} controlId="formFilter">
+            <Form.Label>Filter by</Form.Label>
+            <Form.Select type="sort" onChange={(e) => setFilterVal(e.target.value)}>
+              <option value="">-</option>
+              <option value="mainseq">MAINSEQ</option>
+              <option value="giant">GIANT</option>
+            </Form.Select>
+          </Form.Group>
+        </Row>
+        <p></p>
+
+        <Container>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+              {stars.map((c) => (
+                <Card className="star_card">
+                  <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
+                    <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg} />
+                    {<CardContent>
+                      <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name} /> </h1>
+                      <h3 class="cardSub">{c.state}</h3>
+                    </CardContent>}
+                  </CardActionArea>
+                </Card>
+              ))}
+            </Stack>
+          </div>
+          <p></p>
+        </Container>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
               <PaginationItem
-              component={RouterLink}
-              to={`?page=${item.page}&per_page=${per_page}`}
-              {...item}
+                component={RouterLink}
+                to={`?page=${item.page}&per_page=${per_page}`}
+                {...item}
               />
-              )}
-              />
+            )}
+            />
           </Stack>
-      </div>
-      <Row>
+        </div>
+        <Row>
           <h3 className="text-center mt-5">
-          Displaying {per_page} out of {numInstances} Instances
+            Displaying {per_page} out of {numInstances} Instances
           </h3>
         </Row>
         <Row>
           <h3 className="text-center mt-5">
-          Displaying {page} out of {total_pages} Pages
+            Displaying {page} out of {total_pages} Pages
           </h3>
-          </Row>
+        </Row>
+
       </>
-      </Container>
+    </Container>
   );
 }
 

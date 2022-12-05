@@ -19,7 +19,7 @@ import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
-  
+
   unit_explanations.set("mass", "Earth masses are how many times you would need \
   to multiply the mass of the Earth in order to reach the mass of this \
   planet. One Earth mass \
@@ -48,7 +48,7 @@ function fillExplanations() {
   unit_explanations.set("orb_per", "Orbital period is the amount of time a given \
   astronomical object takes to complete one orbit around another object, in this case, \
   the planet around its star.");
-  
+
   unit_explanations.set("hostname", "The hostname is just the celestial body \
   (planet, star, moon, etc) that THIS celestial body orbits around.");
 
@@ -66,14 +66,14 @@ function PlanetInstance(props) {
 
   // Used for explanations of units of measurement. records which button is pressed
   const [explanationNum, setExplanationNum] = useState(0);
-  function handleClick (exNum) {
+  function handleClick(exNum) {
     setExplanationNum(exNum);
   }
 
   // fetch data about this planet
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch (
+      let response = await fetch(
         `https://api.homeplanet.me/api/planet?index=${id}`,
         { mode: 'cors', }
       );
@@ -86,7 +86,7 @@ function PlanetInstance(props) {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setPlanet(body[0]) 
+      setPlanet(body[0])
     };
     getData();
   }, [id]);
@@ -94,8 +94,8 @@ function PlanetInstance(props) {
   // fetch recommended moon and star based on this planet
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch (
-        `https://api.homeplanet.me/api/recommand/planet?planet=${id}`, 
+      let response = await fetch(
+        `https://api.homeplanet.me/api/recommand/planet?planet=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE");
@@ -124,12 +124,12 @@ function PlanetInstance(props) {
           <Row className="Card">
             <Col>
               <hr />
-              <img src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} alt="planet" class="planet-img" width="350"/>
+              <img src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} alt="planet" class="planet-img" width="350" />
               <hr />
             </Col>
             <Col>
               <hr />
-              <img src={planet.orbit_img ? `//images.weserv.nl/?url=${planet.orbit_img}` : defaultPlanetOrbit} alt="planet" class="planet-orbit" width="350"/>
+              <img src={planet.orbit_img ? `//images.weserv.nl/?url=${planet.orbit_img}` : defaultPlanetOrbit} alt="planet" class="planet-orbit" width="350" />
               <hr />
             </Col>
             <Row>
@@ -139,66 +139,66 @@ function PlanetInstance(props) {
                   <p>Click on each bolded attribute below to see more information</p>
 
                   {/* This is the information provided by get_planets() in utils.py*/}
-                   <p onClick={() => handleClick(1)}> 
+                  <p onClick={() => handleClick(1)}>
                     <strong>Mass:</strong> {planet.pl_masse ?? "Unknown"} Earth masses
                   </p>
-                   {explanationNum === 1 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 1 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("mass")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                  <p onClick={() => handleClick(2)}> 
-                  <strong>Radius:</strong> {planet.pl_rade ?? "Unknown"} Earth radiuses
+                  <p onClick={() => handleClick(2)}>
+                    <strong>Radius:</strong> {planet.pl_rade ?? "Unknown"} Earth radiuses
                   </p>
-                   {explanationNum === 2 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 2 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("radius")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
-                  
-                  <p onClick={() => handleClick(3)}> 
-                  <strong>Density: </strong> {planet.pl_dens ?? "Unknown"} g/cm^3
+
+                  <p onClick={() => handleClick(3)}>
+                    <strong>Density: </strong> {planet.pl_dens ?? "Unknown"} g/cm^3
                   </p>
-                   {explanationNum === 3 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 3 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("density")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
-                  
-                  <p onClick={() => handleClick(4)}> 
-                  <strong>Equilibrium Temperature: </strong> {planet.pl_eqt ?? "Unknown"} Kelvin
+
+                  <p onClick={() => handleClick(4)}>
+                    <strong>Equilibrium Temperature: </strong> {planet.pl_eqt ?? "Unknown"} Kelvin
                   </p>
-                   {explanationNum === 4 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 4 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("eq_temp")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                  <p onClick={() => handleClick(5)}> 
-                  <strong>Hostname: </strong> {planet.hostname ?? "Unknown"}
+                  <p onClick={() => handleClick(5)}>
+                    <strong>Hostname: </strong> {planet.hostname ?? "Unknown"}
                   </p>
-                   {explanationNum === 5 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 5 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("hostname")}</p>
                       </TableCell>
                     </TableContainer>
                   </div>)}
 
-                  <p onClick={() => handleClick(6)}> 
-                  <strong>Orbital Period: </strong> {planet.pl_orbper ?? "Unknown"} Earth Years
+                  <p onClick={() => handleClick(6)}>
+                    <strong>Orbital Period: </strong> {planet.pl_orbper ?? "Unknown"} Earth Years
                   </p>
-                   {explanationNum === 6 && (<div>
-                    <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
+                  {explanationNum === 6 && (<div>
+                    <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
                       <TableCell>
                         <p>{unit_explanations.get("orb_per")}</p>
                       </TableCell>
@@ -207,56 +207,56 @@ function PlanetInstance(props) {
                 </div>
               </Col>
               <Row>
-              <Col>
-                <div class="model-links">
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 250 }}>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>
-                            {" "}
-                            <strong> Moon With The Same Percentile Mass: </strong>{" "}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
+                <Col>
+                  <div class="model-links">
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 250 }}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>
+                              {" "}
+                              <strong> Moon With The Same Percentile Mass: </strong>{" "}
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
                           <Link
                             class="link"
                             to={"/moon/" + moon.index}>
-                              <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
+                            <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
                             <p> {moon.englishName}</p>
                           </Link>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                  <br></br>
-                </div>
-              </Col>
-              <Col>
-                <div class="model-links">
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 250 }}>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>
-                            {" "}
-                            <strong> Star This Planet Orbits: </strong>{" "}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                    <br></br>
+                  </div>
+                </Col>
+                <Col>
+                  <div class="model-links">
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 250 }}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>
+                              {" "}
+                              <strong> Star This Planet Orbits: </strong>{" "}
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
-                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
+                            <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg} />
                             <p> {star.star_name}</p>
                           </Link>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                  <br></br>
-                </div>
-              </Col>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                    <br></br>
+                  </div>
+                </Col>
               </Row>
             </Row>
           </Row>
