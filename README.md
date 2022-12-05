@@ -86,9 +86,9 @@
 ## Comments
 Overall file structure, List classes, Sorting, and Searching adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
 
-Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
+Instance Model, About Page, TeamInfo, ToolInfo and Visualizations adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
 
-Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
+Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/)
 
 Dockerfile credit to [FindAHome](https://gitlab.com/aghayalod/find-a-home/-/blob/main/findahome-app/Dockerfile)
 
