@@ -10,7 +10,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import moonOrbit from "../../assets/moons/MoonOrbit.jpeg"
-
+import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
   const unit_explanations = new Map();
@@ -29,7 +31,8 @@ function fillExplanations() {
   (or velocity) is measured in meters per second. Gravity is a \
   measure of how something will accelerate - or change speeds over time. \
   As acceleration is the change in speed over time, this is measured as \
-  (meters/second)/second, or m/s^2.");
+  (meters/second)/second, or m/s^2. For more information see:\
+  https://en.wikipedia.org/wiki/Gravity_of_Earth");
 
   unit_explanations.set("volume", "Volume is the measure of how much space \
   something will fill. In this case, it is measured in cubic kilometers \
@@ -144,7 +147,7 @@ function MoonInstance(props) {
             <Row>
               <Col align="center">
                 <div class="bodyText">
-
+                <p>Click on each bolded attribute below to see more information</p>
                 <p onClick={() => handleClick(1)}> 
                     <strong>Mass:</strong> {moon.massValue ?? "Unknown"} * 10^{moon.massExponent} kg
                   </p>
@@ -179,7 +182,10 @@ function MoonInstance(props) {
                   </div>)}
 
                 <p onClick={() => handleClick(4)}> 
-                  <strong>Volume:</strong> {moon.volValue ?? "Unknown"} * 10^{moon.volExponent} km^3
+                  <strong>Volume: </strong> 
+                  {moon.volValue != 0 && moon.volValue} 
+                  {moon.volValue == 0 && "Unknown "} 
+                  * 10^{moon.volExponent} km^3
                   </p>
                    {explanationNum === 4 && (<div>
                     <TableContainer component={Paper} sx={{maxWidth:0.5}} justify="center">
@@ -211,15 +217,6 @@ function MoonInstance(props) {
                     </TableContainer>
                   </div>)}
 
-
-                  {/* <p>{" "}<strong>Mass:</strong> {moon.massValue} 10^{moon.massExponent} kg{" "}</p>
-                  <p>{" "}<strong>Density:</strong> {moon.density} 10^n g/km^3{" "}</p>
-                  <p>{" "}<strong>Gravity:</strong> {moon.gravity} m.s^-2{" "}</p>
-                  <p>{" "}<strong>Volume:</strong> {moon.volValue} 10^{moon.volExponent} km^3{" "}</p>
-                  <p>{" "}<strong>Discovered In:</strong> {moon.discoveryDate} AD{" "}</p>
-                  <p>{" "}<strong>Habitable? </strong> {moon.is_habitable ?? "No"}{" "}</p>
-                  <p>{" "}<strong>Around Planet: </strong> {moon.aroundPlanet ?? "Unknown"}{" "}</p> */}
-
                 </div>
               </Col>
               <Row>
@@ -231,7 +228,7 @@ function MoonInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Planet This Moon Orbits: </strong>{" "}
+                            <strong> Planet You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -239,6 +236,7 @@ function MoonInstance(props) {
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
+                            <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                             <p> {planet.pl_name}</p>
                           </Link>
                       </TableBody>
@@ -263,6 +261,7 @@ function MoonInstance(props) {
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
+                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
                             <p> {star.star_name}</p>
                           </Link>
                       </TableBody>

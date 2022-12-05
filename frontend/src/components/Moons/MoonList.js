@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
-// used for MoonSearch
+// used for Moon search
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Highlighter from "react-highlight-words";
 
 // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
 function MoonList() {
@@ -16,7 +17,6 @@ function MoonList() {
 
   let page = parseInt(searchParams.get("page") ?? "1");
   let per_page = parseInt(searchParams.get("per_page") ?? "12");
-  let search_val = searchParams.get("search") ?? "none";
   // console.log()
   let [moons, setMoons] = useState([]);
   let [numInstances, setInstances] = useState(0);
@@ -26,14 +26,20 @@ function MoonList() {
   console.log("parser.hash = " + parser.hash);
   var sort_val = parser.hash.slice(2);
   console.log("sort param = " + sort_val)
+  const [search_val, setSearchVal] = useState("");
 
   useEffect(() => {
+    // credit to AnimalWatch.me
+    var api_url = `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`;
+    if (sort_val !== "" && sort_val !== null){
+      api_url += `&` + sort_val + `=true`;
+    }
+    if (search_val !== "" && search_val !== null){
+      api_url += `&search=` + search_val;
+    }
     const getData = async () => {
-      // instead of getting all_moons, we specify an array(?) of search params, then let backend deal with it? then we just display the list as normal.
-
-
       let response = await fetch (
-        `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}&${sort_val}=true`,
+        api_url,
         { mode: 'cors', }
       );
       console.log("RESPONSE")
@@ -45,14 +51,13 @@ function MoonList() {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-      setMoons(body['bodies'])
+      setMoons(body['bodies']) 
       setInstances(body['total_size'])
     };
     getData();
-  }, [page, per_page, sort_val]);
+  }, [page, per_page, sort_val, search_val]);
   let total_pages = Math.ceil(numInstances/per_page)
 
-  const [searchVal, setSearchVal] = useState("");
   return (  
     <Container >
       <>
@@ -66,21 +71,14 @@ function MoonList() {
                   setSearchVal(e.target.value);
                 }}
                 label="Search for a moon"
-                placeholder="Example: Titan"
+                placeholder="Example: Megaclite"
                 size="small"/>
-
-              <IconButton type="submit" aria-label="search" href={'#/search='+searchVal}>
-                  <SearchIcon style={{ fill: "blue"}}/>
-                  {/* onPress={() => window.location.reload()} */}
-              </IconButton>
           </form>
 
-          {/* At this point, we have a nav bar and a search value, now we just need to call the api for it and display*/}
-          <p>searchVal: {searchVal}</p>
         </div>
       {/* End Moon Search implementation, start Moon List implmentation */}
 
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        {/* <div style={{display: 'flex', justifyContent: 'center'}}>
           <Box >
           <Grid container spacing={6} columns={20}>
           {moons.map((c) => (
@@ -89,7 +87,7 @@ function MoonList() {
                 <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
                   <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
                   { <CardContent>
-                    <h1 class="cardTitle"> {c.englishName} </h1>
+                    <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
                     <h3 class="cardSub">{c.state}</h3>
                   </CardContent> }
                 </CardActionArea>
@@ -98,7 +96,24 @@ function MoonList() {
           ))}
           </Grid>
           </Box>
-        </div>
+        </div> */}
+      <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+          {moons.map((c) => (
+            <Card className="moon_card">
+            <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
+              <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
+              { <CardContent>
+                <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
+                <h3 class="cardSub">{c.state}</h3>
+              </CardContent> }
+            </CardActionArea>
+            </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
        <div style={{display: 'flex', justifyContent: 'center'}}>
           <Stack>
             <Pagination shape="rounded" count={total_pages} renderItem={(item) => (
@@ -127,4 +142,3 @@ function MoonList() {
 }
 
 export default MoonList;
-

@@ -19,11 +19,13 @@ flask_cors.CORS(app, supports_credentials=True)
 error_header = {"Content-Type": "text/plain"}
 return_header = {"Content-Type": "application/json"}
 
+
 def searchFunction(query: str, object: dict):
     for key in object:
         if isinstance(object[key], str) and query.lower() in object[key].lower():
             return True
     return False
+
 
 @app.route("/api", methods=["GET"])
 def index() -> str:
@@ -55,7 +57,18 @@ def api_all_moons():
     sort_discovery_date: str = request.args.get("sort-discovery-date")
     search_val: str = request.args.get("search")
 
+    filter_planet: str = request.args.get("filter")
+    if filter_planet is not None:
+        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
+
+
+
     moons: list[dict] = utils.get_moons()
+
+    moons = list(filter(
+    lambda x: filter_planet in x["aroundPlanet"].lower(),
+    moons
+))
 
     if search_val is not None:
         search_val = search_val.lower()
@@ -86,14 +99,13 @@ def api_all_moons():
     elif sort_discovery_date:
         moons = sorted(moons, key=lambda moon: moon["discoveryDate"])
 
-
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         moons_slice: list[dict] = moons
     else:
         page: int = int(page)
         per_page: int = int(per_page)
         moons_slice: list[dict] = moons[(page - 1) * per_page : page * per_page]
-    
+
     ret: dict = {
         "size": len(moons_slice),
         "total_size": len(moons),
@@ -121,7 +133,30 @@ def api_all_planets():
     sort_pl_orbper: str = request.args.get("sort-pl-orbper")
     search_val: str = request.args.get("search")
 
+
+    filter_temp: str = request.args.get("filter")
+
     planets: list[dict] = utils.get_planets()
+
+    if filter_temp is not None:
+        filter_temp = filter_temp.lower()
+        lower, upper = utils.HABITABLE
+        if filter_temp == 'too-cold':
+            planets = list(filter(
+                lambda x: x['pl_eqt'] < lower,
+                planets
+            ))
+        elif filter_temp == 'habitable':
+            planets = list(filter(
+                lambda x: lower <= x['pl_eqt'] <= upper,
+                planets
+            ))
+
+        else:
+            planets = list(filter(
+                lambda x:  x['pl_eqt'] > upper,
+                planets
+            ))
 
     if search_val is not None:
         search_val = search_val.lower()
@@ -148,15 +183,12 @@ def api_all_planets():
     elif sort_pl_orbper:
         planets = sorted(planets, key=lambda planet: planet["pl_orbper"])
 
-
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         planets_slice: list[dict] = planets
     else:
         page: int = int(page)
         per_page: int = int(per_page)
         planets_slice: list[dict] = planets[(page - 1) * per_page : page * per_page]
-
-    print(planets_slice)
     ret: dict = {
         "size": len(planets_slice),
         "total_size": len(planets),
@@ -185,7 +217,17 @@ def api_all_stars():
     sort_color: str = request.args.get("sort-color")
     search_val: str = request.args.get("search")
 
+    filter_class: str = request.args.get("filter")
+
     stars: list[dict] = utils.get_stars()
+
+    if filter_class is not None:
+        filter_class = filter_class.lower()
+
+        stars = list(filter(
+            lambda x: filter_class in x['st_lumclass'].lower(),
+            stars
+        ))
 
     if search_val is not None:
         search_val = search_val.lower()
@@ -214,7 +256,6 @@ def api_all_stars():
         stars = sorted(stars, key=lambda star: star["st_logg"])
     elif sort_color:
         stars = sorted(stars, key=lambda star: star["color"])
-
 
     if page is None or per_page is None or len(page) == 0 or len(per_page) == 0:
         stars_slice: list[dict] = stars
@@ -321,9 +362,9 @@ def api_star():
 @app.route("/api/recommand/moon", methods=["GET"])
 def recommand_moon():
     """
-    This api returns recommendations based on the moon. For the moon it returns a random star
+    This api returns recommandations based on the moon. For the moon it returns a random star
      and a random planet.
-    ret:    `json`, the basic information of recommended star and planet
+    ret:    `json`, the basic information of recommanded star and planet
             `status_code`, the status code of this reply
     """
     moon: str = request.args.get("moon")
@@ -342,9 +383,9 @@ def recommand_moon():
 @app.route("/api/recommand/planet", methods=["GET"])
 def recommand_planets():
     """
-    This api returns recommendations based on the planet. For the planet, it searches for an
-     available star and randomly recommends a moon based on the galaxy it is in.
-    ret:    `json`, the basic information of recommended star and moon
+    This api returns recommandations based on the planet. For the planet, it searches for an
+     available star and randomly recommands a moon based on the galaxy it is in.
+    ret:    `json`, the basic information of recommanded star and moon
             `status_code`, the status code of this reply
     """
     planetIndex: str = request.args.get("planet")
@@ -368,9 +409,9 @@ def recommand_planets():
 @app.route("/api/recommand/star", methods=["GET"])
 def recommand_stars():
     """
-    This api returns recommendations based on the star. For the star, it searches for planets in
-     the same galaxy and randomly recommends moons.
-    ret:    `json`, the basic information of recommended planet and moon
+    This api returns recommandations based on the star. For the star, it searches for planets in
+     the same galaxy and randomly recommands moons.
+    ret:    `json`, the basic information of recommanded planet and moon
             `status_code`, the status code of this reply
     """
     starIndex: str = request.args.get("star")

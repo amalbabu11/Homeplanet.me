@@ -8,10 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
 // import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import { CardActionArea, CardContent } from "@mui/material";
-
+import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
 
 // cleans up code by relocating high quantity String text. returns a map of explanations
 function fillExplanations() {
@@ -38,7 +40,10 @@ function fillExplanations() {
   unit_explanations.set("eq_temp", "When no other sources of energy are \
   considered, and when a planet is treated as if it had no atmosphere; the \
   temperature the planet would become is the equilibrium temperature. This is \
-  because it won't get any hotter than the energy the sun is providing.");
+  because it won't get any hotter than the energy the sun is providing. See \
+  more at: https://en.wikipedia.org/wiki/Planetary_equilibrium_temperature#:\
+  ~:text=Thermal%20equilibrium%20exists%20when%20the,\
+  is%20the%20planetary%20equilibrium%20temperature.");
   
   unit_explanations.set("hostname", "The hostname is just the celestial body \
   (planet, star, moon, etc) that THIS celestial body orbits around.");
@@ -227,6 +232,7 @@ function PlanetInstance(props) {
                           <Link
                             class="link"
                             to={"/moon/" + moon.index}>
+                              <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
                             <p> {moon.englishName}</p>
                           </Link>
                       </TableBody>
@@ -243,7 +249,7 @@ function PlanetInstance(props) {
                         <TableRow>
                           <TableCell>
                             {" "}
-                            <strong> Stars You Might Be Interested In: </strong>{" "}
+                            <strong> Star You Might Be Interested In: </strong>{" "}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -251,6 +257,7 @@ function PlanetInstance(props) {
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
+                              <MDBCardImage className="img-grp" src={star.img ?? defaultStarImg}/>
                             <p> {star.star_name}</p>
                           </Link>
                       </TableBody>
@@ -269,108 +276,3 @@ function PlanetInstance(props) {
 }
 
 export default PlanetInstance;
-
-
-// import React from "react";
-// import { Container, Col, Row } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import Paper from "@mui/material/Paper";
-
-// // Adapted from Electrends https://gitlab.com/dandom25/electrends/
-// function PlanetInstance(props) {
-//   return (
-//     <div className="Container">
-//       <React.Fragment>
-//         <Container className="card-container">
-//           <Row><h1 class="cardTitle">{props.data.pl_name}</h1></Row>
-//           <Row className="Card">
-//             <Col>
-//               <hr />
-//               <img src={props.data.img} alt="planet" class="planet-img" width="350"/>
-//               <hr />
-//             </Col>
-//             <Col>
-//             <hr />
-//               <img src={props.data.orbit_img} alt="orbit" class="planet-orbit-img" width="350"/>
-//               <hr />
-//             </Col>
-//             <Row>
-//               <Col>
-//                 <div class="bodyText">
-//                   {/*This is the information provided by get_planets() in utils.py*/}
-//                   <p>{" "}<strong>Mass:</strong> {props.data.pl_masse} Earth masses{" "}</p>
-//                   <p>{" "}<strong>Radius: </strong> {props.data.pl_rade} Earth radiuses{" "}</p>
-//                   <p>{" "}<strong>Density: </strong> {props.data.pl_dens} g/cm^3{" "}</p>
-//                   <p>{" "}<strong>Equilibrium Temperature: </strong> {props.data.pl_eqt} Kelvin{" "}</p>
-//                   <p>{" "}<strong>Orbits around: </strong> {props.data.hostname}{" "}</p>
-//                 </div>
-//               </Col>
-//               <Row>
-//               <Col>
-//                 <div class="model-links">
-//                   <TableContainer component={Paper}>
-//                     <Table sx={{ minWidth: 250 }}>
-//                       <TableHead>
-//                         <TableRow>
-//                           <TableCell>
-//                             {" "}
-//                             <strong> Moons That Orbit This Planet: </strong>{" "}
-//                           </TableCell>
-//                         </TableRow>
-//                       </TableHead>
-//                       <TableBody>
-//                         {props.data.moons.map((p) => (
-//                           <Link
-//                             class="link"
-//                             to={"/moon/" + p.index}>
-//                             <p> {p.moonName}</p>
-//                           </Link>
-//                         ))}
-//                       </TableBody>
-//                     </Table>
-//                   </TableContainer>
-//                   <br></br>
-//                 </div>
-//               </Col>
-//               <Col>
-//                 <div class="model-links">
-//                   <TableContainer component={Paper}>
-//                     <Table sx={{ minWidth: 250 }}>
-//                       <TableHead>
-//                         <TableRow>
-//                           <TableCell>
-//                             {" "}
-//                             <strong> Stars You Might Be Interested In: </strong>{" "}
-//                           </TableCell>
-//                         </TableRow>
-//                       </TableHead>
-//                       <TableBody>
-//                         {props.data.stars.map((p) => (
-//                           <Link
-//                             class="link"
-//                             to={"/star/" + p.index}>
-//                             <p> {p.starName}</p>
-//                           </Link>
-//                         ))}
-//                       </TableBody>
-//                     </Table>
-//                   </TableContainer>
-//                   <br></br>
-//                 </div>
-//               </Col>
-//               </Row>
-//             </Row>
-//           </Row>
-//         </Container>
-//       </React.Fragment>
-//     </div>
-//   );
-// }
-
-// export default PlanetInstance;

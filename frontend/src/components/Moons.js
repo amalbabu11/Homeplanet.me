@@ -12,18 +12,13 @@ class Moons extends React.Component {
         {/* Handle Moon Sort */}
         <Row>
           <Col>
-            <div class="container-group text-center">
-              <h2>Sort By</h2>
-            </div>
+            <h1>Moons</h1>
+            <h2>Sort By</h2>
             <MoonSort />
           </Col>
         </Row>
-        {/* Handle Displaying all Moons (moon list) and search function for moons */}
         <Row>
           <Col>
-            <div class="container-group text-center" >
-              <h1>Moons</h1>
-            </div>
             <MoonList />  
           </Col>
         </Row>

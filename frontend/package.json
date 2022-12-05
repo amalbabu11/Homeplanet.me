@@ -1,69 +1,54 @@
 {
-  "name": "frame-app",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@fontsource/arvo": "^4.5.4",
-    "@material-ui/core": "^4.12.3",
-    "@mui/icons-material": "^5.5.1",
-    "@mui/material": "^5.5.3",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.3",
-    "@testing-library/user-event": "^13.5.0",
-    "bootstrap": "^5.1.3",
-    "d3": "^6.7.0",
-    "d3-svg-legend": "^2.25.6",
-    "devextreme": "^21.2.6",
-    "enzyme": "^3.11.0",
-    "install": "^0.13.0",
-    "material": "^0.4.3",
-    "mdb-react-ui-kit": "^2.3.0",
-    "ngx-pagination": "^5.1.1",
-    "npm": "^8.6.0",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.1.2",
-    "react-chartjs-2": "^4.0.1",
-    "react-dom": "^17.0.2",
-    "react-highlight": "^0.14.0",
-    "react-highlight-words": "^0.18.0",
-    "react-map-gl": "^7.0.10",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
-    "react-twitter-embed": "^4.0.4",
-    "recharts": "^2.1.9",
-    "use-query-params": "^1.2.3",
-    "web-vitals": "^2.1.4"
+      "@emotion/react": "^11.10.5",
+      "@emotion/styled": "^11.10.5",
+      "@mui/icons-material": "^5.10.14",
+      "@mui/material": "^5.10.14",
+      "@testing-library/jest-dom": "^5.16.5",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "bootstrap": "^5.2.2",
+      "mdb-react-ui-kit": "^5.0.0",
+      "react": "^18.2.0",
+      "react-bootstrap": "^2.6.0",
+      "react-dom": "^18.2.0",
+      "react-highlight-words": "^0.18.0",
+      "react-router-dom": "^6.4.3",
+      "react-scripts": "5.0.1",
+      "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest",
-    "eject": "react-scripts eject"
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "jest",
+      "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+      "extends": [
+          "react-app",
+          "react-app/jest"
+      ]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+      "production": [
+          ">0.2%",
+          "not dead",
+          "not op_mini all"
+      ],
+      "development": [
+          "last 1 chrome version",
+          "last 1 firefox version",
+          "last 1 safari version"
+      ]
   },
-  "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
-    "jest": "^27.5.1"
-  }
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|bmp)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+      }
+    }
+
 }

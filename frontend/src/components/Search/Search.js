@@ -1,139 +1,151 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import { TextField, Typography, Stack, Button } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import SearchCard from "./SearchCard";
-import "../../styles/Search.css";
+import { Box, Grid, CardActionArea, Stack, Pagination, PaginationItem, Card, 
+    CardContent, CardHeader, CardMedia, Typography, } from "@mui/material";
+  import { Link as RouterLink, useSearchParams } from "react-router-dom";
+  import React, { useEffect, useState } from "react";
+  import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+  import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+  import TextField from "@mui/material/TextField";
+  import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
+  import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif";
+  import defaultStarImg from "../../assets/stars/defaultStarImg.png"
+  import Highlighter from "react-highlight-words";
 
-const SEARCH_PATHS = ["moons", "stars", "planets"]
-const RESULT_LIMIT = 10
-
-// Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
-export default function Search () {
+  // Adapted from Finding Footprints: https://gitlab.com/AlejandroCantu/group2
+  function Search() {
     let [searchParams] = useSearchParams();
-	let [params, setParams] = useState("")
-    const [searchQ, setSearch] = useState("")
-
-    const [results, setResults] = useState({
-        moons: [],
-        stars: [],
-        planets: [],
-    })
-
-    let navigate = useNavigate();
-
-    const updateSearch = (search) => {
-      let path = `?q=${search}`
-      navigate(path)
-      setParams(search)
-    }
-
+    
+    let page = parseInt(searchParams.get("page") ?? "1")
+    let per_page = parseInt(searchParams.get("per_page") ?? "4")
+    let [planets, setPlanets] = useState([])
+    let [moons, setMoons] = useState([])
+    let [stars, setStars] = useState([])
+    const [search_val, setSearchVal] = useState("");
+  
     useEffect(() => {
-        if(searchParams.get("q")){
-            setParams(searchParams.get("q"))
-            setSearch(searchParams.get("q"))
-        }
-
-
-        const constructParams = (params) => {
-            let p = ""
-            if(params) {
-                p = "q=" + params
-            }
-            return p
-        }
-
-        const getResults = async ({model, params}) => {
-            let url = `https://api.homeplanet.me/${model}?per_page=${RESULT_LIMIT}`
-            if(params){
-                url = `${url}&${constructParams(params)}`
-            } 
-            let data = await fetch(url)
-            data = await data.json()
-            return data
-        }
-
-        const getData = async () => {
-            try{
-                let promises = SEARCH_PATHS.map((model) => {
-                    return getResults({
-                        model: model,
-                        params: searchParams.get("q"),
-                    })
-                })
-                let resolved = await Promise.all(promises)
-                let output = {}
-                resolved.forEach((data, i) => {
-                    let count = data['numInstances']
-                    if(count > RESULT_LIMIT) {
-                        output[SEARCH_PATHS[i]] = data["list"].slice(0, RESULT_LIMIT - 1);
-                        let extraResults = [{eor: true, amount: count - RESULT_LIMIT}]
-                        output[SEARCH_PATHS[i]] = output[SEARCH_PATHS[i]].concat(extraResults)
-                    } else {
-                        output[SEARCH_PATHS[i]] = data["list"].slice(0, RESULT_LIMIT);
-
-                    }
-                })
-                setResults(output)
-            } catch (err) {
-                console.error(err)
-            }
-
-        } 
-        getData()
-    }, [params, searchParams])
-
-        return (
-            <div>
-                <div className="bar-box">
-                <h1 className="title-wrapper">
-                    {searchParams.get("q") ? `Results for ${searchParams.get("q")}` : "Search for any planet, moon, or star here"}
-                </h1>
-                <TextField className="searchbar" onKeyPress={(ev) => {
-                    if(ev.key === "Enter"){
-                        ev.preventDefault();
-                        updateSearch(ev.target.value)
-                    }
-                }}
-                    label="Search"
-                    placeholder="Enter sitewide search here"
-                    value={searchQ}
-                    onChange={event => setSearch(event.target.value)}
-                />
-                </div>
-
-            <Container className="last-spacer">
-                <h1 className="title-wrapper">Planet Results</h1>
-                <Stack direction="row" flexWrap="wrap" className="center-row">
-                    {results["planets"].map((c) => (
-                        c["eor"] ? 
-                        <Button className="search-button" variant="outlined" component={RouterLink} to={`/planets?q=${searchParams.get("q") ? searchParams.get("q") : ""}`}>
-                                <Typography> View {c["amount"]} more results in planets</Typography>
-                        </Button>: <SearchCard model="planets" data={c} highlight={params} />
-                    ))}
-                </Stack> 
-
-                <h1 className="title-wrapper">Moon Results</h1>
-                <Stack direction="row" flexWrap="wrap" className="center-row">
-                    {results["moons"].map((c) => (
-                        c["eor"] ? 
-                        <Button className="search-button" variant="outlined" component={RouterLink} to={`/moons?q=${searchParams.get("q") ? searchParams.get("q") : ""}`}>
-                                <Typography className="card-title"> View {c["amount"]} more results in moons</Typography>
-                        </Button>: <SearchCard model="moons" data={c} highlight={params}/>
-                    ))}
-                </Stack> 
-
-                <h1 className="title-wrapper">Star Results</h1>
-                <Stack direction="row" flexWrap="wrap" className="center-row">
-                    {results["stars"].map((f) => (      
-                        f["eor"] ? 
-                        <Button className="search-button" variant="outlined" component={RouterLink} to={`/stars?q=${searchParams.get("q") ? searchParams.get("q") : ""}`}>
-                                <Typography className="card-title"> View {f["amount"]} more results in stars</Typography>
-                        </Button> : <SearchCard model="stars" data={f} highlight={params}/>
-                    ))}
-                </Stack> 
-            </Container> 
-            </div>       
-        )
-}
+      // credit to AnimalWatch.me
+      var api_url_planet = `https://api.homeplanet.me/api/all_planets?page=${page}&per_page=${per_page}`;
+      var api_url_moon = `https://api.homeplanet.me/api/all_moons?page=${page}&per_page=${per_page}`;
+      var api_url_star = `https://api.homeplanet.me/api/all_stars?page=${page}&per_page=${per_page}`;
+      if (search_val !== "" && search_val !== null){
+        api_url_planet += `&search=` + search_val;
+        api_url_moon += `&search=` + search_val;
+        api_url_star += `&search=` + search_val;
+      }
+      const getData = async () => {
+        let response_planet = await fetch (
+          api_url_planet,
+          { mode: 'cors', }
+        );
+        let response_moon = await fetch (
+            api_url_moon,
+            { mode: 'cors', }
+          );
+        let response_star = await fetch (
+            api_url_star,
+            { mode: 'cors', }
+          );
+        let body_planet = []
+        body_planet = await response_planet.json()
+        setPlanets(body_planet['bodies'])
+        let body_moon = []
+        body_moon = await response_moon.json()
+        setMoons(body_moon['bodies'])
+        let body_star = []
+        body_star = await response_star.json()
+        setStars(body_star['bodies'])
+      };
+      getData();
+    }, [page, per_page, search_val]);
+  
+    return (
+      <Container >
+        <>
+        <h1>Search</h1>
+        <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20}}>
+            <form>
+            <TextField
+                id="search-bar"
+                className="text"
+                onInput={(e) => {
+                    setSearchVal(e.target.value);
+                  }}
+                  label="Search"
+                  placeholder="Example: Phobos"
+                  size="small"/>
+            </form>
+          </div>  
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Box >
+                <h2>Planet Results</h2>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+          {planets.map((c) => (
+            <Card className="planet_card">
+                  <CardActionArea component={RouterLink} to={"/planet/" + (parseInt(c.index))}>
+                    <MDBCardImage className="img-grp" src={c.img ? `//images.weserv.nl/?url=${c.img}` : defaultPlanetImg} />
+                    { <CardContent>
+                      <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.pl_name}/> </h1>
+                      <h3 class="cardSub">{c.state}</h3>
+                      <CardContent>
+                      </CardContent>
+                    </CardContent> }
+                  </CardActionArea>
+                  </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
+            </Box>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Box >
+                <h2>Moon Results</h2>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+          {moons.map((c) => (
+            <Card className="moon_card">
+            <CardActionArea component={RouterLink} to={"/moon/" + c.index}>
+              <MDBCardImage className="img-grp" src={c.img ?? defaultMoonImg} />
+              { <CardContent>
+                <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.englishName}/> </h1>
+                <h3 class="cardSub">{c.state}</h3>
+              </CardContent> }
+            </CardActionArea>
+            </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
+            </Box>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Box >
+                <h2>Star Results</h2>
+                <Container>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Stack direction="row" justifyContent="center" flexWrap="wrap" gap="70px">
+          {stars.map((c) => (
+              <Card className="star_card">
+              <CardActionArea component={RouterLink} to={"/star/" + (parseInt(c.index))}>
+                <MDBCardImage className="img-grp" src={c.img ?? defaultStarImg}/>
+                { <CardContent>
+                  <h1 class="cardTitle"> <Highlighter searchWords={[search_val]} textToHighlight={c.star_name}/> </h1>
+                  <h3 class="cardSub">{c.state}</h3>
+                </CardContent> }
+              </CardActionArea>
+              </Card>
+          ))}
+              </Stack>
+            </div>
+          </Container>
+            </Box>
+          </div>
+        </>
+        </Container>
+    );
+  }
+  
+  export default Search;
+  
