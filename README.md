@@ -92,4 +92,4 @@ Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustain
 
 Dockerfile credit to [FindAHome](https://gitlab.com/aghayalod/find-a-home/-/blob/main/findahome-app/Dockerfile)
 
-Jest and Selenium tests credit to [AnimalWatch](https://gitlab.com/JohnPowow/animalwatch/)
+Jest tests, Selenium tests, and frontend API calling credit to [AnimalWatch](https://gitlab.com/JohnPowow/animalwatch/)
