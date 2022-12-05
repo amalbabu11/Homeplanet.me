@@ -58,17 +58,18 @@ def api_all_moons():
     search_val: str = request.args.get("search")
 
     filter_planet: str = request.args.get("filter")
-    if filter_planet is not None:
-        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
-
 
 
     moons: list[dict] = utils.get_moons()
 
-    moons = list(filter(
-    lambda x: filter_planet in x["aroundPlanet"].lower(),
-    moons
-))
+    if filter_planet is not None:
+        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
+
+
+        moons = list(filter(
+        lambda x: filter_planet in x["aroundPlanet"].lower(),
+        moons
+    ))
 
     if search_val is not None:
         search_val = search_val.lower()
