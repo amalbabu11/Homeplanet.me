@@ -33,7 +33,11 @@ function fillExplanations() {
   mass fits into a space. In other words, mass/volume = density. \
   In this case, it is measured in grams per cubic centimeter. \
   See more at: https://en.wikipedia.org/wiki/Density");
+<<<<<<< Updated upstream
 
+=======
+  
+>>>>>>> Stashed changes
   unit_explanations.set("gravity", "Measured in meters/(second²). Speed \
   (or velocity) is measured in meters per second. Gravity is a \
   measure of how something will accelerate - or change speeds over time. \
@@ -138,15 +142,15 @@ function MoonInstance(props) {
   let planet_img = "";
   if (moon.aroundPlanet === "terre") {
     planet_img = EarthImg;
-  } else if (moon.aroundPlanet === "pluton") {
+  } else if (moon.aroundPlanet === "pluton"){
     planet_img = PlutoImg;
-  } else if (moon.aroundPlanet === "uranus") {
+  } else if (moon.aroundPlanet === "uranus"){
     planet_img = UranusImg;
   } else if (moon.aroundPlanet === "mars") {
     planet_img = MarsImg;
-  } else if (moon.aroundPlanet === "neptune") {
+  } else if (moon.aroundPlanet === "neptune"){
     planet_img = NeptuneImg;
-  } else if (moon.aroundPlanet === "saturn") {
+  } else if (moon.aroundPlanet === "saturn"){
     planet_img = SaturnImg;
   } else {
     planet_img = JupiterImg;
@@ -190,8 +194,13 @@ function MoonInstance(props) {
                     </TableContainer>
                   </div>)}
 
+<<<<<<< Updated upstream
                   <p onClick={() => handleClick(3)}>
                     <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s²
+=======
+                <p onClick={() => handleClick(3)}> 
+                  <strong>Gravity:</strong> {moon.gravity ?? "Unknown"} * m/s²
+>>>>>>> Stashed changes
                   </p>
                   {explanationNum === 3 && (<div>
                     <TableContainer component={Paper} sx={{ maxWidth: 0.5 }} justify="center">
@@ -247,6 +256,7 @@ function MoonInstance(props) {
                 </Col>
               </Row>
               <Row>
+<<<<<<< Updated upstream
                 <Col>
                   <div class="model-links">
                     <TableContainer component={Paper}>
@@ -260,12 +270,28 @@ function MoonInstance(props) {
                           </TableRow>
                         </TableHead>
                         <TableBody>
+=======
+              <Col>
+                <div class="model-links">
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 250 }}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>
+                            {" "}
+                            <strong> Planet With Same Percentile Mass: </strong>{" "}
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+>>>>>>> Stashed changes
                           <Link
                             class="link"
                             to={"/planet/" + planet.index}>
                             <MDBCardImage className="img-grp" src={planet.img ? `//images.weserv.nl/?url=${planet.img}` : defaultPlanetImg} />
                             <p> {planet.pl_name}</p>
                           </Link>
+<<<<<<< Updated upstream
                         </TableBody>
                       </Table>
                     </TableContainer>
@@ -285,6 +311,27 @@ function MoonInstance(props) {
                           </TableRow>
                         </TableHead>
                         <TableBody>
+=======
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <br></br>
+                </div>
+              </Col>
+              <Col>
+                <div class="model-links">
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 250 }}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>
+                            {" "}
+                            <strong> Star With Same Percentile Mass: </strong>{" "}
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+>>>>>>> Stashed changes
                           <Link
                             class="link"
                             to={"/star/" + star.index}>

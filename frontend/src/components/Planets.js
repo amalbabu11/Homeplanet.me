@@ -10,6 +10,7 @@ class Planets extends React.Component {
       <Container>
           <h1>Planets</h1>
         <Row>
+<<<<<<< Updated upstream
           <Col>
           {/* <h2>Sort By</h2> */}
           {/* <PlanetSort /> */}
@@ -19,6 +20,10 @@ class Planets extends React.Component {
             {/* <h2>Filter By Temperature</h2> */}
           {/* <PlanetFilter /> */}
             </Col>
+=======
+            <h2>Sort By</h2>
+          <PlanetSort />
+>>>>>>> Stashed changes
           </Row>
         <Row>
           <Col>

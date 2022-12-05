@@ -207,6 +207,7 @@ function PlanetInstance(props) {
                 </div>
               </Col>
               <Row>
+<<<<<<< Updated upstream
                 <Col>
                   <div class="model-links">
                     <TableContainer component={Paper}>
@@ -220,12 +221,28 @@ function PlanetInstance(props) {
                           </TableRow>
                         </TableHead>
                         <TableBody>
+=======
+              <Col>
+                <div class="model-links">
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 250 }}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>
+                            {" "}
+                            <strong> Moon With The Same Percentile Mass: </strong>{" "}
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+>>>>>>> Stashed changes
                           <Link
                             class="link"
                             to={"/moon/" + moon.index}>
                             <MDBCardImage className="img-grp" src={moon.img ?? defaultMoonImg} />
                             <p> {moon.englishName}</p>
                           </Link>
+<<<<<<< Updated upstream
                         </TableBody>
                       </Table>
                     </TableContainer>
@@ -245,6 +262,27 @@ function PlanetInstance(props) {
                           </TableRow>
                         </TableHead>
                         <TableBody>
+=======
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <br></br>
+                </div>
+              </Col>
+              <Col>
+                <div class="model-links">
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 250 }}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>
+                            {" "}
+                            <strong> Star This Planet Orbits: </strong>{" "}
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+>>>>>>> Stashed changes
                           <Link
                             class="link"
                             to={"/star/" + star.index}>
