@@ -11,7 +11,7 @@
 | Amal Babu | [amalbabu12](https://gitlab.com/amalbabu12) | ab73464 |
 | Megan Zhao | [banye0913](https://gitlab.com/banye0913) | dz4782 | 
 
-**Website URL:** homeplanet.me
+**Website URL:** https://www.homeplanet.me/
 
 **GitLab URL:**  https://gitlab.com/NathanSuss/group12-cs373
 
