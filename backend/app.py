@@ -53,11 +53,12 @@ def api_all_moons():
     sort_vol_value: str = request.args.get("sort-vol-value")
     sort_vol_exponent: str = request.args.get("sort-vol-exponent")
     sort_discovery_date: str = request.args.get("sort-discovery-date")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     moons: list[dict] = utils.get_moons()
 
     if search_val is not None:
+        search_val = search_val.lower()
         moons = list(filter(
             lambda x:  search_val in x["englishName"].lower() 
             or search_val in x["aroundPlanet"].lower(),
@@ -118,11 +119,12 @@ def api_all_planets():
     sort_pl_dens: str = request.args.get("sort-pl-dens")
     sort_pl_eqt: str = request.args.get("sort-pl-eqt")
     sort_pl_orbper: str = request.args.get("sort-pl-orbper")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     planets: list[dict] = utils.get_planets()
 
     if search_val is not None:
+        search_val = search_val.lower()
         planets = list(filter(
             lambda x:  search_val in x["pl_name"].lower() 
             or search_val in x["hostname"].lower(),
@@ -181,11 +183,12 @@ def api_all_stars():
     sort_st_mass: str = request.args.get("sort-st-mass")
     sort_st_logg: str = request.args.get("sort-st-logg")
     sort_color: str = request.args.get("sort-color")
-    search_val: str = request.args.get("search").lower()
+    search_val: str = request.args.get("search")
 
     stars: list[dict] = utils.get_stars()
 
     if search_val is not None:
+        search_val = search_val.lower()
         stars = list(filter(
             lambda x:  search_val in x["star_name"].lower() 
             or search_val in x["st_lumclass"].lower()
@@ -344,15 +347,20 @@ def recommand_planets():
     ret:    `json`, the basic information of recommended star and moon
             `status_code`, the status code of this reply
     """
-    planet: str = request.args.get("planet")
-    if not planet:
+    planetIndex: str = request.args.get("planet")
+
+    if not planetIndex:
         return (
             'Cannot find argument "planet". Please check your request.',
             404,
             error_header,
         )
-    star: dict = random.choice(utils.get_stars())
-    moon: dict = random.choice(utils.get_moons())
+    hostname: dict = utils.get_planet_by_index(planetIndex)[0]["hostname"]
+    star: dict = utils.get_star_by_name(hostname)
+    planetIndex = str(int(planetIndex) % 150)
+    if not star:
+        star = utils.get_star_by_index(planetIndex)
+    moon: dict = utils.get_moon_by_index(planetIndex)
     ret: dict = {"star": star, "moon": moon}
     return json.dumps(ret), 200, return_header
 
@@ -365,15 +373,22 @@ def recommand_stars():
     ret:    `json`, the basic information of recommended planet and moon
             `status_code`, the status code of this reply
     """
-    star: str = request.args.get("star")
-    if not star:
+    starIndex: str = request.args.get("star")
+    if not starIndex:
         return (
             'Cannot find argument "star". Please check your request.',
             404,
             error_header,
         )
-    planet: dict = random.choice(utils.get_planets())
-    moon: dict = random.choice(utils.get_moons())
+    # print(star)
+    starName = utils.get_star_by_index(starIndex)[0]["star_name"]
+    starIndex = str(int(starIndex) % 100)
+    # print(starName)
+    planet: dict = utils.get_planet_by_name(starName)
+    if len(planet) == 0:
+        planet = utils.get_planet_by_index(starIndex)
+    
+    moon: dict = utils.get_moon_by_index(starIndex)
     ret: dict = {"planet": planet, "moon": moon}
     return json.dumps(ret), 200, return_header
 
