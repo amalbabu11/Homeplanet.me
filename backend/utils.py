@@ -7,6 +7,8 @@ import sys
 
 sys.path.append(os.path.abspath(".."))
 
+HABITABLE = (277, 312)
+
 
 def get_moons() -> list[dict]:
     """
