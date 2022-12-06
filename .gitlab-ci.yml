@@ -1,57 +1,59 @@
 image: node:latest
 
 stages:
-    - build
-    - test-jest
-    - test-selenium
+    # - build
+    # - test-jest
+    # - test-selenium
     - test-backend
     - deploy
 
 # build_frontend:
-    stage: build
-    script:
-        - echo "trying frontend build in gitlab-ci.yml"
-        - cd frontend
-        - npm install
-        - CI=false npm run-script build
+    # stage: build
+    # script:
+    #     - echo "trying frontend build in gitlab-ci.yml"
+    #     - cd frontend
+    #     - npm install
+    #     - CI=false npm run-script build
 
 # Credit: https://gitlab.com/JohnPowow/animalwatch/-/blob/main/.gitlab-ci.yml
-test_jest:
-    stage: test-jest
-    image: node:latest
-    script:
-        - echo "trying jest tests"
-        - cd frontend
-        - npm install
-        - npm install --save-dev jest
-        - npm install --save-dev babel-jest @babel/core @babel/preset-env
-        - npm run test
+# test_jest:
+#     stage: test-jest
+#     image: node:latest
+#     script:
+#         - echo "trying jest tests"
+#         - cd frontend
+#         - npm install
+#         - npm install --save-dev jest
+#         - npm install --save-dev babel-jest @babel/core @babel/preset-env
+#         - npm run test
         
 # Credit to Univercity.me and AnimalWatch.net
-selenium_test:
-  stage: test-selenium
-  image: python:3.8
-  script:
-    - pip install -r ./frontend/gui_tests/requirements.txt
+# selenium_test:
+#   stage: test-selenium
+#   image: python:3.8
+#   script:
+#     - pip install -r ./frontend/gui_tests/requirements.txt
         
-    - apt-get update -q -y
-    - apt-get install nodejs npm -y
-    - apt-get --yes install libnss3
-    - apt-get --yes install libgconf-2-4
-    - apt-get install libx11-xcb1
+#     - apt-get update -q -y
+#     - apt-get install nodejs npm -y
+#     - apt-get --yes install libnss3
+#     - apt-get --yes install libgconf-2-4
+#     - apt-get install libx11-xcb1
     
-    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    - apt-get update -q -y
-    - apt-get install -y google-chrome-stable
+#     - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+#     - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#     - apt-get update -q -y
+#     - apt-get install -y google-chrome-stable
 
-    - make selenium-test
+#     - make selenium-test
 
 backend_test:
     stage: test-backend
     image: python:3.8
     script:
-        - 
+        # - sudo apt-get update
+        # - sudo apt-get install -y python3 python3-pip make
+        - pip3 install flask flask_cors requests pandas sqlalchemy
 
 deploy_frontend:
     stage: deploy
