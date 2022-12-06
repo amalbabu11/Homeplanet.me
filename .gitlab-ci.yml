@@ -3,7 +3,7 @@ image: node:latest
 stages:
     # - build
     #- test-jest
-    - test-selenium
+    # - test-selenium
     - test-backend
     - deploy
 
@@ -28,24 +28,24 @@ stages:
 #         - npm run test
         
 # Credit to Univercity.me and AnimalWatch.net
-selenium_test:
-  stage: test-selenium
-  image: python:3.8
-  script:
-    - pip install -r ./frontend/gui_tests/requirements.txt
+# selenium_test:
+#   stage: test-selenium
+#   image: python:3.8
+#   script:
+#     - pip install -r ./frontend/gui_tests/requirements.txt
         
-    - apt-get update -q -y
-    - apt-get install nodejs npm -y
-    - apt-get --yes install libnss3
-    - apt-get --yes install libgconf-2-4
-    - apt-get install libx11-xcb1
+#     - apt-get update -q -y
+#     - apt-get install nodejs npm -y
+#     - apt-get --yes install libnss3
+#     - apt-get --yes install libgconf-2-4
+#     - apt-get install libx11-xcb1
     
-    - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    - apt-get update -q -y
-    - apt-get install -y google-chrome-stable
+#     - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+#     - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#     - apt-get update -q -y
+#     - apt-get install -y google-chrome-stable
 
-    - make selenium-test
+#     - make selenium-test
 
 backend_test:
     stage: test-backend
@@ -54,7 +54,7 @@ backend_test:
         - apt-get update -q -y
         - apt-get install nodejs npm -y
         - npm install -g newman
-        - pip3 install flask flask_cors requests
+        - pip3 install flask flask_cors requests sqlalchemy
         - cd data
         - python3 databasebuilder.py --fill all
         - cd ../backend
