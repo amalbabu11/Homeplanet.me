@@ -51,6 +51,7 @@ backend_test:
     stage: test-backend
     image: python:3.8
     script:
+        - apt-get update -q -y
         - apt-get install nodejs npm -y
         - npm install -g newman
         - pip3 install flask, flask_cors, requests
