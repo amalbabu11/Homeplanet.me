@@ -58,17 +58,18 @@ def api_all_moons():
     search_val: str = request.args.get("search")
 
     filter_planet: str = request.args.get("filter")
-    if filter_planet is not None:
-        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
-
 
 
     moons: list[dict] = utils.get_moons()
 
-    moons = list(filter(
-    lambda x: filter_planet in x["aroundPlanet"].lower(),
-    moons
-))
+    if filter_planet is not None:
+        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
+
+
+        moons = list(filter(
+        lambda x: filter_planet in x["aroundPlanet"].lower(),
+        moons
+    ))
 
     if search_val is not None:
         search_val = search_val.lower()
@@ -359,12 +360,12 @@ def api_star():
     return json.dumps(star), 200, return_header
 
 
-@app.route("/api/recommand/moon", methods=["GET"])
-def recommand_moon():
+@app.route("/api/recommend/moon", methods=["GET"])
+def recommend_moon():
     """
-    This api returns recommandations based on the moon. For the moon it returns a random star
+    This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
-    ret:    `json`, the basic information of recommanded star and planet
+    ret:    `json`, the basic information of recommended star and planet
             `status_code`, the status code of this reply
     """
     moon: str = request.args.get("moon")
@@ -380,12 +381,12 @@ def recommand_moon():
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/planet", methods=["GET"])
-def recommand_planets():
+@app.route("/api/recommend/planet", methods=["GET"])
+def recommend_planets():
     """
-    This api returns recommandations based on the planet. For the planet, it searches for an
-     available star and randomly recommands a moon based on the galaxy it is in.
-    ret:    `json`, the basic information of recommanded star and moon
+    This api returns recommendations based on the planet. For the planet, it searches for an
+     available star and randomly recommends a moon based on the galaxy it is in.
+    ret:    `json`, the basic information of recommended star and moon
             `status_code`, the status code of this reply
     """
     planetIndex: str = request.args.get("planet")
@@ -406,12 +407,12 @@ def recommand_planets():
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/star", methods=["GET"])
-def recommand_stars():
+@app.route("/api/recommend/star", methods=["GET"])
+def recommend_stars():
     """
-    This api returns recommandations based on the star. For the star, it searches for planets in
-     the same galaxy and randomly recommands moons.
-    ret:    `json`, the basic information of recommanded planet and moon
+    This api returns recommendations based on the star. For the star, it searches for planets in
+     the same galaxy and randomly recommends moons.
+    ret:    `json`, the basic information of recommended planet and moon
             `status_code`, the status code of this reply
     """
     starIndex: str = request.args.get("star")
