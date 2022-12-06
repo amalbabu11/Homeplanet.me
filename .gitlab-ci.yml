@@ -2,8 +2,9 @@ image: node:latest
 
 stages:
     - build
-    - test-jest
-    - test-selenium
+    #- test-jest
+    #- test-selenium
+    - test-backend
     - deploy
 
 build_frontend:
@@ -47,6 +48,19 @@ selenium_test:
     - apt-get install -y google-chrome-stable
 
     - make selenium-test
+
+backend_test:
+    stage: test-backend
+    image: python:3.8
+    script:
+        - apt-get install nodejs npm -y
+        - npm install -g newman
+        - pip3 install flask, flask_cors, requests
+        - cd data
+        - python3 databasebuilder.py --fill all
+        - cd ../backend
+        - python3 app.py &
+        - make test
 
 deploy_frontend:
     stage: deploy
