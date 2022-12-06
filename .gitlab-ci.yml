@@ -51,6 +51,7 @@ backend_test:
     stage: test-backend
     image: python:3.8
     script:
+        - apt-get update
         - apt-get install -y nodejs npm
         - npm install -g newman
         - cd backend
