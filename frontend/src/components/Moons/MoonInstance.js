@@ -1,5 +1,5 @@
 import { Container, Col, Row } from "react-bootstrap";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import defaultMoonImg from "../../assets/moons/defaultMoonImg.gif"
 import defaultStarImg from "../../assets/stars/defaultStarImg.png"
-import { MDBCardTitle, MDBCardImage, } from "mdb-react-ui-kit";
+import { MDBCardImage, } from "mdb-react-ui-kit";
 import defaultPlanetImg from "../../assets/planets/defaultPlanetImg.bmp"
 import EarthImg from "../../assets/planets/EarthImg.jpeg"
 import MarsImg from "../../assets/planets/MarsImg.jpeg"

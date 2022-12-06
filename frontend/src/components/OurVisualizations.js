@@ -1,12 +1,9 @@
 import { React } from "react";
 import { Container } from "react-bootstrap";
-// import CompanyEmissionsChart from "./Visualizations/CompanyEmissionsChart";
-// import FacilityEmissionsChart from "./Visualizations/FacilityEmissionsChart";
 import PlanetTemperatureChart from "./Visualizations/PlanetTemperatureChart";
 import MoonSizeChart from "./Visualizations/MoonSizeChart";
 import StarTypeChart from "./Visualizations/StarTypeChart";
 import { Stack } from "@mui/material"
-// import "../styles/Visualizations.css"
 
 function Visualizations() {
 

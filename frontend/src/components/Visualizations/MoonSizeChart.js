@@ -33,10 +33,6 @@ function MoonSizeChart() {
         const pluto = [];
         
         moonData.forEach(moon => {
-            // if (moon.grav !== 0 && moon.volValue && moon.volExponent !== 0 && moon.volExponent){
-            //     console.log("Moon vol valid");
-            //     console.log("Planet = " + moon.aroundPlanet);
-            // } 
             if (moon.massValue !== 0 && moon.massValue && moon.massExponent !== 0 && moon.massExponent){
                 console.log("Moon mass valid");
                 console.log("Planet = " + moon.aroundPlanet);

@@ -8,7 +8,6 @@ function CarSafetyChart() {
     const [scatterData, setScatterData] = useState([]);
 
   useEffect(() => {
-    // credit to AnimalWatch.me
     var api_url = `https://api.findacarfor.me/specs?page=1&count=877`;
     const getData = async () => {
       let response = await fetch (
@@ -52,8 +51,6 @@ function CarSafetyChart() {
             <ScatterPlot data={scatterData}/>
         </div>
     );
-
-
 
 }
 

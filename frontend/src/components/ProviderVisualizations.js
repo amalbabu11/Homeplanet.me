@@ -1,7 +1,5 @@
 import { React } from "react";
 import { Container } from "react-bootstrap";
-// import CompanyEmissionsChart from "./Visualizations/CompanyEmissionsChart";
-// import FacilityEmissionsChart from "./Visualizations/FacilityEmissionsChart";
 import CarSafetyChart from "./Visualizations/CarSafetyChart";
 import FuelStationChart from "./Visualizations/FuelStationChart";
 import ListingPriceChart from "./Visualizations/ListingPriceChart";

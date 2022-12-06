@@ -2,8 +2,7 @@
 import React from "react";
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 
-import { Col, Row } from 'reactstrap';
-// const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c"]
+import { Row } from 'reactstrap';
 
 function OurBarChart(props) {
 

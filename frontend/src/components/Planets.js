@@ -1,7 +1,6 @@
 import React from "react";
 import PlanetList from "./Planets/PlanetList.js";
 import { Container, Col, Row } from "react-bootstrap";
-import PlanetFilter from "./Planets/PlanetFilter.js";
 import "../App.css";
 
 class Planets extends React.Component {
@@ -9,7 +8,6 @@ class Planets extends React.Component {
     return (
       <Container>
           <h1>Planets</h1>
-
         <Row>
           <Col>
             <PlanetList />

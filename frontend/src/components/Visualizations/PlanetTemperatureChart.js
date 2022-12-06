@@ -23,9 +23,7 @@ function PlanetTemperatureChart() {
       body = await response.json()
       console.log("BODY")
       console.log(JSON.stringify(body))
-    //   setPlanets(body['bodies'])
       setBarData(computeBarData(body['bodies']));
-    //   setInstances(body['total_size'])
     };
     getData();
   }, []);
@@ -49,11 +47,9 @@ function PlanetTemperatureChart() {
                 ++cnts[0];
             } else if(planet.pl_eqt < 200){
                 data[1].NumPlanets++;
-                // data[1].College += district.college_grad;
                 ++cnts[1];
             } else if(planet.pl_eqt < 277){
                 data[2].NumPlanets++;
-                // data[2].College += district.college_grad;
                 ++cnts[2];
             }
             else if(planet.pl_eqt < 312){
