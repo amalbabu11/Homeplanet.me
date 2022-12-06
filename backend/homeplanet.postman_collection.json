@@ -605,11 +605,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"The `recommand_moon` api status test.\", function() {",
+							"pm.test(\"The `recommend_moon` api status test.\", function() {",
 							"    pm.response.to.be.ok;",
 							"});",
 							"",
-							"pm.test(\"The `recommand_moon` api body test.\", function() {",
+							"pm.test(\"The `recommend_moon` api body test.\", function() {",
 							"    let resp = pm.response;",
 							"    let json = resp.json();",
 							"    pm.expect(json).to.haveOwnProperty(\"star\");",
@@ -694,11 +694,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"The `recommand_planet` api status test.\", function() {",
+							"pm.test(\"The `recommend_planet` api status test.\", function() {",
 							"    pm.response.to.be.ok;",
 							"});",
 							"",
-							"pm.test(\"The `recommand_planet` api body test.\", function() {",
+							"pm.test(\"The `recommend_planet` api body test.\", function() {",
 							"    let resp = pm.response;",
 							"    let json = resp.json();",
 							"    pm.expect(json).to.haveOwnProperty(\"star\");",
@@ -788,11 +788,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"The `recommand_star` api status test.\", function() {",
+							"pm.test(\"The `recommend_star` api status test.\", function() {",
 							"    pm.response.to.be.ok;",
 							"});",
 							"",
-							"pm.test(\"The `recommand_star` api body test.\", function() {",
+							"pm.test(\"The `recommend_star` api body test.\", function() {",
 							"    let resp = pm.response;",
 							"    let json = resp.json();",
 							"    pm.expect(json).to.haveOwnProperty(\"planet\");",
