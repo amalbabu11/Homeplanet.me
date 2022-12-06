@@ -84,7 +84,7 @@ function PlanetList() {
         {/* sort button implementation */}
         <Row>
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label><h2>Sort by</h2></Form.Label>
+            <Form.Label><h2>Sort By</h2></Form.Label>
             <Form.Select type="sort" onChange={(e) => setSortVal(e.target.value)}>
               <option value="">-</option>
               <option value="sort-pl-masse">Mass</option>
@@ -97,7 +97,7 @@ function PlanetList() {
 
           {/* filter button implementation */}
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label><h2>Filter by</h2></Form.Label>
+            <Form.Label><h2>Filter By</h2></Form.Label>
             <Form.Select type="filter" onChange={(e) => setFilterVal(e.target.value)}>
               <option value="">-</option>
               <option value="too-cold">Too Cold</option>

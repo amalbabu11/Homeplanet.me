@@ -85,7 +85,7 @@ function StarList() {
         {/* sort button implementation */}
         <Row>
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label><h2>Sort by</h2></Form.Label>
+            <Form.Label><h2>Sort By</h2></Form.Label>
             <Form.Select type="sort" onChange={(e) => setSortVal(e.target.value)}>
               <option value="">-</option>
               <option value="sort-st-rad">Radius</option>
@@ -97,7 +97,7 @@ function StarList() {
 
           {/* filter button implementation */}
           <Form.Group as={Col} controlId="formFilter">
-            <Form.Label><h2>Filter by</h2></Form.Label>
+            <Form.Label><h2>Filter By</h2></Form.Label>
             <Form.Select type="sort" onChange={(e) => setFilterVal(e.target.value)}>
               <option value="">-</option>
               <option value="mainseq">MAINSEQ</option>
