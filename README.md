@@ -86,7 +86,7 @@
 ## Phase IV Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
-| Amal Babu | 5 hours | 7 hours|
+| Amal Babu | 5 hours | 8 hours|
 | Summer Ely | 10 hours | 16 hours |
 | Jinjie Liu | 5 hours | 3 hours |
 | Nathan Sussman | 10 hours | 14 hours |
@@ -95,10 +95,10 @@
 ## Comments
 Overall file structure, List classes, Sorting, and Searching adapted from [FindingFootprints](https://gitlab.com/AlejandroCantu/group2)
 
-Instance Model, About Page, TeamInfo, and ToolInfo adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
+Instance Model, About Page, TeamInfo, ToolInfo and Visualizations adapted from [Electrends](https://gitlab.com/dandom25/electrends/)
 
-Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/-/blob/master/makefile)
+Makefile credit to [Sustainability](https://gitlab.com/caitlinlien/cs373-sustainability/)
 
 Dockerfile credit to [FindAHome](https://gitlab.com/aghayalod/find-a-home/-/blob/main/findahome-app/Dockerfile)
 
-Jest and Selenium tests credit to [AnimalWatch](https://gitlab.com/JohnPowow/animalwatch/)
+Jest tests, Selenium tests, and frontend API calling credit to [AnimalWatch](https://gitlab.com/JohnPowow/animalwatch/)

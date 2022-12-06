@@ -95,7 +95,7 @@ function PlanetInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch(
-        `https://api.homeplanet.me/api/recommand/planet?planet=${id}`,
+        `https://api.homeplanet.me/api/recommend/planet?planet=${id}`,
         { mode: 'cors', }
       );
       console.log("RESPONSE");

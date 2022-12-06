@@ -97,7 +97,7 @@ function StarInstance(props) {
   useEffect(() => {
     const getData = async () => {
       let response = await fetch (
-        `https://api.homeplanet.me/api/recommand/star?star=${id}`, 
+        `https://api.homeplanet.me/api/recommend/star?star=${id}`, 
         { mode: 'cors', }
       );
       console.log("RESPONSE");
