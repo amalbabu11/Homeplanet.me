@@ -4,6 +4,7 @@ stages:
     - build
     - test-jest
     - test-selenium
+    - test-backend
     - deploy
 
 build_frontend:
@@ -21,7 +22,6 @@ test_jest:
     script:
         - echo "trying jest tests"
         - cd frontend
-#        - npm install npm@8.5.5 -g
         - npm install
         - npm install --save-dev jest
         - npm install --save-dev babel-jest @babel/core @babel/preset-env
@@ -32,7 +32,6 @@ selenium_test:
   stage: test-selenium
   image: python:3.8
   script:
-    # I successfully ran all of the below commands on linux to prepare for selenium (except make selenium-test)
     - pip install -r ./frontend/gui_tests/requirements.txt
         
     - apt-get update -q -y
@@ -47,6 +46,17 @@ selenium_test:
     - apt-get install -y google-chrome-stable
 
     - make selenium-test
+
+backend_test:
+    stage: test-backend
+    image: python:3.8
+    script:
+        - apt-get update
+        - apt-get install -y nodejs npm
+        - npm install -g newman
+        - pip3 install requests
+        - cd backend
+        - make test
 
 deploy_frontend:
     stage: deploy

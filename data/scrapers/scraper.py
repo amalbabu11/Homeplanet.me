@@ -98,11 +98,36 @@ def write_exostar_data():
     if response.status_code == requests.codes.ok:
         responseSTR = StringIO(response.text)
         data = pd.read_csv(responseSTR)
+        print(data)
     else:
         print("Error:", response.status_code, response.text)
         return
 
+    # data.to_csv("../exostar_data.csv")
+
+    purl = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+hostname,st_teff,st_rad,st_age,st_mass,st_logg+from+ps+where+disc_facility+=+'Transiting Exoplanet Survey Satellite (TESS)'&format=csv&"
+    
+    response = requests.get(purl)
+
+    if response.status_code == requests.codes.ok:
+        responseSTR = StringIO(response.text)
+        pdata = pd.read_csv(responseSTR)
+        print(pdata)
+    else:
+        print("Error:", response.status_code, response.text)
+        return
+
+    # pdata.to_csv("../exostar_data.csv")
+    pdata.rename(columns={"hostname":  "star_name"}, inplace=True)
+    pdata["st_lumclass"] = ""
+
+    print(pdata)
+
+    data = pd.concat([data, pdata]).drop_duplicates(subset = "star_name", keep = "first").reset_index(drop = True)
+    print(data)
     data.to_csv("../exostar_data.csv")
+
+
 
 
 """ 
@@ -126,6 +151,8 @@ def get_all_data():
 
     with open("../data/star_data.json", "w") as f:
         json.dump(star_data, f)
+
+    
 
     write_exostar_data()
 
@@ -151,4 +178,4 @@ def get_exoplanet_data():
 
 if __name__ == "__main__":
     # get_all_data()
-    get_exoplanet_data()
+    write_exostar_data()

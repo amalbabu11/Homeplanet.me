@@ -30,7 +30,7 @@ const teamInfo = [
 			"Hi! My name is Summer Ely and I am a Junior in UT CS. I grew up here in Austin, TX. In my free time, I like watching movies, listening to music, and playing sports.",
 		commits: 0,
 		issues: 0,
-		tests: 10,
+		tests: 14,
     },
     {
         name: "Jinjie Liu",

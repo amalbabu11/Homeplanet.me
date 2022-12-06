@@ -20,15 +20,6 @@ PATH = "./frontend/gui_tests/chromedriver.exe"
 class SeleniumTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # service = Service(PATH) # comment out before pushing
-        # testoptions = Options()
-        # testoptions.add_argument("--headless")
-        # testoptions.add_argument("--no-default-browser-check")
-        # testoptions.add_argument("--no-sandbox")
-        # testoptions.add_argument("--disable-gpu")
-        # self.driver = webdriver.Chrome(
-        #     service=Service(ChromeDriverManager().install()), options=testoptions
-        # )
         cls.link = "https://homeplanet.me/"
         ops = Options()
         ops.add_argument("--headless")
@@ -137,7 +128,6 @@ class SeleniumTests(unittest.TestCase):
 
         self.assertEqual(element.text, "Sort By")
         self.driver.get(self.link)
-
 
 
 if __name__ == "__main__":

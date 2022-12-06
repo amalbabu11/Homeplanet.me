@@ -6,7 +6,7 @@ import pandas as pd
 
 import json
 
-db_url = "mysql://root:@localhost:3306/cs373"
+db_url = "mysql://root:1013565559ljj@localhost:3306/cs373"
 
 
 engine = create_engine(db_url)
@@ -62,7 +62,7 @@ def fillPlanetTable():
     dataPath = "../data/exoplanet_data.csv"
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
-    data.index += 1
+
     print(data.head())
 
     data.to_sql(
@@ -101,7 +101,6 @@ def fillStarTable():
     dataPath = "../data/exostar_data.csv"
     data = pd.read_csv(dataPath)
     data = data.loc[:, ~data.columns.str.contains("^Unnamed")]
-    data.index += 1
 
     with open("images.json", "r") as f:
         starImages = json.load(f)

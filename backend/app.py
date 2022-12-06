@@ -57,17 +57,27 @@ def api_all_moons():
     sort_discovery_date: str = request.args.get("sort-discovery-date")
     search_val: str = request.args.get("search")
 
+    filter_planet: str = request.args.get("filter")
+
+
     moons: list[dict] = utils.get_moons()
+
+    if filter_planet is not None:
+        filter_planet = "terre" if filter_planet.lower() == 'earth' else filter_planet.lower()
+
+
+        moons = list(filter(
+        lambda x: filter_planet in x["aroundPlanet"].lower(),
+        moons
+    ))
 
     if search_val is not None:
         search_val = search_val.lower()
-        moons = list(
-            filter(
-                lambda x: search_val in x["englishName"].lower()
-                or search_val in x["aroundPlanet"].lower(),
-                moons,
-            )
-        )
+        moons = list(filter(
+            lambda x:  search_val in x["englishName"].lower() 
+            or search_val in x["aroundPlanet"].lower(),
+            moons
+        ))
 
     if sort_index:
         moons = sorted(moons, key=lambda moon: moon["index"])
@@ -124,17 +134,38 @@ def api_all_planets():
     sort_pl_orbper: str = request.args.get("sort-pl-orbper")
     search_val: str = request.args.get("search")
 
+
+    filter_temp: str = request.args.get("filter")
+
     planets: list[dict] = utils.get_planets()
+
+    if filter_temp is not None:
+        filter_temp = filter_temp.lower()
+        lower, upper = utils.HABITABLE
+        if filter_temp == 'too-cold':
+            planets = list(filter(
+                lambda x: x['pl_eqt'] < lower,
+                planets
+            ))
+        elif filter_temp == 'habitable':
+            planets = list(filter(
+                lambda x: lower <= x['pl_eqt'] <= upper,
+                planets
+            ))
+
+        else:
+            planets = list(filter(
+                lambda x:  x['pl_eqt'] > upper,
+                planets
+            ))
 
     if search_val is not None:
         search_val = search_val.lower()
-        planets = list(
-            filter(
-                lambda x: search_val in x["pl_name"].lower()
-                or search_val in x["hostname"].lower(),
-                planets,
-            )
-        )
+        planets = list(filter(
+            lambda x:  search_val in x["pl_name"].lower() 
+            or search_val in x["hostname"].lower(),
+            planets
+        ))
 
     if sort_index:
         planets = sorted(planets, key=lambda planet: planet["index"])
@@ -187,18 +218,26 @@ def api_all_stars():
     sort_color: str = request.args.get("sort-color")
     search_val: str = request.args.get("search")
 
+    filter_class: str = request.args.get("filter")
+
     stars: list[dict] = utils.get_stars()
+
+    if filter_class is not None:
+        filter_class = filter_class.lower()
+
+        stars = list(filter(
+            lambda x: filter_class in x['st_lumclass'].lower(),
+            stars
+        ))
 
     if search_val is not None:
         search_val = search_val.lower()
-        stars = list(
-            filter(
-                lambda x: search_val in x["star_name"].lower()
-                or search_val in x["st_lumclass"].lower()
-                or search_val in x["color"].lower(),
-                stars,
-            )
-        )
+        stars = list(filter(
+            lambda x:  search_val in x["star_name"].lower() 
+            or search_val in x["st_lumclass"].lower()
+            or search_val in x["color"].lower(),
+            stars
+        ))
 
     if sort_index:
         stars = sorted(stars, key=lambda star: star["index"])
@@ -321,12 +360,12 @@ def api_star():
     return json.dumps(star), 200, return_header
 
 
-@app.route("/api/recommand/moon", methods=["GET"])
-def recommand_moon():
+@app.route("/api/recommend/moon", methods=["GET"])
+def recommend_moon():
     """
-    This api returns recommandations based on the moon. For the moon it returns a random star
+    This api returns recommendations based on the moon. For the moon it returns a random star
      and a random planet.
-    ret:    `json`, the basic information of recommanded star and planet
+    ret:    `json`, the basic information of recommended star and planet
             `status_code`, the status code of this reply
     """
     moon: str = request.args.get("moon")
@@ -342,44 +381,54 @@ def recommand_moon():
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/planet", methods=["GET"])
-def recommand_planets():
+@app.route("/api/recommend/planet", methods=["GET"])
+def recommend_planets():
     """
-    This api returns recommandations based on the planet. For the planet, it searches for an
-     available star and randomly recommands a moon based on the galaxy it is in.
-    ret:    `json`, the basic information of recommanded star and moon
+    This api returns recommendations based on the planet. For the planet, it searches for an
+     available star and randomly recommends a moon based on the galaxy it is in.
+    ret:    `json`, the basic information of recommended star and moon
             `status_code`, the status code of this reply
     """
-    planet: str = request.args.get("planet")
-    if not planet:
+    planetIndex: str = request.args.get("planet")
+
+    if not planetIndex:
         return (
             'Cannot find argument "planet". Please check your request.',
             404,
             error_header,
         )
-    star: dict = random.choice(utils.get_stars())
-    moon: dict = random.choice(utils.get_moons())
+    hostname: dict = utils.get_planet_by_index(planetIndex)[0]["hostname"]
+    star: dict = utils.get_star_by_name(hostname)
+    planetIndex = str(int(planetIndex) % 150)
+    if not star:
+        star = utils.get_star_by_index(planetIndex)
+    moon: dict = utils.get_moon_by_index(planetIndex)
     ret: dict = {"star": star, "moon": moon}
     return json.dumps(ret), 200, return_header
 
 
-@app.route("/api/recommand/star", methods=["GET"])
-def recommand_stars():
+@app.route("/api/recommend/star", methods=["GET"])
+def recommend_stars():
     """
-    This api returns recommandations based on the star. For the star, it searches for planets in
-     the same galaxy and randomly recommands moons.
-    ret:    `json`, the basic information of recommanded planet and moon
+    This api returns recommendations based on the star. For the star, it searches for planets in
+     the same galaxy and randomly recommends moons.
+    ret:    `json`, the basic information of recommended planet and moon
             `status_code`, the status code of this reply
     """
-    star: str = request.args.get("star")
-    if not star:
+    starIndex: str = request.args.get("star")
+    if not starIndex:
         return (
             'Cannot find argument "star". Please check your request.',
             404,
             error_header,
         )
-    planet: dict = random.choice(utils.get_planets())
-    moon: dict = random.choice(utils.get_moons())
+    starName = utils.get_star_by_index(starIndex)[0]["star_name"]
+    starIndex = str(int(starIndex) % 100)
+    planet: dict = utils.get_planet_by_name(starName)
+    if len(planet) == 0:
+        planet = utils.get_planet_by_index(starIndex)
+    
+    moon: dict = utils.get_moon_by_index(starIndex)
     ret: dict = {"planet": planet, "moon": moon}
     return json.dumps(ret), 200, return_header
 
