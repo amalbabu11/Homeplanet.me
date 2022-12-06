@@ -54,6 +54,7 @@ backend_test:
         - apt-get update
         - apt-get install -y nodejs npm
         - npm install -g newman
+        - pip3 install requests
         - cd backend
         - make test
 
