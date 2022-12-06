@@ -9,6 +9,12 @@ class Stars extends React.Component {
           <h1>Stars</h1>
         <Row>
           <Col>
+          </Col>
+          <Col>
+          </Col>
+          </Row>
+        <Row>
+          <Col>
             <StarList />
           </Col>
           
