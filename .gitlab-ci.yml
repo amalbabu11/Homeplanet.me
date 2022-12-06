@@ -54,7 +54,7 @@ backend_test:
         - apt-get update -q -y
         - apt-get install nodejs npm -y
         - npm install -g newman
-        - pip3 install flask flask_cors requests sqlalchemy pandas MySQLdb
+        - pip3 install flask flask_cors requests pandas mysqlclient MySQLdb sqlalchemy
         - cd data
         - python3 databasebuilder.py --fill all
         - cd ../backend
