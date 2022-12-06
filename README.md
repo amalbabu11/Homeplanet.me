@@ -17,7 +17,7 @@
 
 **GitLab Pipeline:** https://gitlab.com/NathanSuss/group12-cs373/-/pipelines
 
-**Git SHA:** ad9b640ca16f80eaed4f4d199ce442fe334f9317
+**Git SHA:** b78bc84423fc823d2a40a5f330373c000a3c9e99
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/20771905/2s83tFHWkc
 
@@ -86,10 +86,10 @@
 ## Phase IV Time Log
 | Name | Estimated Time | Actual Time |
 | ------ | ------ | ------ |
-| Amal Babu | 5 hours | 8 hours|
-| Summer Ely | 10 hours | 16 hours |
-| Jinjie Liu | 5 hours | 3 hours |
-| Nathan Sussman | 10 hours | 14 hours |
+| Amal Babu | 5 hours | 12 hours|
+| Summer Ely | 10 hours | 18 hours |
+| Jinjie Liu | 5 hours | 8 hours |
+| Nathan Sussman | 10 hours | 15 hours |
 | Megan Zhao | 5 hours | 3 hours |
 
 ## Comments
