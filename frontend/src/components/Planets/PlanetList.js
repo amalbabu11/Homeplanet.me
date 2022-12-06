@@ -27,8 +27,6 @@ function PlanetList() {
   parser.href = window.location.href;
   console.log("parser.href = " + parser.href);
   console.log("parser.hash = " + parser.hash);
-  // var sort_val = parser.hash.slice(2);
-  // console.log("sort param = " + sort_val)
   const [search_val, setSearchVal] = useState("");
   const [sort_val, setSortVal] = useState("");
   const [filter_val, setFilterVal] = useState("");
@@ -69,7 +67,6 @@ function PlanetList() {
   return (
     <Container >
       <>
-
         <div style={{ display: "flex", alignSelf: "center", justifyContent: "center", flexDirection: "column", padding: 20 }}>
           <form>
             <TextField
@@ -87,7 +84,7 @@ function PlanetList() {
         {/* sort button implementation */}
         <Row>
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label>Sort by</Form.Label>
+            <Form.Label><h2>Sort by</h2></Form.Label>
             <Form.Select type="sort" onChange={(e) => setSortVal(e.target.value)}>
               <option value="">-</option>
               <option value="sort-pl-masse">Mass</option>
@@ -100,7 +97,7 @@ function PlanetList() {
 
           {/* filter button implementation */}
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label>Filter by</Form.Label>
+            <Form.Label><h2>Filter by</h2></Form.Label>
             <Form.Select type="filter" onChange={(e) => setFilterVal(e.target.value)}>
               <option value="">-</option>
               <option value="too-cold">Too Cold</option>

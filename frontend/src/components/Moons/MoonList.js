@@ -85,7 +85,7 @@ function MoonList() {
         <Row>
           {/* sort button implementation */}
           <Form.Group as={Col} controlId="formSort">
-            <Form.Label>Sort by</Form.Label>
+            <Form.Label><h2>Sort by</h2></Form.Label>
             <Form.Select type="sort" onChange={(e) => setSortVal(e.target.value)}>
               <option value="">-</option>
               <option value="sort-mass-exponent">Mass</option>
@@ -98,7 +98,7 @@ function MoonList() {
 
           {/* filter button implementation */}
           <Form.Group as={Col} controlId="formFilter">
-            <Form.Label>Filter by</Form.Label>
+            <Form.Label><h2>Filter by</h2></Form.Label>
             <Form.Select type="filter" onChange={(e) => setFilterVal(e.target.value)}>
               <option value="">-</option>
               <option value="terre">Earth</option>
