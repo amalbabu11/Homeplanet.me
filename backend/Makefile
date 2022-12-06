@@ -14,6 +14,7 @@ SERVER = app.py
 # Add new py files into this item.
 FILES = app.py
 TESTS = tests.py
+POSTMAN = homeplanet.postman_collection.json
 REQ = requirements.txt
 
 DOCKER_NAME = backend
@@ -44,6 +45,7 @@ docker_run: docker
 
 test:
 	@curl "http://localhost:8000/"
+	newman run $(POSTMAN) --env-var "url=http://localhost:8000"
 	$(PYTHON) $(TESTS)
 
 clean:
