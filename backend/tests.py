@@ -3,8 +3,8 @@ import requests
 
 
 class TestBackend(unittest.TestCase):
-    host: str = "localhost"
-    port: int = 8000
+    host: str = "api.homeplanet.me"
+    port: int = 80
 
     def test_index(self):
         resp: requests.Response = requests.get(
@@ -155,7 +155,7 @@ class TestBackend(unittest.TestCase):
 
     def test_planet(self):
         index: int = 1
-        planet: str = "TOI-2337 b"
+        planet: str = "TOI-1899 b"
         resp: requests.Response = requests.get(
             f"http://{TestBackend.host}:{TestBackend.port}/api/planet?index={index}"
         )
@@ -244,7 +244,7 @@ class TestBackend(unittest.TestCase):
 
     def test_star(self):
         index: int = 1
-        star: str = "HIP 3765"
+        star: str = "HIP 3419"
         resp: requests.Response = requests.get(
             f"http://{TestBackend.host}:{TestBackend.port}/api/star?index={index}"
         )

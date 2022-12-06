@@ -422,10 +422,8 @@ def recommend_stars():
             404,
             error_header,
         )
-    # print(star)
     starName = utils.get_star_by_index(starIndex)[0]["star_name"]
     starIndex = str(int(starIndex) % 100)
-    # print(starName)
     planet: dict = utils.get_planet_by_name(starName)
     if len(planet) == 0:
         planet = utils.get_planet_by_index(starIndex)
